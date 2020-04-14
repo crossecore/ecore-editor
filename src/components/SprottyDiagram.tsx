@@ -23,7 +23,8 @@ export default function SprottyDiagram(props:any) {
 
    function updateModel() {
     const elk = new ELK()
-    elk.layout(EPackage2ElkGraph.convert(EcorePackageImpl.eINSTANCE), {layoutOptions: { 'algorithm': 'layered' }})
+    //console.log(elk.knownLayoutOptions())
+    elk.layout(EPackage2ElkGraph.convert(EcorePackageImpl.eINSTANCE), {layoutOptions: { 'algorithm': 'disco' }})
    .then((g:ElkNode) => {
     let sGraph = new ElkGraphJsonToSprotty().transform(g);
     modelSource.updateModel(sGraph)

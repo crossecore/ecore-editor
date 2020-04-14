@@ -1,5 +1,5 @@
-import { EPackage, EClassImpl, EObject, ENamedElement } from "crossecore";
-import { ElkNode, ElkPrimitiveEdge } from "elkjs";
+import { EPackage, EClassImpl, EObject, ENamedElement, EReferenceImpl } from "crossecore";
+import { ElkNode, ElkPrimitiveEdge, ElkLabel } from "elkjs";
 
 
 export class EPackage2ElkGraph{
@@ -22,22 +22,27 @@ export class EPackage2ElkGraph{
         const classifiers = new Array<ElkNode>()
         const edges = new Array<ElkPrimitiveEdge>()
         for(let eclassifier of epackage.eClassifiers){
-
+            const labels:Array<ElkLabel> = [{id: Math.random()+"", text: eclassifier.name}]
             if(eclassifier instanceof EClassImpl){
                 
                 const eclass = eclassifier as EClassImpl;
                 const features = new Array<ElkNode>()
                 for(let attribute of eclass.eAttributes){
-                    features.push({id: EPackage2ElkGraph.getFragment(attribute)})
+                    const labels2:Array<ElkLabel> = [{id: Math.random()+"", text: attribute.name+" : " +attribute.eType.name}]
+                    
+                    
+                    features.push({id: EPackage2ElkGraph.getFragment(attribute), labels:labels2})
                 }
 
                 for(let reference of eclass.eReferences){
-                    edges.push({id: EPackage2ElkGraph.getFragment(reference), source: EPackage2ElkGraph.getFragment(reference.eContainingClass), target: EPackage2ElkGraph.getFragment(reference.eType)})
+                    const labels2:Array<ElkLabel> = [{id: Math.random()+"", text: reference.name}]
+                    edges.push({id: EPackage2ElkGraph.getFragment(reference),source: EPackage2ElkGraph.getFragment(reference.eContainingClass), target: EPackage2ElkGraph.getFragment(reference.eType), labels:labels2})
                 }
-                classifiers.push({id: EPackage2ElkGraph.getFragment(eclass), children: features, width:30, height:30})
+                classifiers.push({id: EPackage2ElkGraph.getFragment(eclass), children: features, width:30, height:30, labels: labels})
             }
             else{
-                classifiers.push({id: EPackage2ElkGraph.getFragment(eclassifier), width:30, height:30})
+                
+                classifiers.push({id: EPackage2ElkGraph.getFragment(eclassifier), width:30, height:30, labels: labels})
             }
         }
 
