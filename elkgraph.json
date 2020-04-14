@@ -1,0 +1,2939 @@
+{
+  "id": "/ecore",
+  layoutOptions: { 
+    'algorithm': 'force',
+  },  
+  "children": [
+    {
+      "id": "/ecore/EAttribute",
+      "children": [
+        {
+          "id": "/ecore/EAttribute/iD",
+          "labels": [
+            {
+              "id": "0.6798190562029872",
+              "text": "iD : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 280,
+          "x": -4772185843.333334,
+          "y": -4772185843.333334,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": -9544371664.444445,
+      "height": -9544371664.444445,
+      "labels": [
+        {
+          "id": "0.21547716973883924",
+          "text": "EAttribute",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 15,
+      "x": 19454399258.04417,
+      "y": 19454401576.836723
+    },
+    {
+      "id": "/ecore/EAnnotation",
+      "children": [
+        {
+          "id": "/ecore/EAnnotation/source",
+          "labels": [
+            {
+              "id": "0.30492103208881505",
+              "text": "source : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 286,
+          "x": -4772185843.333334,
+          "y": -4772185843.333334,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": -9544371664.444445,
+      "height": -9544371664.444445,
+      "labels": [
+        {
+          "id": "0.8671257732868138",
+          "text": "EAnnotation",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 283,
+      "x": 9666257363.277794,
+      "y": 9666257363.277794
+    },
+    {
+      "id": "/ecore/EClass",
+      "children": [
+        {
+          "id": "/ecore/EClass/abstract",
+          "labels": [
+            {
+              "id": "0.6932076341378193",
+              "text": "abstract : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 292,
+          "x": 33.241112043864455,
+          "y": 33.241112043864455,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EClass/interface",
+          "labels": [
+            {
+              "id": "0.7322693884557148",
+              "text": "interface : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 295,
+          "x": 11.080370681288152,
+          "y": 11.080370681288144,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": 144.3214827251526,
+      "height": 144.3214827251526,
+      "labels": [
+        {
+          "id": "0.6485590109453749",
+          "text": "EClass",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 289,
+      "x": 14682211931.904144,
+      "y": 14682217193.520157
+    },
+    {
+      "id": "/ecore/EClassifier",
+      "children": [
+        {
+          "id": "/ecore/EClassifier/instanceClassName",
+          "labels": [
+            {
+              "id": "0.8039135100244336",
+              "text": "instanceClassName : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 301,
+          "x": 33.19527804493945,
+          "y": 33.19527804493945,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EClassifier/instanceClass",
+          "labels": [
+            {
+              "id": "0.7762436969075369",
+              "text": "instanceClass : EJavaClass",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 304,
+          "x": 11.065092681646483,
+          "y": 11.06509268164649,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EClassifier/defaultValue",
+          "labels": [
+            {
+              "id": "0.26472068828712836",
+              "text": "defaultValue : EJavaObject",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 307,
+          "x": 33.19527804493945,
+          "y": 11.06509268164649,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EClassifier/instanceTypeName",
+          "labels": [
+            {
+              "id": "0.32373832438714867",
+              "text": "instanceTypeName : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 310,
+          "x": 55.325463408232416,
+          "y": 11.06509268164649,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": 166.39055608987888,
+      "height": 144.26037072658593,
+      "labels": [
+        {
+          "id": "0.7681295555150002",
+          "text": "EClassifier",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 298,
+      "x": 14682209345.899937,
+      "y": 14682219875.386799
+    },
+    {
+      "id": "/ecore/EDataType",
+      "children": [
+        {
+          "id": "/ecore/EDataType/serializable",
+          "labels": [
+            {
+              "id": "0.06596482978535345",
+              "text": "serializable : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 316,
+          "x": -4772185843.333334,
+          "y": -4772185843.333334,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": -9544371664.444445,
+      "height": -9544371664.444445,
+      "labels": [
+        {
+          "id": "0.9979685532828337",
+          "text": "EDataType",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 313,
+      "x": 19454401632.733707,
+      "y": 19454399313.94115
+    },
+    {
+      "id": "/ecore/EEnum",
+      "children": [],
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.08313307938378867",
+          "text": "EEnum",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 319,
+      "x": 19716112788.91146,
+      "y": 9648312498.742392
+    },
+    {
+      "id": "/ecore/EEnumLiteral",
+      "children": [
+        {
+          "id": "/ecore/EEnumLiteral/value",
+          "labels": [
+            {
+              "id": "0.3776965440221408",
+              "text": "value : EInt",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 325,
+          "x": 33.210535672158684,
+          "y": 33.210535672158684,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EEnumLiteral/instance",
+          "labels": [
+            {
+              "id": "0.68622020618952",
+              "text": "instance : EEnumerator",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 328,
+          "x": 11.070178557386228,
+          "y": 11.070178557386228,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EEnumLiteral/literal",
+          "labels": [
+            {
+              "id": "0.5618192883593538",
+              "text": "literal : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 331,
+          "x": 33.210535672158684,
+          "y": 11.070178557386214,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": 144.2807142295449,
+      "height": 144.2807142295449,
+      "labels": [
+        {
+          "id": "0.2881001725830754",
+          "text": "EEnumLiteral",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 322,
+      "x": 19716112727.56627,
+      "y": 9648312198.489508
+    },
+    {
+      "id": "/ecore/EFactory",
+      "children": [],
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.46183537290860754",
+          "text": "EFactory",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 334,
+      "x": 14682209748.05421,
+      "y": 14682219491.57507
+    },
+    {
+      "id": "/ecore/EModelElement",
+      "children": [],
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.9664376348470897",
+          "text": "EModelElement",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 337,
+      "x": 4894071647.21437,
+      "y": 4894071483.636754
+    },
+    {
+      "id": "/ecore/ENamedElement",
+      "children": [
+        {
+          "id": "/ecore/ENamedElement/name",
+          "labels": [
+            {
+              "id": "0.2502335074755946",
+              "text": "name : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 343,
+          "x": -4772185843.333334,
+          "y": -4772185843.333334,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": -9544371664.444445,
+      "height": -9544371664.444445,
+      "labels": [
+        {
+          "id": "0.6239555086199025",
+          "text": "ENamedElement",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 340,
+      "x": 19454400445.388935,
+      "y": 9666257363.277794
+    },
+    {
+      "id": "/ecore/EObject",
+      "children": [],
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.960348726350846",
+          "text": "EObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 346,
+      "x": 4894071415.955168,
+      "y": 4894071483.496417
+    },
+    {
+      "id": "/ecore/EOperation",
+      "children": [],
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.004616618737504075",
+          "text": "EOperation",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 349,
+      "x": 14682210856.76361,
+      "y": 14682218582.954683
+    },
+    {
+      "id": "/ecore/EPackage",
+      "children": [
+        {
+          "id": "/ecore/EPackage/nsURI",
+          "labels": [
+            {
+              "id": "0.5426727256956806",
+              "text": "nsURI : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 355,
+          "x": 33.241112043864455,
+          "y": 33.241112043864455,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EPackage/nsPrefix",
+          "labels": [
+            {
+              "id": "0.8789860430918958",
+              "text": "nsPrefix : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 358,
+          "x": 11.080370681288152,
+          "y": 11.080370681288144,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": 144.3214827251526,
+      "height": 144.3214827251526,
+      "labels": [
+        {
+          "id": "0.5220216310800595",
+          "text": "EPackage",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 352,
+      "x": 14682208991.139385,
+      "y": 14682219783.412643
+    },
+    {
+      "id": "/ecore/EParameter",
+      "children": [],
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.7975131747764614",
+          "text": "EParameter",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 361,
+      "x": 14682210319.433655,
+      "y": 14682219509.845428
+    },
+    {
+      "id": "/ecore/EReference",
+      "children": [
+        {
+          "id": "/ecore/EReference/containment",
+          "labels": [
+            {
+              "id": "0.36581863058914343",
+              "text": "containment : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 367,
+          "x": 33.210535672158684,
+          "y": 33.210535672158684,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EReference/container",
+          "labels": [
+            {
+              "id": "0.9876427969162604",
+              "text": "container : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 370,
+          "x": 11.070178557386228,
+          "y": 11.070178557386228,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EReference/resolveProxies",
+          "labels": [
+            {
+              "id": "0.46254055475304023",
+              "text": "resolveProxies : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 373,
+          "x": 33.210535672158684,
+          "y": 11.070178557386214,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": 144.2807142295449,
+      "height": 144.2807142295449,
+      "labels": [
+        {
+          "id": "0.42753817679916417",
+          "text": "EReference",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 364,
+      "x": 14682211886.05404,
+      "y": 14682216777.43035
+    },
+    {
+      "id": "/ecore/EStructuralFeature",
+      "children": [
+        {
+          "id": "/ecore/EStructuralFeature/changeable",
+          "labels": [
+            {
+              "id": "0.6172236711934364",
+              "text": "changeable : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 379,
+          "x": 33.175690937033345,
+          "y": 33.17569093703335,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EStructuralFeature/volatile",
+          "labels": [
+            {
+              "id": "0.8933993162076888",
+              "text": "volatile : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 382,
+          "x": 11.05856364567778,
+          "y": 11.058563645677793,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EStructuralFeature/transient",
+          "labels": [
+            {
+              "id": "0.8112545667004253",
+              "text": "transient : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 385,
+          "x": 33.175690937033345,
+          "y": 11.058563645677793,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EStructuralFeature/defaultValueLiteral",
+          "labels": [
+            {
+              "id": "0.6303356544207555",
+              "text": "defaultValueLiteral : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 388,
+          "x": 55.2928182283889,
+          "y": 11.058563645677793,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EStructuralFeature/defaultValue",
+          "labels": [
+            {
+              "id": "0.5135197768415417",
+              "text": "defaultValue : EJavaObject",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 391,
+          "x": 11.05856364567778,
+          "y": 33.175690937033345,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EStructuralFeature/unsettable",
+          "labels": [
+            {
+              "id": "0.21851402871576064",
+              "text": "unsettable : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 394,
+          "x": 55.2928182283889,
+          "y": 33.17569093703332,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EStructuralFeature/derived",
+          "labels": [
+            {
+              "id": "0.2801308686308046",
+              "text": "derived : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 397,
+          "x": 11.05856364567778,
+          "y": 55.29281822838891,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": 166.3513818740667,
+      "height": 166.3513818740667,
+      "labels": [
+        {
+          "id": "0.4185461477724377",
+          "text": "EStructuralFeature",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 376,
+      "x": 14682212856.34714,
+      "y": 14682216270.18774
+    },
+    {
+      "id": "/ecore/ETypedElement",
+      "children": [
+        {
+          "id": "/ecore/ETypedElement/ordered",
+          "labels": [
+            {
+              "id": "0.6808650811005881",
+              "text": "ordered : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 403,
+          "x": 33.18004073066859,
+          "y": 33.180040730668594,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/ETypedElement/unique",
+          "labels": [
+            {
+              "id": "0.16355395629858993",
+              "text": "unique : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 406,
+          "x": 11.060013576889531,
+          "y": 11.060013576889531,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/ETypedElement/lowerBound",
+          "labels": [
+            {
+              "id": "0.7899604545246344",
+              "text": "lowerBound : EInt",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 409,
+          "x": 33.18004073066859,
+          "y": 11.060013576889503,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/ETypedElement/upperBound",
+          "labels": [
+            {
+              "id": "0.6859228110542127",
+              "text": "upperBound : EInt",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 412,
+          "x": 55.30006788444765,
+          "y": 11.060013576889503,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/ETypedElement/many",
+          "labels": [
+            {
+              "id": "0.982297002757774",
+              "text": "many : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 415,
+          "x": 11.060013576889531,
+          "y": 33.18004073066859,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/ETypedElement/required",
+          "labels": [
+            {
+              "id": "0.6622059988269757",
+              "text": "required : EBoolean",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 418,
+          "x": 55.30006788444765,
+          "y": 33.180040730668566,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": 166.3600814613372,
+      "height": 144.24005430755813,
+      "labels": [
+        {
+          "id": "0.39434121528704813",
+          "text": "ETypedElement",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 400,
+      "x": 14682208772.850487,
+      "y": 14682219835.997272
+    },
+    {
+      "id": "/ecore/EStringToStringMapEntry",
+      "children": [
+        {
+          "id": "/ecore/EStringToStringMapEntry/key",
+          "labels": [
+            {
+              "id": "0.9771675147854842",
+              "text": "key : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 424,
+          "x": 33.241112043864455,
+          "y": 33.241112043864455,
+          "width": 0,
+          "height": 0
+        },
+        {
+          "id": "/ecore/EStringToStringMapEntry/value",
+          "labels": [
+            {
+              "id": "0.3133248461449679",
+              "text": "value : EString",
+              "x": 0,
+              "y": 0,
+              "width": 0,
+              "height": 0
+            }
+          ],
+          "$H": 427,
+          "x": 11.080370681288152,
+          "y": 11.080370681288144,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "width": 144.3214827251526,
+      "height": 144.3214827251526,
+      "labels": [
+        {
+          "id": "0.23163729201378835",
+          "text": "EStringToStringMapEntry",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 421,
+      "x": 4894071223.490234,
+      "y": 4894071538.113648
+    },
+    {
+      "id": "/ecore/EGenericType",
+      "children": [],
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.5127102482890178",
+          "text": "EGenericType",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 430,
+      "x": 14682210388.087807,
+      "y": 14682218799.537832
+    },
+    {
+      "id": "/ecore/ETypeParameter",
+      "children": [],
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.39198323264438684",
+          "text": "ETypeParameter",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 433,
+      "x": 14682210065.23527,
+      "y": 14682219594.549944
+    },
+    {
+      "id": "/ecore/EBigDecimal",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.8381430551424376",
+          "text": "EBigDecimal",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 436,
+      "x": 9648312451.652412,
+      "y": 9927973682.569874
+    },
+    {
+      "id": "/ecore/EBigInteger",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.7623784405344833",
+          "text": "EBigInteger",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 439,
+      "x": 19716116764.681015,
+      "y": 9927973682.569874
+    },
+    {
+      "id": "/ecore/EBoolean",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.4590849321438679",
+          "text": "EBoolean",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 442,
+      "x": 9648312451.652412,
+      "y": 10207634913.487335
+    },
+    {
+      "id": "/ecore/EBooleanObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.8117964169296683",
+          "text": "EBooleanObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 445,
+      "x": 19716116764.681015,
+      "y": 10207634913.487335
+    },
+    {
+      "id": "/ecore/EByte",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.9533521592239362",
+          "text": "EByte",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 448,
+      "x": 9648312451.652412,
+      "y": 10487296144.404797
+    },
+    {
+      "id": "/ecore/EByteArray",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.06586214015840774",
+          "text": "EByteArray",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 451,
+      "x": 19716116764.681015,
+      "y": 10487296144.404797
+    },
+    {
+      "id": "/ecore/EByteObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.1873268116600949",
+          "text": "EByteObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 454,
+      "x": 9648312451.652412,
+      "y": 10766957375.322256
+    },
+    {
+      "id": "/ecore/EChar",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.8275088645729302",
+          "text": "EChar",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 457,
+      "x": 19716116764.681015,
+      "y": 10766957375.322256
+    },
+    {
+      "id": "/ecore/ECharacterObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.3299034150953182",
+          "text": "ECharacterObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 460,
+      "x": 9648312451.652412,
+      "y": 11046618606.239717
+    },
+    {
+      "id": "/ecore/EDate",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.05218754709765827",
+          "text": "EDate",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 463,
+      "x": 19716116764.681015,
+      "y": 11046618606.239717
+    },
+    {
+      "id": "/ecore/EDiagnosticChain",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.2795224492873084",
+          "text": "EDiagnosticChain",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 466,
+      "x": 9648312451.652412,
+      "y": 11326279837.157179
+    },
+    {
+      "id": "/ecore/EDouble",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.8469039232805868",
+          "text": "EDouble",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 469,
+      "x": 19716116764.681015,
+      "y": 11326279837.157179
+    },
+    {
+      "id": "/ecore/EDoubleObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.3181800378417159",
+          "text": "EDoubleObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 472,
+      "x": 9648312451.652412,
+      "y": 11605941068.07464
+    },
+    {
+      "id": "/ecore/EEList",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.4953257034935219",
+          "text": "EEList",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 475,
+      "x": 19716116764.681015,
+      "y": 11605941068.07464
+    },
+    {
+      "id": "/ecore/EEnumerator",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.5509677529298",
+          "text": "EEnumerator",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 478,
+      "x": 9648312451.652412,
+      "y": 11885602298.992102
+    },
+    {
+      "id": "/ecore/EFeatureMap",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.8511459036716036",
+          "text": "EFeatureMap",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 481,
+      "x": 19716116764.681015,
+      "y": 11885602298.992102
+    },
+    {
+      "id": "/ecore/EFeatureMapEntry",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.795844703818676",
+          "text": "EFeatureMapEntry",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 484,
+      "x": 9648312451.652412,
+      "y": 12165263529.909563
+    },
+    {
+      "id": "/ecore/EFloat",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.2718835085425073",
+          "text": "EFloat",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 487,
+      "x": 19716116764.681015,
+      "y": 12165263529.909563
+    },
+    {
+      "id": "/ecore/EFloatObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.23568790419122754",
+          "text": "EFloatObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 490,
+      "x": 9648312451.652412,
+      "y": 12444924760.827024
+    },
+    {
+      "id": "/ecore/EInt",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.7604570318419692",
+          "text": "EInt",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 493,
+      "x": 19716116764.681015,
+      "y": 12444924760.827024
+    },
+    {
+      "id": "/ecore/EIntegerObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.5807577429088989",
+          "text": "EIntegerObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 496,
+      "x": 9648312451.652412,
+      "y": 12724585991.744486
+    },
+    {
+      "id": "/ecore/EJavaClass",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.7855453297853967",
+          "text": "EJavaClass",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 499,
+      "x": 19716116764.681015,
+      "y": 12724585991.744486
+    },
+    {
+      "id": "/ecore/EJavaObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.23050230649927206",
+          "text": "EJavaObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 502,
+      "x": 9648312451.652412,
+      "y": 13004247222.661947
+    },
+    {
+      "id": "/ecore/ELong",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.24163337695853326",
+          "text": "ELong",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 505,
+      "x": 19716116764.681015,
+      "y": 13004247222.661947
+    },
+    {
+      "id": "/ecore/ELongObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.567893085565217",
+          "text": "ELongObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 508,
+      "x": 9648312451.652412,
+      "y": 13283908453.579409
+    },
+    {
+      "id": "/ecore/EMap",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.04376122330921939",
+          "text": "EMap",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 511,
+      "x": 19716116764.681015,
+      "y": 13283908453.579409
+    },
+    {
+      "id": "/ecore/EResource",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.9250257685671992",
+          "text": "EResource",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 514,
+      "x": 9648312451.652412,
+      "y": 13563569684.49687
+    },
+    {
+      "id": "/ecore/EResourceSet",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.6402824942066161",
+          "text": "EResourceSet",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 517,
+      "x": 19716116764.681015,
+      "y": 13563569684.49687
+    },
+    {
+      "id": "/ecore/EShort",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.28947136366773507",
+          "text": "EShort",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 520,
+      "x": 9648312451.652412,
+      "y": 13843230915.41433
+    },
+    {
+      "id": "/ecore/EShortObject",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.7259038054279634",
+          "text": "EShortObject",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 523,
+      "x": 19716116764.681015,
+      "y": 13843230915.41433
+    },
+    {
+      "id": "/ecore/EString",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.5745878870479003",
+          "text": "EString",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 526,
+      "x": 9648312451.652412,
+      "y": 14122892146.33179
+    },
+    {
+      "id": "/ecore/ETreeIterator",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.32926826464645464",
+          "text": "ETreeIterator",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 529,
+      "x": 19716116764.681015,
+      "y": 14122892146.33179
+    },
+    {
+      "id": "/ecore/EInvocationTargetException",
+      "width": 30,
+      "height": 30,
+      "labels": [
+        {
+          "id": "0.184665944573571",
+          "text": "EInvocationTargetException",
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "$H": 532,
+      "x": 9648312451.652412,
+      "y": 14402553377.249252
+    }
+  ],
+  "edges": [
+    {
+      "id": "/ecore/EAttribute/eAttributeType",
+      "source": "/ecore/EAttribute",
+      "target": "/ecore/EDataType",
+      "labels": [
+        {
+          "id": "0.9723393144819397",
+          "text": "eAttributeType",
+          "x": 14682265596.390137,
+          "y": 14682171592.48368,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EAttribute/eAttributeType_s0",
+          "startPoint": {
+            "x": 14682213426.321947,
+            "y": 14682215744.138039
+          },
+          "endPoint": {
+            "x": 14682215800.011484,
+            "y": 14682213482.19539
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EAnnotation/details",
+      "source": "/ecore/EAnnotation",
+      "target": "/ecore/EStringToStringMapEntry",
+      "labels": [
+        {
+          "id": "0.6995668024000702",
+          "text": "details",
+          "x": 4894078860.603805,
+          "y": 4894071769.382759,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EAnnotation/details_s0",
+          "startPoint": {
+            "x": 4894071530.555572,
+            "y": 4894071531.223833
+          },
+          "endPoint": {
+            "x": 4894071367.811717,
+            "y": 4894071585.990715
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EAnnotation/eModelElement",
+      "source": "/ecore/EAnnotation",
+      "target": "/ecore/EModelElement",
+      "labels": [
+        {
+          "id": "0.4122119619694491",
+          "text": "eModelElement",
+          "x": 4894079043.885502,
+          "y": 4894071713.563942,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EAnnotation/eModelElement_s0",
+          "startPoint": {
+            "x": 4894071531.555572,
+            "y": 4894071530.931986
+          },
+          "endPoint": {
+            "x": 4894071647.21437,
+            "y": 4894071502.344338
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EAnnotation/contents",
+      "source": "/ecore/EAnnotation",
+      "target": "/ecore/EObject",
+      "labels": [
+        {
+          "id": "0.8805674956770662",
+          "text": "contents",
+          "x": 4894078928.2559,
+          "y": 4894071703.493773,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EAnnotation/contents_s0",
+          "startPoint": {
+            "x": 4894071530.555572,
+            "y": 4894071530.89294
+          },
+          "endPoint": {
+            "x": 4894071445.955168,
+            "y": 4894071503.375392
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EAnnotation/references",
+      "source": "/ecore/EAnnotation",
+      "target": "/ecore/EObject",
+      "labels": [
+        {
+          "id": "0.025281262418938133",
+          "text": "references",
+          "x": 4894078928.2559,
+          "y": 4894071703.493773,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EAnnotation/references_s0",
+          "startPoint": {
+            "x": 4894071530.555572,
+            "y": 4894071530.89294
+          },
+          "endPoint": {
+            "x": 4894071445.955168,
+            "y": 4894071503.375392
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eSuperTypes",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EClass",
+      "labels": [
+        {
+          "id": "0.39191327362299544",
+          "text": "eSuperTypes",
+          "x": 14682208722.850487,
+          "y": 14682213431.21893,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eSuperTypes_s0",
+          "startPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          },
+          "endPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eOperations",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EOperation",
+      "labels": [
+        {
+          "id": "0.5146918621196404",
+          "text": "eOperations",
+          "x": 14682262421.13767,
+          "y": 14682174911.134756,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eOperations_s0",
+          "startPoint": {
+            "x": 14682211942.735374,
+            "y": 14682217337.84164
+          },
+          "endPoint": {
+            "x": 14682210884.512133,
+            "y": 14682218582.954683
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eAllAttributes",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EAttribute",
+      "labels": [
+        {
+          "id": "0.3334167321301753",
+          "text": "eAllAttributes",
+          "x": 14682263698.166838,
+          "y": 14682173484.464664,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eAllAttributes_s0",
+          "startPoint": {
+            "x": 14682212071.514303,
+            "y": 14682217193.520157
+          },
+          "endPoint": {
+            "x": 14682213425.354591,
+            "y": 14682215745.1145
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eAllReferences",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EReference",
+      "labels": [
+        {
+          "id": "0.10604126571217776",
+          "text": "eAllReferences",
+          "x": 14682262964.353064,
+          "y": 14682174026.942768,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eAllReferences_s0",
+          "startPoint": {
+            "x": 14682211996.110146,
+            "y": 14682217193.520157
+          },
+          "endPoint": {
+            "x": 14682211966.14689,
+            "y": 14682216921.711063
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eReferences",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EReference",
+      "labels": [
+        {
+          "id": "0.5530367958968117",
+          "text": "eReferences",
+          "x": 14682262964.353064,
+          "y": 14682174026.942768,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eReferences_s0",
+          "startPoint": {
+            "x": 14682211996.110146,
+            "y": 14682217193.520157
+          },
+          "endPoint": {
+            "x": 14682211966.14689,
+            "y": 14682216921.711063
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eAttributes",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EAttribute",
+      "labels": [
+        {
+          "id": "0.8317576624534005",
+          "text": "eAttributes",
+          "x": 14682263698.166838,
+          "y": 14682173484.464664,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eAttributes_s0",
+          "startPoint": {
+            "x": 14682212071.514303,
+            "y": 14682217193.520157
+          },
+          "endPoint": {
+            "x": 14682213425.354591,
+            "y": 14682215745.1145
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eAllContainments",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EReference",
+      "labels": [
+        {
+          "id": "0.17726140324578832",
+          "text": "eAllContainments",
+          "x": 14682262964.353064,
+          "y": 14682174026.942768,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eAllContainments_s0",
+          "startPoint": {
+            "x": 14682211996.110146,
+            "y": 14682217193.520157
+          },
+          "endPoint": {
+            "x": 14682211966.14689,
+            "y": 14682216921.711063
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eAllOperations",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EOperation",
+      "labels": [
+        {
+          "id": "0.3153973771966022",
+          "text": "eAllOperations",
+          "x": 14682262421.13767,
+          "y": 14682174911.134756,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eAllOperations_s0",
+          "startPoint": {
+            "x": 14682211942.735374,
+            "y": 14682217337.84164
+          },
+          "endPoint": {
+            "x": 14682210884.512133,
+            "y": 14682218582.954683
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eAllStructuralFeatures",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EStructuralFeature",
+      "labels": [
+        {
+          "id": "0.594765857908933",
+          "text": "eAllStructuralFeatures",
+          "x": 14682263455.017279,
+          "y": 14682173788.83913,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eAllStructuralFeatures_s0",
+          "startPoint": {
+            "x": 14682212076.225628,
+            "y": 14682217195.3052
+          },
+          "endPoint": {
+            "x": 14682212856.34714,
+            "y": 14682216434.481602
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eAllSuperTypes",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EClass",
+      "labels": [
+        {
+          "id": "0.2457916134040039",
+          "text": "eAllSuperTypes",
+          "x": 14682208722.850487,
+          "y": 14682213431.21893,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eAllSuperTypes_s0",
+          "startPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          },
+          "endPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eIDAttribute",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EAttribute",
+      "labels": [
+        {
+          "id": "0.005556246785469066",
+          "text": "eIDAttribute",
+          "x": 14682263698.166838,
+          "y": 14682173484.464664,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eIDAttribute_s0",
+          "startPoint": {
+            "x": 14682212071.514303,
+            "y": 14682217193.520157
+          },
+          "endPoint": {
+            "x": 14682213425.354591,
+            "y": 14682215745.1145
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eStructuralFeatures",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EStructuralFeature",
+      "labels": [
+        {
+          "id": "0.25883497447650905",
+          "text": "eStructuralFeatures",
+          "x": 14682263455.017279,
+          "y": 14682173788.83913,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eStructuralFeatures_s0",
+          "startPoint": {
+            "x": 14682212076.225628,
+            "y": 14682217195.3052
+          },
+          "endPoint": {
+            "x": 14682212856.34714,
+            "y": 14682216434.481602
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eGenericSuperTypes",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EGenericType",
+      "labels": [
+        {
+          "id": "0.6825069880015593",
+          "text": "eGenericSuperTypes",
+          "x": 14682262186.799767,
+          "y": 14682175019.42633,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eGenericSuperTypes_s0",
+          "startPoint": {
+            "x": 14682211931.904144,
+            "y": 14682217335.492432
+          },
+          "endPoint": {
+            "x": 14682210418.087807,
+            "y": 14682218800.02616
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClass/eAllGenericSuperTypes",
+      "source": "/ecore/EClass",
+      "target": "/ecore/EGenericType",
+      "labels": [
+        {
+          "id": "0.029605022745440968",
+          "text": "eAllGenericSuperTypes",
+          "x": 14682262186.799767,
+          "y": 14682175019.42633,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClass/eAllGenericSuperTypes_s0",
+          "startPoint": {
+            "x": 14682211931.904144,
+            "y": 14682217335.492432
+          },
+          "endPoint": {
+            "x": 14682210418.087807,
+            "y": 14682218800.02616
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClassifier/ePackage",
+      "source": "/ecore/EClassifier",
+      "target": "/ecore/EPackage",
+      "labels": [
+        {
+          "id": "0.14355651432018157",
+          "text": "ePackage",
+          "x": 14682260229.421093,
+          "y": 14682176870.86215,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClassifier/ePackage_s0",
+          "startPoint": {
+            "x": 14682209345.899937,
+            "y": 14682219926.605623
+          },
+          "endPoint": {
+            "x": 14682209135.460867,
+            "y": 14682219873.711185
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EClassifier/eTypeParameters",
+      "source": "/ecore/EClassifier",
+      "target": "/ecore/ETypeParameter",
+      "labels": [
+        {
+          "id": "0.46810549251939015",
+          "text": "eTypeParameters",
+          "x": 14682260737.888664,
+          "y": 14682176757.85043,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EClassifier/eTypeParameters_s0",
+          "startPoint": {
+            "x": 14682209512.290493,
+            "y": 14682219904.335396
+          },
+          "endPoint": {
+            "x": 14682210065.23527,
+            "y": 14682219617.335527
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EEnum/eLiterals",
+      "source": "/ecore/EEnum",
+      "target": "/ecore/EEnumLiteral",
+      "labels": [
+        {
+          "id": "0.1755039969295491",
+          "text": "eLiterals",
+          "x": 19716120831.795765,
+          "y": 9648312734.815315,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EEnum/eLiterals_s0",
+          "startPoint": {
+            "x": 19716112803.652023,
+            "y": 9648312498.742392
+          },
+          "endPoint": {
+            "x": 19716112800.954353,
+            "y": 9648312342.770222
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EEnumLiteral/eEnum",
+      "source": "/ecore/EEnumLiteral",
+      "target": "/ecore/EEnum",
+      "labels": [
+        {
+          "id": "0.679164825434156",
+          "text": "eEnum",
+          "x": 19716120831.795765,
+          "y": 9648312734.815315,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EEnumLiteral/eEnum_s0",
+          "startPoint": {
+            "x": 19716112800.954353,
+            "y": 9648312342.770222
+          },
+          "endPoint": {
+            "x": 19716112803.652023,
+            "y": 9648312498.742392
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EFactory/ePackage",
+      "source": "/ecore/EFactory",
+      "target": "/ecore/EPackage",
+      "labels": [
+        {
+          "id": "0.2749745415210677",
+          "text": "ePackage",
+          "x": 14682260396.400589,
+          "y": 14682176660.391193,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EFactory/ePackage_s0",
+          "startPoint": {
+            "x": 14682209748.05421,
+            "y": 14682219514.056234
+          },
+          "endPoint": {
+            "x": 14682209135.460867,
+            "y": 14682219819.583632
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EModelElement/eAnnotations",
+      "source": "/ecore/EModelElement",
+      "target": "/ecore/EAnnotation",
+      "labels": [
+        {
+          "id": "0.1175685236300269",
+          "text": "eAnnotations",
+          "x": 4894079043.885502,
+          "y": 4894071713.563942,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EModelElement/eAnnotations_s0",
+          "startPoint": {
+            "x": 4894071647.21437,
+            "y": 4894071502.344338
+          },
+          "endPoint": {
+            "x": 4894071531.555572,
+            "y": 4894071530.931986
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EOperation/eContainingClass",
+      "source": "/ecore/EOperation",
+      "target": "/ecore/EClass",
+      "labels": [
+        {
+          "id": "0.04319964345356753",
+          "text": "eContainingClass",
+          "x": 14682262421.13767,
+          "y": 14682174911.134756,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EOperation/eContainingClass_s0",
+          "startPoint": {
+            "x": 14682210884.512133,
+            "y": 14682218582.954683
+          },
+          "endPoint": {
+            "x": 14682211942.735374,
+            "y": 14682217337.84164
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EOperation/eTypeParameters",
+      "source": "/ecore/EOperation",
+      "target": "/ecore/ETypeParameter",
+      "labels": [
+        {
+          "id": "0.0399728255652696",
+          "text": "eTypeParameters",
+          "x": 14682261459.222862,
+          "y": 14682176083.069279,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EOperation/eTypeParameters_s0",
+          "startPoint": {
+            "x": 14682210860.026777,
+            "y": 14682218612.954683
+          },
+          "endPoint": {
+            "x": 14682210091.972103,
+            "y": 14682219594.549944
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EOperation/eParameters",
+      "source": "/ecore/EOperation",
+      "target": "/ecore/EParameter",
+      "labels": [
+        {
+          "id": "0.12126290538163675",
+          "text": "eParameters",
+          "x": 14682261586.322054,
+          "y": 14682176040.717022,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EOperation/eParameters_s0",
+          "startPoint": {
+            "x": 14682210863.067926,
+            "y": 14682218612.954683
+          },
+          "endPoint": {
+            "x": 14682210343.12934,
+            "y": 14682219509.845428
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EOperation/eExceptions",
+      "source": "/ecore/EOperation",
+      "target": "/ecore/EClassifier",
+      "labels": [
+        {
+          "id": "0.4631254186285839",
+          "text": "eExceptions",
+          "x": 14682261133.652834,
+          "y": 14682176252.0528,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EOperation/eExceptions_s0",
+          "startPoint": {
+            "x": 14682210856.76361,
+            "y": 14682218611.986622
+          },
+          "endPoint": {
+            "x": 14682209506.20165,
+            "y": 14682219875.386799
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EOperation/eGenericExceptions",
+      "source": "/ecore/EOperation",
+      "target": "/ecore/EGenericType",
+      "labels": [
+        {
+          "id": "0.43835610411062864",
+          "text": "eGenericExceptions",
+          "x": 14682261620.64913,
+          "y": 14682175685.563223,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EOperation/eGenericExceptions_s0",
+          "startPoint": {
+            "x": 14682210856.76361,
+            "y": 14682218604.88644
+          },
+          "endPoint": {
+            "x": 14682210418.087807,
+            "y": 14682218807.606073
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EPackage/eFactoryInstance",
+      "source": "/ecore/EPackage",
+      "target": "/ecore/EFactory",
+      "labels": [
+        {
+          "id": "0.5812136675413776",
+          "text": "eFactoryInstance",
+          "x": 14682260396.400589,
+          "y": 14682176660.391193,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EPackage/eFactoryInstance_s0",
+          "startPoint": {
+            "x": 14682209135.460867,
+            "y": 14682219819.583632
+          },
+          "endPoint": {
+            "x": 14682209748.05421,
+            "y": 14682219514.056234
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EPackage/eClassifiers",
+      "source": "/ecore/EPackage",
+      "target": "/ecore/EClassifier",
+      "labels": [
+        {
+          "id": "0.3200501903859626",
+          "text": "eClassifiers",
+          "x": 14682260229.421093,
+          "y": 14682176870.86215,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EPackage/eClassifiers_s0",
+          "startPoint": {
+            "x": 14682209135.460867,
+            "y": 14682219873.711185
+          },
+          "endPoint": {
+            "x": 14682209345.899937,
+            "y": 14682219926.605623
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EPackage/eSubpackages",
+      "source": "/ecore/EPackage",
+      "target": "/ecore/EPackage",
+      "labels": [
+        {
+          "id": "0.11138112245652709",
+          "text": "eSubpackages",
+          "x": 14682208722.850487,
+          "y": 14682213431.21893,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EPackage/eSubpackages_s0",
+          "startPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          },
+          "endPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EPackage/eSuperPackage",
+      "source": "/ecore/EPackage",
+      "target": "/ecore/EPackage",
+      "labels": [
+        {
+          "id": "0.461721104113486",
+          "text": "eSuperPackage",
+          "x": 14682208722.850487,
+          "y": 14682213431.21893,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EPackage/eSuperPackage_s0",
+          "startPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          },
+          "endPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EParameter/eOperation",
+      "source": "/ecore/EParameter",
+      "target": "/ecore/EOperation",
+      "labels": [
+        {
+          "id": "0.37528965461561414",
+          "text": "eOperation",
+          "x": 14682261586.322054,
+          "y": 14682176040.717022,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EParameter/eOperation_s0",
+          "startPoint": {
+            "x": 14682210343.12934,
+            "y": 14682219509.845428
+          },
+          "endPoint": {
+            "x": 14682210863.067926,
+            "y": 14682218612.954683
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EReference/eOpposite",
+      "source": "/ecore/EReference",
+      "target": "/ecore/EReference",
+      "labels": [
+        {
+          "id": "0.13292056944919195",
+          "text": "eOpposite",
+          "x": 14682208722.850487,
+          "y": 14682213431.21893,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EReference/eOpposite_s0",
+          "startPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          },
+          "endPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EReference/eReferenceType",
+      "source": "/ecore/EReference",
+      "target": "/ecore/EClass",
+      "labels": [
+        {
+          "id": "0.0742599176776978",
+          "text": "eReferenceType",
+          "x": 14682262964.353064,
+          "y": 14682174026.942768,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EReference/eReferenceType_s0",
+          "startPoint": {
+            "x": 14682211966.14689,
+            "y": 14682216921.711063
+          },
+          "endPoint": {
+            "x": 14682211996.110146,
+            "y": 14682217193.520157
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EReference/eKeys",
+      "source": "/ecore/EReference",
+      "target": "/ecore/EAttribute",
+      "labels": [
+        {
+          "id": "0.6159707088682196",
+          "text": "eKeys",
+          "x": 14682263675.231594,
+          "y": 14682173276.409569,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EReference/eKeys_s0",
+          "startPoint": {
+            "x": 14682212030.334755,
+            "y": 14682216795.257244
+          },
+          "endPoint": {
+            "x": 14682213425.321947,
+            "y": 14682215744.990942
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EStructuralFeature/eContainingClass",
+      "source": "/ecore/EStructuralFeature",
+      "target": "/ecore/EClass",
+      "labels": [
+        {
+          "id": "0.5980208965669996",
+          "text": "eContainingClass",
+          "x": 14682263455.017279,
+          "y": 14682173788.83913,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EStructuralFeature/eContainingClass_s0",
+          "startPoint": {
+            "x": 14682212856.34714,
+            "y": 14682216434.481602
+          },
+          "endPoint": {
+            "x": 14682212076.225628,
+            "y": 14682217195.3052
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/ETypedElement/eType",
+      "source": "/ecore/ETypedElement",
+      "target": "/ecore/EClassifier",
+      "labels": [
+        {
+          "id": "0.18160469300838178",
+          "text": "eType",
+          "x": 14682260125.786293,
+          "y": 14682176897.134108,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/ETypedElement/eType_s0",
+          "startPoint": {
+            "x": 14682208939.210567,
+            "y": 14682219913.836143
+          },
+          "endPoint": {
+            "x": 14682209345.899937,
+            "y": 14682219941.797094
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/ETypedElement/eGenericType",
+      "source": "/ecore/ETypedElement",
+      "target": "/ecore/EGenericType",
+      "labels": [
+        {
+          "id": "0.9924577164567393",
+          "text": "eGenericType",
+          "x": 14682260612.782589,
+          "y": 14682176340.644531,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/ETypedElement/eGenericType_s0",
+          "startPoint": {
+            "x": 14682208939.210567,
+            "y": 14682219849.319227
+          },
+          "endPoint": {
+            "x": 14682210388.087807,
+            "y": 14682218825.14099
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EGenericType/eUpperBound",
+      "source": "/ecore/EGenericType",
+      "target": "/ecore/EGenericType",
+      "labels": [
+        {
+          "id": "0.8849285183783003",
+          "text": "eUpperBound",
+          "x": 14682208722.850487,
+          "y": 14682213431.21893,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EGenericType/eUpperBound_s0",
+          "startPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          },
+          "endPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EGenericType/eTypeArguments",
+      "source": "/ecore/EGenericType",
+      "target": "/ecore/EGenericType",
+      "labels": [
+        {
+          "id": "0.8164284831998075",
+          "text": "eTypeArguments",
+          "x": 14682208722.850487,
+          "y": 14682213431.21893,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EGenericType/eTypeArguments_s0",
+          "startPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          },
+          "endPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EGenericType/eRawType",
+      "source": "/ecore/EGenericType",
+      "target": "/ecore/EClassifier",
+      "labels": [
+        {
+          "id": "0.36535375000315773",
+          "text": "eRawType",
+          "x": 14682260899.314932,
+          "y": 14682176360.344374,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EGenericType/eRawType_s0",
+          "startPoint": {
+            "x": 14682210390.192698,
+            "y": 14682218829.537832
+          },
+          "endPoint": {
+            "x": 14682209491.103653,
+            "y": 14682219875.386799
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EGenericType/eLowerBound",
+      "source": "/ecore/EGenericType",
+      "target": "/ecore/EGenericType",
+      "labels": [
+        {
+          "id": "0.06444502053030254",
+          "text": "eLowerBound",
+          "x": 14682208722.850487,
+          "y": 14682213431.21893,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EGenericType/eLowerBound_s0",
+          "startPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          },
+          "endPoint": {
+            "x": 14682208722.850487,
+            "y": 14682213431.21893
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EGenericType/eTypeParameter",
+      "source": "/ecore/EGenericType",
+      "target": "/ecore/ETypeParameter",
+      "labels": [
+        {
+          "id": "0.058745216325367555",
+          "text": "eTypeParameter",
+          "x": 14682261224.88496,
+          "y": 14682176191.360853,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EGenericType/eTypeParameter_s0",
+          "startPoint": {
+            "x": 14682210396.996342,
+            "y": 14682218829.537832
+          },
+          "endPoint": {
+            "x": 14682210086.326735,
+            "y": 14682219594.549944
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/EGenericType/eClassifier",
+      "source": "/ecore/EGenericType",
+      "target": "/ecore/EClassifier",
+      "labels": [
+        {
+          "id": "0.9880502242961493",
+          "text": "eClassifier",
+          "x": 14682260899.314932,
+          "y": 14682176360.344374,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/EGenericType/eClassifier_s0",
+          "startPoint": {
+            "x": 14682210390.192698,
+            "y": 14682218829.537832
+          },
+          "endPoint": {
+            "x": 14682209491.103653,
+            "y": 14682219875.386799
+          }
+        }
+      ]
+    },
+    {
+      "id": "/ecore/ETypeParameter/eBounds",
+      "source": "/ecore/ETypeParameter",
+      "target": "/ecore/EGenericType",
+      "labels": [
+        {
+          "id": "0.4234597792900594",
+          "text": "eBounds",
+          "x": 14682261224.88496,
+          "y": 14682176191.360853,
+          "width": 0,
+          "height": 0
+        }
+      ],
+      "sections": [
+        {
+          "id": "/ecore/ETypeParameter/eBounds_s0",
+          "startPoint": {
+            "x": 14682210086.326735,
+            "y": 14682219594.549944
+          },
+          "endPoint": {
+            "x": 14682210396.996342,
+            "y": 14682218829.537832
+          }
+        }
+      ]
+    }
+  ],
+  "$H": 12,
+  "x": 0,
+  "y": 0,
+  "width": 19855947495.139748,
+  "height": 19576286264.222286
+}
