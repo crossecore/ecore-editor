@@ -4,15 +4,24 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-import { EPackage, EClassImpl, EcorePackageImpl, EObject } from 'crossecore';
-import icon from '../assets/EClass.gif'
+import { EPackage, EClassImpl, EcorePackageImpl, EObject, EAttributeImpl, EDataTypeImpl, EEnumImpl, EClass, EPackageImpl, EReferenceImpl } from 'crossecore';
+import iconEClass from '../assets/EClass.gif'
+import iconAbstractEClass from '../assets/EClass_abstract.gif'
+import iconInterface from '../assets/EClass_interface.gif'
+import iconEDataType from '../assets/EDataType.gif'
+import iconEAttribute from '../assets/EAttribute.gif'
+import iconEReference from '../assets/EReference.gif'
+import iconEEnum from '../assets/EEnum.gif'
+import iconEPackage from '../assets/EPackage.gif'
 import Typography from '@material-ui/core/Typography';
 
 interface Node{
   id: string
   name: string
   children?: Array<Node>
+  eobject: EObject
 }
+
 
 
 const useStyles = makeStyles({
@@ -49,21 +58,57 @@ export default function EContentsTreeView(props:any) {
         for(var feature of eclass.eStructuralFeatures){
           
           const id = feature.getFeatureID()+"f"
-          features.push({id: id, name:feature.name})
+          features.push({id: id, name:feature.name, eobject:feature})
           id2eobject.set(id, feature)
         }
         const id = eclassifier.getClassifierID()+"c"
-        classifiers.push({id: id, name:eclassifier.name, children: features})
+        classifiers.push({id: id, name:eclassifier.name, children: features, eobject:eclassifier})
         id2eobject.set(id, eclassifier)
 
       }
       
     }
 
-    const root:Node = {id: epackage.name, name:epackage.name, children: classifiers}
+    const root:Node = {id: epackage.name, name:epackage.name, children: classifiers, eobject:epackage}
 
     return root
     
+  }
+
+  function getIcon(eobject:EObject){
+    if(eobject instanceof EAttributeImpl){
+      return iconEAttribute
+    }
+    else if(eobject instanceof EReferenceImpl){
+      return iconEReference
+    }   
+    else if(eobject instanceof EClassImpl){
+      const eclass = eobject as EClass
+      if(eclass.interface){
+        return iconInterface
+      }
+      else if(eclass.abstract){
+        return iconAbstractEClass
+      }
+      else{
+        return iconEClass
+      }
+    }
+    else if(eobject instanceof EEnumImpl){
+      return iconEEnum
+    }
+    else if(eobject instanceof EDataTypeImpl){
+      return iconEDataType
+    }
+    else if(eobject instanceof EPackageImpl){
+      return iconEPackage
+    }
+    else{
+      console.log("icon undefined")
+      console.log(eobject.constructor.name)
+    }
+
+    return iconEClass
   }
 
   const renderTree = (nodes:Node) => (
@@ -71,7 +116,7 @@ export default function EContentsTreeView(props:any) {
     <TreeItem key={nodes.id} nodeId={nodes.id}
     label={
       <div>
-        <img src={icon} className={classes.icon}/>
+        <img src={getIcon(nodes.eobject)} className={classes.icon}/>
         <Typography>
           {nodes.name}
         </Typography>
