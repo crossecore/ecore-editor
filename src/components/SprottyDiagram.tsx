@@ -14,7 +14,9 @@ import createContainer from '../sprotty-config';
 import ELK, {ElkNode } from 'elkjs/lib/elk.bundled';
 
 
-export default function SprottyDiagram(props:any) {      
+export default function SprottyDiagram(props:any) {
+    let init= false
+    
     // Create Sprotty viewer
     const sprottyContainer = createContainer();
     sprottyContainer.bind(TYPES.ModelSource).to(LocalModelSource).inSingletonScope();
@@ -24,8 +26,11 @@ export default function SprottyDiagram(props:any) {
    function updateModel() {
     const elk = new ELK()
     //console.log(elk.knownLayoutOptions())
-    elk.layout(EPackage2ElkGraph.convert(EcorePackageImpl.eINSTANCE), {layoutOptions: { 'algorithm': 'disco' }})
+    const graph = EPackage2ElkGraph.convert(EcorePackageImpl.eINSTANCE)
+
+    elk.layout(graph)
    .then((g:ElkNode) => {
+    console.log(g)
     let sGraph = new ElkGraphJsonToSprotty().transform(g);
     modelSource.updateModel(sGraph)
    })
@@ -33,7 +38,11 @@ export default function SprottyDiagram(props:any) {
 }
 
     useEffect(() => {   
-        updateModel()
+        if(!init){
+            updateModel()
+            init=true
+        }
+        
     });
     return (<div></div>);
     
