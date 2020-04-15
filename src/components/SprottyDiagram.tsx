@@ -2,7 +2,7 @@
 import 'reflect-metadata';
 import {EPackage, EcorePackageImpl} from 'crossecore'
 import { EPackage2ElkGraph } from '../elkjs/EPackage2ElkGraph';
-import { ElkGraphJsonToSprotty } from '../elkjs/ElkGraphJsonToSprotty';
+import { ElkGraphJsonToSprotty } from '../elkjs/elkgraph-to-sprotty';
 import React, {useEffect} from 'react';
 import '../assets/diagram.css'
 

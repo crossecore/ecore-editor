@@ -64,7 +64,7 @@ export class EPackage2ElkGraph{
             }
         }
 
-        const root:ElkNode = {id:EPackage2ElkGraph.getFragment(epackage), layoutOptions: { 'algorithm': 'stress', "org.eclipse.elk.stress.desiredEdgeLength": "200" }, children: classifiers, edges: edges}
+        const root:ElkNode = {id:EPackage2ElkGraph.getFragment(epackage), layoutOptions: { 'algorithm': 'layered' }, children: classifiers, edges: edges}
         console.log(root)
         return root
 

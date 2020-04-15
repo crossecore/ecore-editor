@@ -1,7 +1,7 @@
 .elknode {
-    stroke: #448;
+    stroke: #000;
     stroke-width: 1;
-    fill: #ddf;
+    fill: rgb(255,252,216);
     border-radius: 5px;
 }
 
