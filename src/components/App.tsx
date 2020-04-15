@@ -13,6 +13,10 @@ import {EcorePackageImpl} from 'crossecore'
 
 import '../assets/diagram.css'
 import SprottyDiagram from './SprottyDiagram';
+import ReactSplitPanel from '../react-phosphor/ReactSplitPanel';
+import ReactWidget from '../react-phosphor/ReactWidget';
+import { absoluteFill } from '../react-phosphor/Common';
+import ReactBoxPanel from '../react-phosphor/ReactBoxPanel';
 
 
 
@@ -44,8 +48,43 @@ export default function App() {
   }
 
  
+  return (
+    <ReactSplitPanel sizes={[0.2, 0.4, 0.4]}
+                           options={{
+                             orientation: "horizontal"
+                           }}
+                           style={{
+                             width: "500px",
+                             height: "500px",
+                             border: "solid 1px black"
+                           }}>
 
+              <ReactWidget>
+                  <div className=""
+                       style={{
+                         backgroundColor: "red",
+                         ...absoluteFill
+                       }}>
+                      <p>Hi there</p>
+                  </div>
+              </ReactWidget>
 
+              <ReactWidget>
+                  <h1>Middle section</h1>
+              </ReactWidget>
+
+              <ReactBoxPanel options={{direction: "top-to-bottom"}}>
+                  <ReactWidget>
+                      <h1>First box panel thing</h1>
+                  </ReactWidget>
+
+                  <ReactWidget>
+                      <h1>Second box panel thing</h1>
+                  </ReactWidget>
+              </ReactBoxPanel>
+          </ReactSplitPanel>
+  )
+/*
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -64,4 +103,5 @@ export default function App() {
       <div id="sprotty"></div>
     </div>
   );
+  */
 }
