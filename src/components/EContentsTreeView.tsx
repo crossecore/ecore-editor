@@ -14,6 +14,7 @@ import iconEReference from '../assets/EReference.gif'
 import iconEEnum from '../assets/EEnum.gif'
 import iconEPackage from '../assets/EPackage.gif'
 import Typography from '@material-ui/core/Typography';
+import './EContentsTreeView.css'
 
 interface Node{
   id: string
@@ -23,59 +24,20 @@ interface Node{
 }
 
 
+export default class EContentsTreeView extends React.Component {
+  //classes = useStyles();
 
-const useStyles = makeStyles({
-  root: {
-    height: 110,
-    flexGrow: 1,
-    maxWidth: 400,
-  },
-
-  icon: {
-    float: "left",
-    width: 16,
-    padding: "2px 4px 0 0"
-  }
-});
-
-export default function EContentsTreeView(props:any) {
-  const [selected, setSelected] = React.useState([]);
+  id2eobject = new Map<String,EObject>()
+  //props:any;
   
-  const classes = useStyles();
-
-  const id2eobject = new Map<String,EObject>()
-
-  const getTree = (epackage:EPackage)=>{
-    const tree = new Array<Node>();
+  constructor(props:any) {
+    super(props);
     
-    const classifiers = new Array<Node>()
-    for(var eclassifier of epackage.eClassifiers){
-      
-      
-      if(eclassifier instanceof EClassImpl){
-        var eclass = eclassifier as EClassImpl;
-        const features = new Array<Node>();
-        for(var feature of eclass.eStructuralFeatures){
-          
-          const id = feature.getFeatureID()+"f"
-          features.push({id: id, name:feature.name, eobject:feature})
-          id2eobject.set(id, feature)
-        }
-        const id = eclassifier.getClassifierID()+"c"
-        classifiers.push({id: id, name:eclassifier.name, children: features, eobject:eclassifier})
-        id2eobject.set(id, eclassifier)
+   (this.props as any).glContainer.setTitle("Model Browser")
 
-      }
-      
-    }
-
-    const root:Node = {id: epackage.name, name:epackage.name, children: classifiers, eobject:epackage}
-
-    return root
-    
   }
 
-  function getIcon(eobject:EObject){
+  getIcon = (eobject:EObject)=>{
     if(eobject instanceof EAttributeImpl){
       return iconEAttribute
     }
@@ -111,39 +73,74 @@ export default function EContentsTreeView(props:any) {
     return iconEClass
   }
 
-  const renderTree = (nodes:Node) => (
+  renderTree = (nodes:Node) => (
     
     <TreeItem key={nodes.id} nodeId={nodes.id}
     label={
       <div>
-        <img src={getIcon(nodes.eobject)} className={classes.icon}/>
+        <img src={this.getIcon(nodes.eobject)} className="icon"/>
         <Typography>
           {nodes.name}
         </Typography>
       </div>
     }>
-      {Array.isArray(nodes.children) ? nodes.children.map((node:Node) => renderTree(node)) : null}
+      {Array.isArray(nodes.children) ? nodes.children.map((node:Node) => this.renderTree(node)) : null}
     </TreeItem>
   );
 
 
-  const data = getTree(EcorePackageImpl.eINSTANCE)
-
-  const handleSelect = (event:any, nodeIds:any) => {
+  getTree = (epackage:EPackage)=>{
+    const tree = new Array<Node>();
     
-    props.selectionHandler(id2eobject.get(nodeIds))
-    setSelected(nodeIds);
+    const classifiers = new Array<Node>()
+    for(var eclassifier of epackage.eClassifiers){
+      
+      
+      if(eclassifier instanceof EClassImpl){
+        var eclass = eclassifier as EClassImpl;
+        const features = new Array<Node>();
+        for(var feature of eclass.eStructuralFeatures){
+          
+          const id = feature.getFeatureID()+"f"
+          features.push({id: id, name:feature.name, eobject:feature})
+          this.id2eobject.set(id, feature)
+        }
+        const id = eclassifier.getClassifierID()+"c"
+        classifiers.push({id: id, name:eclassifier.name, children: features, eobject:eclassifier})
+        this.id2eobject.set(id, eclassifier)
+
+      }
+      
+    }
+
+    const root:Node = {id: epackage.name, name:epackage.name, children: classifiers, eobject:epackage}
+
+    return root
+    
+  }
+
+  handleSelect = (event:any, nodeIds:any) => {
+    (this.props as any).glEventHub.emit( 'selection', this.id2eobject.get(nodeIds));
+
   };
 
-  return (
-    <TreeView
-      className={classes.root}
+  render() {
+
+    const eclass = EcorePackageImpl.eINSTANCE.getEClass()
+    return (
+      <TreeView
+      
       defaultCollapseIcon={<ExpandMoreIcon />}
       defaultExpanded={['root']}
       defaultExpandIcon={<ChevronRightIcon />}
-      onNodeSelect={handleSelect}
+      onNodeSelect={this.handleSelect}
+      
     >
-      {renderTree(data)}
+      {this.renderTree(this.getTree(EcorePackageImpl.eINSTANCE))}
     </TreeView>
-  );
+    );
+  }
+  
+
 }
+

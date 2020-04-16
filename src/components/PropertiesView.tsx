@@ -1,21 +1,35 @@
 import React from 'react';
-import { EClassImpl, EcorePackageImpl } from 'crossecore'
+import { EClassImpl, EcorePackageImpl, EClass } from 'crossecore'
 import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+export default class PropertiesView extends React.Component {
+  
+  state = {
+    eclass: null,
+  }
+  
+  constructor(props:any) {
+    super(props);
+    props.glContainer.setTitle("Properties")
 
-export default function PropertiesView(props:any) {
- 
-  if(props && props.selection instanceof EClassImpl){
+    props.glEventHub.on("selection", (data:any)=>{
+      console.log(data)
+      this.setState({eclass: data})
+    })
+  }
+  render() {
 
-    //const eclass = EcorePackageImpl.eINSTANCE.getEClass();
+    const eclass = this.state.eclass as unknown as EClass
+    if(eclass===undefined || eclass===null){
+      return <div>Select an EClass</div>
+    }
+    else{
 
-  const eclass = props.selection as EClassImpl
-
-  return (
-    <FormGroup>
+    return (
+      <FormGroup>
       {eclass.eClass().eAllStructuralFeatures.map(feature => {
         switch (feature.eType.name) {
           case "EString": return <TextField id="standard-basic" label={feature.name} value={eclass.eGet(feature)} />
@@ -36,9 +50,9 @@ export default function PropertiesView(props:any) {
         }
       })}
     </FormGroup>
-  );
-  }
-  else{
-    return <div>Error</div>
+    
+    );
+    }
   }
 }
+

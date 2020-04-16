@@ -12,38 +12,41 @@ import { TYPES, LocalModelSource } from 'sprotty';
 import createContainer from '../sprotty-config';
 //import ELK from 'elkjs'
 import ELK, {ElkNode } from 'elkjs/lib/elk.bundled';
+import { Container } from 'inversify';
 
 
-export default function SprottyDiagram(props:any) {
-    let init= false
+export default class SprottyDiagram extends React.Component {
     
-    // Create Sprotty viewer
-    const sprottyContainer = createContainer();
-    sprottyContainer.bind(TYPES.ModelSource).to(LocalModelSource).inSingletonScope();
-    const modelSource = sprottyContainer.get<LocalModelSource>(TYPES.ModelSource);
-
-
-   function updateModel() {
-    const elk = new ELK()
-    //console.log(elk.knownLayoutOptions())
-    const graph = EPackage2ElkGraph.convert(EcorePackageImpl.eINSTANCE)
-
-    elk.layout(graph)
-   .then((g:ElkNode) => {
-    console.log(g)
-    let sGraph = new ElkGraphJsonToSprotty().transform(g);
-    modelSource.updateModel(sGraph)
-   })
-   .catch(console.error)
-}
-
-    useEffect(() => {   
-        if(!init){
-            updateModel()
-            init=true
-        }
+    sprottyContainer : Container = createContainer();
+    modelSource:LocalModelSource= new LocalModelSource()
+    
+    constructor(props:any) {
+      super(props);
+      props.glContainer.setTitle("Diagram")
+      this.sprottyContainer.bind(TYPES.ModelSource).to(LocalModelSource).inSingletonScope();
+      this.modelSource = this.sprottyContainer.get<LocalModelSource>(TYPES.ModelSource);
+    }
+    
+    updateModel() {
+        const elk = new ELK()
+        //console.log(elk.knownLayoutOptions())
+        const graph = EPackage2ElkGraph.convert(EcorePackageImpl.eINSTANCE)
+    
+        elk.layout(graph)
+       .then((g:ElkNode) => {
+        console.log(g)
+        let sGraph = new ElkGraphJsonToSprotty().transform(g);
+        this.modelSource.updateModel(sGraph)
+       })
+       .catch(console.error)
+    }
+    componentDidMount() {
         
-    });
-    return (<div></div>);
-    
-  }
+        console.log(document.getElementById("sprotty"))
+        this.updateModel()
+      }
+
+    render() {
+        return <div id="sprotty"></div>
+    }
+}

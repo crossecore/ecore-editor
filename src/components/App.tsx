@@ -1,6 +1,9 @@
 import 'reflect-metadata';
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import 'golden-layout/src/css/goldenlayout-base.css'
+import 'golden-layout/src/css/goldenlayout-light-theme.css'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -18,7 +21,7 @@ import ReactWidget from '../react-phosphor/ReactWidget';
 import { absoluteFill } from '../react-phosphor/Common';
 import ReactBoxPanel from '../react-phosphor/ReactBoxPanel';
 import ReactDockPanel from '../react-phosphor/ReactDockPanel';
-
+import GoldenLayout from 'golden-layout'
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -35,11 +38,54 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
+class PropertiesView2 extends React.Component {
+  constructor(props:any) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>works</div>
+    );
+  }
+}
+
+
 export default function App() {
   const classes = useStyles();
 
   
+
+  const myLayout = new GoldenLayout({
+    content: [{
+        type: 'row',
+        content:[{
+            type:'react-component',
+            component: 'EContentsTreeView',
+            props: { label: 'A' }
+        },{
+            type: 'column',
+            content:[{
+                type:'react-component',
+                component: 'PropertiesView',
+                props: { label: 'B' }
+            },{
+                type:'react-component',
+                component: 'DiagramView',
+                props: { label: 'C' }
+            }]
+        }]
+    }]
+});
+
+  useEffect(()=>{
+    myLayout.registerComponent( 'EContentsTreeView', PropertiesView2 );
+    myLayout.registerComponent( 'PropertiesView', PropertiesView2 );
+    myLayout.registerComponent( 'DiagramView', PropertiesView2 );
+    myLayout.init()
+  })
   
+  
+
   const [epackage, setEPackage] = useState(EcorePackageImpl.eINSTANCE);
   const [selection, setSelection] = useState(EcorePackageImpl.eINSTANCE.getEClass());
 
@@ -47,19 +93,11 @@ export default function App() {
       
       setSelection(eobject)
   }
-
+  window.React = React;
+  window.ReactDOM = ReactDOM;
  
   return (
-    <ReactBoxPanel options={{direction: "top-to-bottom", spacing:0}}>
-    <ReactDockPanel>
-      <ReactWidget>
-                  <h1>Middle section</h1>aisdjoiasjdia doiasjdoiasjdoiasj doiasjd oiasj doiajsdoi
-              </ReactWidget>
-              <ReactWidget>
-                  <h1>Middle section</h1>
-              </ReactWidget>
-    </ReactDockPanel>
-    </ReactBoxPanel>
+    <div></div>
   )
 /*
   return (
