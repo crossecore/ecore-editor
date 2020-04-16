@@ -17,7 +17,7 @@ interface ReactSplitPanelProps {
 
 export default class ReactSplitPanel extends ReactContainerWidget<SplitPanel, SplitPanel.IOptions, ReactSplitPanelProps> {
 
-  constructor(props) {
+  constructor(props:any) {
     super(props);
 
     this.containerWidget = new SplitPanel(props.options || {});
@@ -30,6 +30,6 @@ export default class ReactSplitPanel extends ReactContainerWidget<SplitPanel, Sp
   attach() {
     super.attach();
 
-    if (this.props.sizes) this.containerWidget.setRelativeSizes(this.props.sizes);
+    if (this.props.sizes) this.containerWidget!.setRelativeSizes(this.props.sizes);
   }
 }

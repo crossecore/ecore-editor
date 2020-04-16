@@ -7,7 +7,7 @@ import {Widget} from "@phosphor/widgets/lib/widget";
 
 import {Title} from "@phosphor/widgets/lib/title";
 
-require("@phosphor/widgets/style/widget.css");
+import "@phosphor/widgets/style/widget.css";
 
 import {WidgetParentContext, IWidgetParent} from "./Common";
 
@@ -24,13 +24,13 @@ export default class ReactWidget extends React.PureComponent<IWidgetProps, {}> {
   static contextType = WidgetParentContext;
   contextType = WidgetParentContext;
 
-  private storedContext: IWidgetParent;
+  private storedContext: IWidgetParent | undefined | null;
 
-  constructor(props) {
+  constructor(props:any) {
     super(props);
     this.widget = new Widget();
 
-    ReactWidget.setTitleKeys(this.widget, {}, props);
+    //ReactWidget.setTitleKeys(this.widget, {}, props);
   }
 
   componentDidMount() {
@@ -41,18 +41,20 @@ export default class ReactWidget extends React.PureComponent<IWidgetProps, {}> {
   }
 
   componentDidUpdate(prevProps: IWidgetProps) {
-    ReactWidget.setTitleKeys(this.widget, prevProps, this.props);
+    //ReactWidget.setTitleKeys(this.widget, prevProps, this.props);
   }
 
+  /*
   static setTitleKeys(widget: Widget, prevProps: IWidgetProps, props: IWidgetProps) {
     let titleKeys: (keyof Title.IOptions<Widget>)[] = ["caption", "className", "closable", "dataset", "icon", "iconClass", "iconLabel", "label", "mnemonic"];
 
     for (let k of titleKeys) {
-      if ((prevProps.title || {})[k as any] !== (props.title || {})[k as any]) {
-        widget.title[k as any] = props.title[k as any];
+      if ((prevProps.title || {})[k] !== (props.title || {})[k]) {
+        widget.title[k] = props.title[k];
       }
     }
   }
+  */
 
   render() {
     return createPortal(

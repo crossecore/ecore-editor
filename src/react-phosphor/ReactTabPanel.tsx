@@ -17,7 +17,7 @@ interface ReactTabPanelProps {
 
 export default class ReactTabPanel extends ReactContainerWidget<TabPanel, TabPanel.IOptions, ReactTabPanelProps> {
 
-  constructor(props) {
+  constructor(props:any) {
     super(props);
 
     this.containerWidget = new TabPanel(props.options || {});

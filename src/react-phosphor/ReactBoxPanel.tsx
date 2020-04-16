@@ -13,7 +13,7 @@ interface ReactBoxPanelProps {
 
 export default class ReactBoxPanel extends ReactContainerWidget<BoxPanel, BoxPanel.IOptions, ReactBoxPanelProps> {
 
-  constructor(props) {
+  constructor(props:any) {
     super(props);
 
     this.containerWidget = new BoxPanel(props.options || {});

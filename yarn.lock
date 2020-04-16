@@ -10304,6 +10304,11 @@ ts-pnp@1.1.6, ts-pnp@^1.1.6:
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.1.6.tgz#389a24396d425a0d3162e96d2b4638900fdc289a"
   integrity sha512-CrG5GqAAzMT7144Cl+UIFP7mz/iIhiy+xQ6GGcnjTezhALT02uPMRw7tgDSESgB5MsfKt55+GPWw4ir1kVtMIQ==
 
+ts-transformer-keys@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/ts-transformer-keys/-/ts-transformer-keys-0.4.1.tgz#209a07caea19cf6258ee2e159d5ad20982d8bb5d"
+  integrity sha512-CahLCOHt6MS8Sixz5cU8XovuKOoP6hnQd91pxG3a7iuuLsdrbWLveQvKi7d/FJjRhEtVELp3bMnqvSpm+nCgKw==
+
 tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.11.1.tgz#eb15d128827fbee2841549e171f45ed338ac7e35"

@@ -17,6 +17,7 @@ import ReactSplitPanel from '../react-phosphor/ReactSplitPanel';
 import ReactWidget from '../react-phosphor/ReactWidget';
 import { absoluteFill } from '../react-phosphor/Common';
 import ReactBoxPanel from '../react-phosphor/ReactBoxPanel';
+import ReactDockPanel from '../react-phosphor/ReactDockPanel';
 
 
 
@@ -49,40 +50,16 @@ export default function App() {
 
  
   return (
-    <ReactSplitPanel sizes={[0.2, 0.4, 0.4]}
-                           options={{
-                             orientation: "horizontal"
-                           }}
-                           style={{
-                             width: "500px",
-                             height: "500px",
-                             border: "solid 1px black"
-                           }}>
-
-              <ReactWidget>
-                  <div className=""
-                       style={{
-                         backgroundColor: "red",
-                         ...absoluteFill
-                       }}>
-                      <p>Hi there</p>
-                  </div>
+    <ReactBoxPanel options={{direction: "top-to-bottom", spacing:0}}>
+    <ReactDockPanel>
+      <ReactWidget>
+                  <h1>Middle section</h1>aisdjoiasjdia doiasjdoiasjdoiasj doiasjd oiasj doiajsdoi
               </ReactWidget>
-
               <ReactWidget>
                   <h1>Middle section</h1>
               </ReactWidget>
-
-              <ReactBoxPanel options={{direction: "top-to-bottom"}}>
-                  <ReactWidget>
-                      <h1>First box panel thing</h1>
-                  </ReactWidget>
-
-                  <ReactWidget>
-                      <h1>Second box panel thing</h1>
-                  </ReactWidget>
-              </ReactBoxPanel>
-          </ReactSplitPanel>
+    </ReactDockPanel>
+    </ReactBoxPanel>
   )
 /*
   return (

@@ -14,19 +14,19 @@ interface ReactContainerWidgetProps<T, O> {
 }
 
 interface ContainerType {
-  addWidget(widget: Widget);
+  addWidget(widget: Widget):void;
 }
 
 export default class ReactContainerWidget<T extends Widget & ContainerType, O, P> extends React.PureComponent<ReactContainerWidgetProps<T, O> & P, {}> {
 
-  protected containerWidget: T;
-  private elem: HTMLElement;
+  protected containerWidget: T | null;
+  private elem: HTMLElement | undefined | null;
 
-  private storedContext: IWidgetParent;
+  private storedContext: IWidgetParent | undefined|null;
 
   optionKeys: (keyof O)[];
 
-  constructor(props) {
+  constructor(props:any) {
     super(props);
 
     // Subclass must set this
@@ -41,12 +41,15 @@ export default class ReactContainerWidget<T extends Widget & ContainerType, O, P
 
   componentDidUpdate(prevProps: ReactContainerWidgetProps<T, O>) {
     // TODO: get ts-transformer-keys working: keys<SplitPanel.IOptions>();
+    
+    /*
     for (let k of this.optionKeys) {
-      if ((prevProps.options || {})[k as any] !== (this.props.options || {})[k as any]) {
-        this.containerWidget[k as any] = this.props.options[k as any];
+      if ((prevProps.options || {})[k] !== (this.props.options || {})[k]) {
+        this.containerWidget[k] = this.props.options[k];
       }
     }
-
+    */
+    
     this.attach();
   }
 
@@ -56,16 +59,16 @@ export default class ReactContainerWidget<T extends Widget & ContainerType, O, P
     // If we have a parent, attach to it and render using portals
     // Otherwise, attach to our own React DOM node
     if (parent) {
-      parent.receiveChild(this.containerWidget);
+      parent.receiveChild(this.containerWidget as Widget);
     } else {
-      setNodeAbsolute(this.containerWidget.node);
+      setNodeAbsolute(this.containerWidget!.node);
 
-      if (!this.containerWidget.isAttached) Widget.attach(this.containerWidget, this.elem);
+      if (!this.containerWidget!.isAttached) Widget.attach(this.containerWidget!, this.elem!);
     }
   }
 
   receiveChild(child: Widget) {
-    this.containerWidget.addWidget(child);
+    this.containerWidget!.addWidget(child);
   }
 
   render() {
@@ -83,7 +86,7 @@ export default class ReactContainerWidget<T extends Widget & ContainerType, O, P
               {(value) => { this.storedContext = value; return null; }}
           </WidgetParentContext.Consumer>
 
-          <WidgetParentContext.Provider value={this}>
+          <WidgetParentContext.Provider value={this as any}>
               {this.props.children}
           </WidgetParentContext.Provider>
       </div>
