@@ -16,11 +16,6 @@ import {EcorePackageImpl} from 'crossecore'
 
 import '../assets/diagram.css'
 import SprottyDiagram from './SprottyDiagram';
-import ReactSplitPanel from '../react-phosphor/ReactSplitPanel';
-import ReactWidget from '../react-phosphor/ReactWidget';
-import { absoluteFill } from '../react-phosphor/Common';
-import ReactBoxPanel from '../react-phosphor/ReactBoxPanel';
-import ReactDockPanel from '../react-phosphor/ReactDockPanel';
 import GoldenLayout from 'golden-layout'
 
 

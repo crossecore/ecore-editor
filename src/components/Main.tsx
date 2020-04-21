@@ -13,15 +13,21 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { XmiResource, EcoreFactoryImpl, EcorePackageImpl } from 'crossecore';
+import { SelectFileDialog } from './SelectFileDialog';
+import { Messages } from './Messages';
 
 window.React = React;
 window.ReactDOM = ReactDOM;
 
 
 
-var myLayout = new GoldenLayout({
+
+class Main extends Component {
+  
+  layout:GoldenLayout = new GoldenLayout({
     content: [{
         type: 'row',
         content:[{
@@ -42,36 +48,96 @@ var myLayout = new GoldenLayout({
         }]
     }]
 });
-
-class Main extends Component {
+  
   constructor(props:any) {
     super(props);
+    console.log("props")
+    console.log(props)
+  }
+
+  state = {
+    anchorEl: null,
+    epackage: null,
+    open: false,
+    layout: this.layout
   }
 
   componentWillMount() {
-    myLayout.registerComponent('PropertiesView', PropertiesView);
-    myLayout.registerComponent('SprottyDiagram', SprottyDiagram);
-    myLayout.registerComponent('EContentsTreeView', EContentsTreeView);
-    myLayout.init();
+    this.state.layout.registerComponent('PropertiesView', PropertiesView);
+    this.state.layout.registerComponent('SprottyDiagram', SprottyDiagram);
+    this.state.layout.registerComponent('EContentsTreeView', EContentsTreeView);
+    this.state.layout.init();
   }
+
+   
+  handleClick = (event: React.MouseEvent<HTMLButtonElement>)=>{
+    console.log(event)
+    this.setState({anchorEl: event.currentTarget})
+    
+  }
+
+  handleClose = ()=>{
+    console.log("close")
+    this.setState({anchorEl: null})    
+  }
+
+  export = () => {
+
+    /*
+    const xmi = new XmiResource(this.state.epackage, EcoreFactoryImpl.eINSTANCE, new DOMParser())
+
+    const str = xmi.
+
+    const element = document.createElement('a');
+    const datalink = 'data:text/xml;base64,' + btoa(str);
+
+    element.setAttribute('href', datalink);
+    element.setAttribute('download', "export.ecore");
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+    */
+
+  }
+
+  openDialog = ()=>{
+    this.setState({open:true})
+  }
+
+  returnDialog = (value:any)=>{
+    this.setState({open:false, anchorEl: null, epackage:value});
+
+    console.log("return dialog");
+    console.log(this.layout);
+    console.log(this.state.layout)
+    this.layout.eventHub.emit( Messages.SET_EPACKAGE+"", value);
+    
+  }
+
 
   render() {
     return (
-      <AppBar position="static">
-      <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
-        <Typography variant="h6">
+      <div>
+        <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
           File
-        </Typography>
-      </Toolbar>
-    </AppBar>
+        </Button>
+<Menu
+  id="simple-menu"
+  keepMounted
+  anchorEl={this.state.anchorEl}
+  open={Boolean(this.state.anchorEl)}
+  onClose={this.handleClose}
+>
+  <MenuItem onClick={this.openDialog}>Open</MenuItem>
+  <MenuItem onClick={this.handleClose}>Import</MenuItem>
+  <MenuItem onClick={this.export}>Download</MenuItem>
+</Menu>
+<SelectFileDialog open={this.state.open} onClose={this.returnDialog} />        
+      </div>
       
     );
   }
 }
-
-
 
 export default Main;

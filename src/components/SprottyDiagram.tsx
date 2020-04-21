@@ -1,6 +1,6 @@
 
 import 'reflect-metadata';
-import {EPackage, EcorePackageImpl} from 'crossecore'
+import {EPackage, EcorePackageImpl, EcoreFactoryImpl} from 'crossecore'
 import { EPackage2ElkGraph } from '../elkjs/EPackage2ElkGraph';
 import { ElkGraphJsonToSprotty } from '../elkjs/elkgraph-to-sprotty';
 import React, {useEffect} from 'react';
@@ -13,6 +13,7 @@ import createContainer from '../sprotty-config';
 //import ELK from 'elkjs'
 import ELK, {ElkNode } from 'elkjs/lib/elk.bundled';
 import { Container } from 'inversify';
+import { Messages } from './Messages';
 
 
 export default class SprottyDiagram extends React.Component {
@@ -25,12 +26,25 @@ export default class SprottyDiagram extends React.Component {
       props.glContainer.setTitle("Diagram")
       this.sprottyContainer.bind(TYPES.ModelSource).to(LocalModelSource).inSingletonScope();
       this.modelSource = this.sprottyContainer.get<LocalModelSource>(TYPES.ModelSource);
+
+
+
+      props.glEventHub.on(Messages.SET_EPACKAGE, (epackage:any)=>{
+      
+        this.setState({epackage: epackage})
+        this.updateModel()
+      })
+
     }
+
+    state = {epackage:EcoreFactoryImpl.eINSTANCE.createEPackage()}
     
     updateModel() {
+        
+
         const elk = new ELK()
         //console.log(elk.knownLayoutOptions())
-        const graph = EPackage2ElkGraph.convert(EcorePackageImpl.eINSTANCE)
+        const graph = EPackage2ElkGraph.convert(this.state.epackage as unknown as EPackage)
     
         elk.layout(graph)
        .then((g:ElkNode) => {
@@ -39,10 +53,11 @@ export default class SprottyDiagram extends React.Component {
         this.modelSource.updateModel(sGraph)
        })
        .catch(console.error)
+        
+        
     }
     componentDidMount() {
         
-        console.log(document.getElementById("sprotty"))
         this.updateModel()
       }
 

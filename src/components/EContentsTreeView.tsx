@@ -15,6 +15,9 @@ import iconEEnum from '../assets/EEnum.gif'
 import iconEPackage from '../assets/EPackage.gif'
 import Typography from '@material-ui/core/Typography';
 import './EContentsTreeView.css'
+import { Messages } from './Messages';
+import { URI } from '../utils/URI';
+import { LabelProvider } from '../utils/LabelProvider';
 
 interface Node{
   id: string
@@ -27,13 +30,19 @@ interface Node{
 export default class EContentsTreeView extends React.Component {
   //classes = useStyles();
 
+  state = {epackage:null}
+
   id2eobject = new Map<String,EObject>()
   //props:any;
   
   constructor(props:any) {
     super(props);
     
-   (this.props as any).glContainer.setTitle("Model Browser")
+   (this.props as any).glContainer.setTitle("Model Browser");
+   (this.props as any).glEventHub.on( Messages.SET_EPACKAGE+"", (epackage:EPackage)=>{
+    console.log(epackage) 
+    this.setState({epackage:epackage})
+   });
 
   }
 
@@ -90,22 +99,21 @@ export default class EContentsTreeView extends React.Component {
 
 
   getTree = (epackage:EPackage)=>{
-    const tree = new Array<Node>();
+    
     
     const classifiers = new Array<Node>()
     for(var eclassifier of epackage.eClassifiers){
-      
       
       if(eclassifier instanceof EClassImpl){
         var eclass = eclassifier as EClassImpl;
         const features = new Array<Node>();
         for(var feature of eclass.eStructuralFeatures){
           
-          const id = feature.getFeatureID()+"f"
-          features.push({id: id, name:feature.name, eobject:feature})
+          const id = URI.getFragment(feature)
+          features.push({id: id, name:feature.name +" : " +new LabelProvider().caseEStructuralFeature(feature), eobject:feature})
           this.id2eobject.set(id, feature)
         }
-        const id = eclassifier.getClassifierID()+"c"
+        const id = URI.getFragment(eclassifier)
         classifiers.push({id: id, name:eclassifier.name, children: features, eobject:eclassifier})
         this.id2eobject.set(id, eclassifier)
 
@@ -113,32 +121,46 @@ export default class EContentsTreeView extends React.Component {
       
     }
 
-    const root:Node = {id: epackage.name, name:epackage.name, children: classifiers, eobject:epackage}
+    const id = URI.getFragment(epackage)
+    const root:Node = {id: id, name:epackage.name, children: classifiers, eobject:epackage}
+    
+    this.id2eobject.set(id, epackage)
+    console.log("hassel")
+    console.log("id")
+    
 
     return root
     
   }
 
   handleSelect = (event:any, nodeIds:any) => {
-    (this.props as any).glEventHub.emit( 'selection', this.id2eobject.get(nodeIds));
-
+    
+    (this.props as any).glEventHub.emit( Messages.SET_SELECTION, this.id2eobject.get(nodeIds));
+    console.log("handleselect")
+    console.log(nodeIds)
+    console.log(this.id2eobject.get(nodeIds))
   };
 
   render() {
 
-    const eclass = EcorePackageImpl.eINSTANCE.getEClass()
-    return (
-      <TreeView
-      
-      defaultCollapseIcon={<ExpandMoreIcon />}
-      defaultExpanded={['root']}
-      defaultExpandIcon={<ChevronRightIcon />}
-      onNodeSelect={this.handleSelect}
-      
-    >
-      {this.renderTree(this.getTree(EcorePackageImpl.eINSTANCE))}
-    </TreeView>
-    );
+    if(this.state.epackage!==null){
+      return (
+        <TreeView
+        
+        defaultCollapseIcon={<ExpandMoreIcon />}
+        defaultExpanded={['root']}
+        defaultExpandIcon={<ChevronRightIcon />}
+        onNodeSelect={this.handleSelect}
+        
+      >
+        {this.renderTree(this.getTree(this.state.epackage as unknown as EPackage))}
+      </TreeView>
+      );
+    }
+    else{
+      return <div>no EPackage</div>
+    }
+    
   }
   
 
