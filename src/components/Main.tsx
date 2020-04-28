@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import GoldenLayout from 'golden-layout';
+import GoldenLayout, { ItemConfig, ReactComponentConfig } from 'golden-layout';
 import 'golden-layout/src/css/goldenlayout-base.css'
 import 'golden-layout/src/css/goldenlayout-light-theme.css'
 
@@ -18,7 +18,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { XmiResource, EcoreFactoryImpl, EcorePackageImpl } from 'crossecore';
 import { SelectFileDialog } from './SelectFileDialog';
 import { Messages } from './Messages';
+import { MonacoEditor } from './MonacoEditor';
+import ProjectExplorer from './ProjectExplorer';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
+
+//give goldenlayout access to React
 window.React = React;
 window.ReactDOM = ReactDOM;
 
@@ -31,16 +36,31 @@ class Main extends Component {
     content: [{
         type: 'row',
         content:[{
-            type:'react-component',
-            component: 'EContentsTreeView',
-            props: { label: 'A' }
+            type: 'stack',
+            content: [{
+              type:'react-component',
+              component: 'EContentsTreeView',
+              props: { label: 'A' }
+            },
+            {
+              type:'react-component',
+              component: 'ProjectExplorer',
+              props: { label: 'A' }
+            }
+          ]
+
+            
         },{
             type: 'column',
-            content:[{
-                type:'react-component',
-                component: 'SprottyDiagram',
-                props: { label: 'B' }
-            },{
+            content:[
+              {
+                type:'stack',
+                content: [{
+                  type:'react-component',
+                  component: 'SprottyDiagram',
+                  props: { label: 'B' }
+              }]
+              },{
                 type:'react-component',
                 component: 'PropertiesView',
                 props: { label: 'C' }
@@ -51,8 +71,12 @@ class Main extends Component {
   
   constructor(props:any) {
     super(props);
-    console.log("props")
-    console.log(props)
+    
+    this.myRef = React.createRef();
+    this.layout.eventHub.on(Messages.OPEN_FILE+"", (data:any)=>{
+      
+      this.openFile(data.filename, data.contents)
+    })
   }
 
   state = {
@@ -62,13 +86,29 @@ class Main extends Component {
     layout: this.layout
   }
 
-  componentWillMount() {
+  myRef:any;
+
+  componentDidMount() {
+    const ref = this.myRef.current;
+
     this.state.layout.registerComponent('PropertiesView', PropertiesView);
     this.state.layout.registerComponent('SprottyDiagram', SprottyDiagram);
     this.state.layout.registerComponent('EContentsTreeView', EContentsTreeView);
+    this.state.layout.registerComponent('ProjectExplorer', ProjectExplorer);
+    this.state.layout.registerComponent('MonacoEditor', MonacoEditor);
+    //this.state.layout.container = ref;
     this.state.layout.init();
   }
 
+  openFile = (filename:string, contents:string) => {
+    const newItemConfig:ReactComponentConfig = {
+      title: filename,
+      type: 'react-component',
+      component: 'MonacoEditor'
+  };
+
+    this.state.layout.root.contentItems[0].contentItems[1].contentItems[0].addChild(newItemConfig)
+  }
    
   handleClick = (event: React.MouseEvent<HTMLButtonElement>)=>{
     console.log(event)
@@ -115,25 +155,36 @@ class Main extends Component {
     
   }
 
-
   render() {
     return (
       <div>
+        <div id="toolbar">
         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
           File
         </Button>
-<Menu
-  id="simple-menu"
-  keepMounted
-  anchorEl={this.state.anchorEl}
-  open={Boolean(this.state.anchorEl)}
-  onClose={this.handleClose}
->
-  <MenuItem onClick={this.openDialog}>Open</MenuItem>
-  <MenuItem onClick={this.handleClose}>Import</MenuItem>
-  <MenuItem onClick={this.export}>Download</MenuItem>
-</Menu>
-<SelectFileDialog open={this.state.open} onClose={this.returnDialog} />        
+        <Menu
+          id="simple-menu"
+          keepMounted
+          anchorEl={this.state.anchorEl}
+          open={Boolean(this.state.anchorEl)}
+          onClose={this.handleClose}
+        >
+          <MenuItem onClick={this.openDialog}>Import</MenuItem>
+          {/*<MenuItem onClick={this.handleClose}>Import</MenuItem>
+          <MenuItem onClick={this.export}>Download</MenuItem>
+            */}
+        </Menu>
+        <SelectFileDialog open={this.state.open} onClose={this.returnDialog} />
+        <Button
+        variant="contained"
+        color="primary"
+        style={{float:"right"}}
+        startIcon={<AccountCircle />}
+        >
+        Log in
+        </Button>
+        </div>
+        <div ref={this.myRef} id="goldenlayout"></div>    
       </div>
       
     );

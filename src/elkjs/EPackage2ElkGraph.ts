@@ -25,18 +25,22 @@ export class EPackage2ElkGraph{
     }
 
     
-
-    
-
     static convert = (epackage:EPackage)=>{
         const factor = 8
         const classifiers = new Array<ElkNode>()
         const edges = new Array<ElkPrimitiveEdge>()
         for(let eclassifier of epackage.eClassifiers){
             const labels:ElkLabel = {id: Math.random()+"", text: eclassifier.name}
+
+
             if(eclassifier instanceof EClassImpl){
                 
                 const eclass = eclassifier as EClassImpl;
+
+                for(let parent of eclass.eSuperTypes){
+                    edges.push({id: URI.getFragment(eclass) +"_" + URI.getFragment(parent), source: URI.getFragment(eclass), target: URI.getFragment(parent)})
+                }
+
                 const features = new Array<ElkNode>()
                 for(let attribute of eclass.eAttributes){
 
@@ -48,8 +52,7 @@ export class EPackage2ElkGraph{
 
                 for(let reference of eclass.eReferences){
                     const labels2:Array<ElkLabel> = [{id: Math.random()+"", text: reference.name}]
-                    console.log("bla "+reference.eType.name)
-                    console.log(reference.eType instanceof ENamedElementImpl)
+                    
                     edges.push({id: URI.getFragment(reference),source: URI.getFragment(reference.eContainingClass), target: URI.getFragment(reference.eType), labels:labels2})
                 }
                 classifiers.push({id: URI.getFragment(eclass), children: features, width:labels.text.length*factor, height:30, labels: [labels]})

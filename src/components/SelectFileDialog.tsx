@@ -36,7 +36,7 @@ export function SelectFileDialog(props:any) {
   
     return (
       <Dialog aria-labelledby="simple-dialog-title" open={open}>
-        <DialogTitle id="simple-dialog-title">Select Ecore file to open</DialogTitle>
+        <DialogTitle id="simple-dialog-title">Select *.ecore file to import</DialogTitle>
         <input
   accept="ecore"
   style={{ display: 'none' }}
@@ -45,8 +45,8 @@ export function SelectFileDialog(props:any) {
   type="file"
 />
 <label htmlFor="raised-button-file">
-  <Button component="span">
-    Upload
+  <Button variant="contained" color="primary" component="span">
+    Import
   </Button>
 </label> 
       </Dialog>

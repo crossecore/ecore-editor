@@ -20,14 +20,16 @@ export default class SprottyDiagram extends React.Component {
     
     sprottyContainer : Container = createContainer();
     modelSource:LocalModelSource= new LocalModelSource()
-    
+    state = {epackage:EcoreFactoryImpl.eINSTANCE.createEPackage(), glContainer: null}
+
     constructor(props:any) {
       super(props);
       props.glContainer.setTitle("Diagram")
       this.sprottyContainer.bind(TYPES.ModelSource).to(LocalModelSource).inSingletonScope();
       this.modelSource = this.sprottyContainer.get<LocalModelSource>(TYPES.ModelSource);
 
-
+      console.log("getwidth")
+      console.log(props.glContainer.width)
 
       props.glEventHub.on(Messages.SET_EPACKAGE, (epackage:any)=>{
       
@@ -37,11 +39,9 @@ export default class SprottyDiagram extends React.Component {
 
     }
 
-    state = {epackage:EcoreFactoryImpl.eINSTANCE.createEPackage()}
+    
     
     updateModel() {
-        
-
         const elk = new ELK()
         //console.log(elk.knownLayoutOptions())
         const graph = EPackage2ElkGraph.convert(this.state.epackage as unknown as EPackage)
