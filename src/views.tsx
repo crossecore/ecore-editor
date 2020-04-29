@@ -14,11 +14,34 @@ import { injectable } from "inversify";
 import { VNode } from "snabbdom/vnode";
 import {
     RenderingContext, SEdge, IView, PolylineEdgeView, RectangularNodeView, CircularNodeView,
-    Point, toDegrees, SLabel, angleOfPoint
+    Point, toDegrees, SLabel, angleOfPoint, SGraph
 } from "sprotty";
 import { ElkNode, ElkPort, ElkJunction } from "./sprotty-model";
 
 
+@injectable()
+export class SGraphView implements IView {
+
+    render(model: Readonly<SGraph>, context: RenderingContext): VNode {
+        const transform = `scale(${model.zoom}) translate(${-model.scroll.x},${-model.scroll.y})`;
+        // @ts-ignore
+        return <svg class-sprotty-graph={true} style={model.style}>
+            <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="rgb(255,255,255)" stopOpacity="1"></stop>
+          <stop offset="100%" stopColor="rgb(255,252,216)" stopOpacity="1"></stop>
+        </linearGradient>
+        <linearGradient id="abstract" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="rgb(255,255,255)" stopOpacity="1"></stop>
+          <stop offset="100%" stopColor="rgb(228,228,228)" stopOpacity="1"></stop>
+        </linearGradient>
+      </defs>
+            <g transform={transform}>
+                {context.renderChildren(model)}
+            </g>
+        </svg>;
+    }
+}
 
 @injectable()
 export class ElkNodeView extends RectangularNodeView {

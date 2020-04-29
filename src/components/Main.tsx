@@ -181,7 +181,7 @@ class Main extends Component {
         style={{float:"right"}}
         startIcon={<AccountCircle />}
         >
-        Log in
+        Sign in
         </Button>
         </div>
         <div ref={this.myRef} id="goldenlayout"></div>    

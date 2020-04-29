@@ -3,47 +3,49 @@ import React from 'react';
 import { Container } from 'golden-layout';
 
 
+interface State{
+    container: Container | null
+    editor: monaco.editor.IStandaloneCodeEditor | null
+
+}
 
 export class MonacoEditor extends React.Component{
 
-    state = {
-        width: 0,
-        height: 0
+    state:State = {
+        container: null,
+        editor: null
     }
     myRef: any
 
     constructor(props:any){
         super(props)
         this.myRef = React.createRef();
-        this.state = {width: props.glContainer.width, height: props.glContainer.height}
+        this.state = {container: props.glContainer, editor:null}
 
-        props.glContainer.on('open', (x:any)=>{
-            console.log("open")
-            console.log(x)
-        })
 
-        props.glContainer.on('resize', (x:any) => {
-            console.log("resize")
-            console.log(x)
+        props.glContainer.on('resize', () => {
+            const editor = this.state.editor as monaco.editor.IStandaloneCodeEditor
+            const container = this.state.container as Container
+            editor.layout({width: container.width, height: container.height})
         })
 
     }
 
     componentDidMount(){
         console.log("componentDidMount")
-        console.log(this.state.width)
 
         const ref = this.myRef.current;
 
-        console.log(document.getElementById("monaco-editor"))
         //monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:this.state.width, height:this.state.height})});
         monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:300, height:300})});
         const model = monaco.editor.createModel("function(){}", "javascript");
-        monaco.editor.create(ref, {
+        const editor = monaco.editor.create(ref, {
             model: model,
             theme: "vs"
         });
         monaco.editor.setModelLanguage(model, "javascript");
+        console.log(editor)
+        this.state = {container: this.state.container, editor: editor}
 
         /*
         const editor = monaco.editor.create(document.getElementById('monaco-editor')!, {

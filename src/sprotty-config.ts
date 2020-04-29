@@ -8,11 +8,11 @@
 import { Container, ContainerModule } from "inversify";
 import {
     TYPES, defaultModule, boundsModule, fadeModule, viewportModule, selectModule, moveModule, hoverModule,
-    exportModule, SGraphView, ConsoleLogger, LogLevel, configureViewerOptions, SvgExporter, configureModelElement,
+    exportModule, ConsoleLogger, LogLevel, configureViewerOptions, SvgExporter, configureModelElement,
     SGraph, SGraphFactory, SLabel, edgeEditModule, undoRedoModule, updateModule, routingModule, modelSourceModule, labelEditModule
 } from "sprotty";
-import { ElkNodeView, ElkPortView, ElkEdgeView, ElkLabelView, JunctionView } from "./views";
-import { ElkNode, ElkPort, ElkEdge, ElkJunction } from "./sprotty-model";
+import { ElkNodeView, ElkPortView, ElkEdgeView, ElkLabelView, JunctionView, SGraphView } from "./views";
+import { ElkNode, ElkPort, ElkEdge, ElkJunction, ViewBoxGraph } from "./sprotty-model";
 
 class FilteringSvgExporter extends SvgExporter {
     protected isExported(styleSheet: CSSStyleSheet): boolean {
@@ -27,7 +27,7 @@ export default () => {
         rebind(TYPES.IModelFactory).to(SGraphFactory).inSingletonScope();
         rebind(TYPES.SvgExporter).to(FilteringSvgExporter).inSingletonScope();
         const context = { bind, unbind, isBound, rebind };
-        configureModelElement(context, 'graph', SGraph, SGraphView);
+        configureModelElement(context, 'graph', ViewBoxGraph, SGraphView);
         configureModelElement(context, 'node', ElkNode, ElkNodeView);
         configureModelElement(context, 'port', ElkPort, ElkPortView);
         configureModelElement(context, 'edge', ElkEdge, ElkEdgeView);

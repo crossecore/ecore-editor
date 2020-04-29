@@ -7,8 +7,12 @@
  *******************************************************************************/
 import {
     SNode, RectangularNode, RectangularPort,
-    moveFeature, selectFeature, hoverFeedbackFeature, SEdge, editFeature
+    moveFeature, selectFeature, hoverFeedbackFeature, SEdge, editFeature, SGraph
 } from "sprotty";
+
+export class ViewBoxGraph extends SGraph{
+    style:any
+}
 
 export class ElkNode extends RectangularNode {
     hasFeature(feature: symbol): boolean {

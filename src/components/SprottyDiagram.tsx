@@ -3,8 +3,9 @@ import 'reflect-metadata';
 import {EPackage, EcorePackageImpl, EcoreFactoryImpl} from 'crossecore'
 import { EPackage2ElkGraph } from '../elkjs/EPackage2ElkGraph';
 import { ElkGraphJsonToSprotty } from '../elkjs/elkgraph-to-sprotty';
-import React, {useEffect} from 'react';
+import React from 'react';
 import '../assets/diagram.css'
+import { Container as GlContainer } from 'golden-layout';
 
 
 import { TYPES, LocalModelSource } from 'sprotty';
@@ -14,13 +15,19 @@ import createContainer from '../sprotty-config';
 import ELK, {ElkNode } from 'elkjs/lib/elk.bundled';
 import { Container } from 'inversify';
 import { Messages } from './Messages';
+import { ViewBoxGraph } from '../sprotty-model';
 
+interface State{
+  container: GlContainer | null
+  epackage: EPackage | null
 
+}
 export default class SprottyDiagram extends React.Component {
     
     sprottyContainer : Container = createContainer();
     modelSource:LocalModelSource= new LocalModelSource()
-    state = {epackage:EcoreFactoryImpl.eINSTANCE.createEPackage(), glContainer: null}
+    state:State;
+    
 
     constructor(props:any) {
       super(props);
@@ -28,8 +35,8 @@ export default class SprottyDiagram extends React.Component {
       this.sprottyContainer.bind(TYPES.ModelSource).to(LocalModelSource).inSingletonScope();
       this.modelSource = this.sprottyContainer.get<LocalModelSource>(TYPES.ModelSource);
 
-      console.log("getwidth")
-      console.log(props.glContainer.width)
+
+      this.state = {epackage:EcoreFactoryImpl.eINSTANCE.createEPackage(),container: props.glContainer}
 
       props.glEventHub.on(Messages.SET_EPACKAGE, (epackage:any)=>{
       
@@ -37,9 +44,20 @@ export default class SprottyDiagram extends React.Component {
         this.updateModel()
       })
 
+      
+      props.glContainer.on('resize', () => {
+        this.resize()
+      })
+
     }
 
-    
+    resize = () => {
+      const x = document.getElementById("sprotty")?.children[0] as any;
+      const container = this.state.container as GlContainer
+      x.style.width = container.width+"px"
+      x.style.height = container.height+"px"
+      
+    }
     
     updateModel() {
         const elk = new ELK()
@@ -49,8 +67,9 @@ export default class SprottyDiagram extends React.Component {
         elk.layout(graph)
        .then((g:ElkNode) => {
         console.log(g)
-        let sGraph = new ElkGraphJsonToSprotty().transform(g);
+        let sGraph = new ElkGraphJsonToSprotty().transform(g)
         this.modelSource.updateModel(sGraph)
+        this.resize()
        })
        .catch(console.error)
         
@@ -58,7 +77,9 @@ export default class SprottyDiagram extends React.Component {
     }
     componentDidMount() {
         
+      
         this.updateModel()
+        
       }
 
     render() {
