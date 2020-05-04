@@ -33,6 +33,16 @@ export class ElkGraphJsonToSprotty {
         }
         if (elkGraph.edges) {
             const sEdges = elkGraph.edges.map(e => this.transformElkEdge(e));
+            const sLabels = new Array<SLabelSchema>()
+            for(const e of elkGraph.edges){
+                if(e.labels){
+                    for(const l of e.labels){
+                        sLabels.push(this.transformElkLabel(l))
+                    }
+                }
+
+            }
+            sGraph.children!.push(...sLabels);
             sGraph.children!.push(...sEdges);
         }
 
@@ -40,6 +50,7 @@ export class ElkGraphJsonToSprotty {
     }
 
     private transformElkNode(elkNode: ElkNode): SNodeSchema {
+        console.log("labels")
         this.checkAndRememberId(elkNode, this.nodeIds);
         
         const sNode = <SNodeSchema> {
@@ -67,6 +78,16 @@ export class ElkGraphJsonToSprotty {
         // edges
         if (elkNode.edges) {
             const sEdges = elkNode.edges.map(e => this.transformElkEdge(e));
+            const sLabels = new Array<SLabelSchema>()
+            for(const e of elkNode.edges){
+                if(e.labels){
+                    for(const l of e.labels){
+                        sLabels.push(this.transformElkLabel(l))
+                    }
+                }
+
+            }
+            sNode.children!.push(...sLabels);
             sNode.children!.push(...sEdges);
         }
         return sNode;

@@ -49,6 +49,8 @@ export default class SprottyDiagram extends React.Component {
         this.resize()
       })
 
+      window.addEventListener('resize', this.resize);
+
     }
 
     resize = () => {
@@ -60,7 +62,12 @@ export default class SprottyDiagram extends React.Component {
     }
     
     updateModel() {
-        const elk = new ELK()
+        const elk = new ELK({defaultLayoutOptions: {
+          'elk.algorithm': 'layered',
+          'elk.direction': 'RIGHT',
+          'elk.padding': '[top=25,left=25,bottom=25,right=25]',
+          'elk.edgeLabels.inline': "true"
+        }})
         //console.log(elk.knownLayoutOptions())
         const graph = EPackage2ElkGraph.convert(this.state.epackage as unknown as EPackage)
     
@@ -80,7 +87,8 @@ export default class SprottyDiagram extends React.Component {
       
         this.updateModel()
         
-      }
+    }
+
 
     render() {
         return <div id="sprotty"></div>

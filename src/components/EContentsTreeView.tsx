@@ -100,8 +100,14 @@ export default class EContentsTreeView extends React.Component {
 
   getTree = (epackage:EPackage)=>{
     
+    const children = new Array<Node>()
     
-    const classifiers = new Array<Node>()
+    for(const subpkg of epackage.eSubpackages){
+       const subroot = this.getTree(subpkg)
+       children.push(subroot)
+    }
+
+    //const classifiers = new Array<Node>()
     for(var eclassifier of epackage.eClassifiers){
       
       if(eclassifier instanceof EClassImpl){
@@ -114,7 +120,7 @@ export default class EContentsTreeView extends React.Component {
           this.id2eobject.set(id, feature)
         }
         const id = URI.getFragment(eclassifier)
-        classifiers.push({id: id, name:eclassifier.name, children: features, eobject:eclassifier})
+        children.push({id: id, name:eclassifier.name, children: features, eobject:eclassifier})
         this.id2eobject.set(id, eclassifier)
 
       }
@@ -122,11 +128,9 @@ export default class EContentsTreeView extends React.Component {
     }
 
     const id = URI.getFragment(epackage)
-    const root:Node = {id: id, name:epackage.name, children: classifiers, eobject:epackage}
+    const root:Node = {id: id, name:epackage.name, children: children, eobject:epackage}
     
     this.id2eobject.set(id, epackage)
-    console.log("hassel")
-    console.log("id")
     
 
     return root

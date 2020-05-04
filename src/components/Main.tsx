@@ -15,24 +15,39 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { XmiResource, EcoreFactoryImpl, EcorePackageImpl } from 'crossecore';
+import { XmiResource, EcoreFactoryImpl, EcorePackageImpl, EPackage } from 'crossecore';
 import { SelectFileDialog } from './SelectFileDialog';
 import { Messages } from './Messages';
 import { MonacoEditor } from './MonacoEditor';
 import ProjectExplorer from './ProjectExplorer';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import PouchDB from 'pouchdb'
 
 
 //give goldenlayout access to React
 window.React = React;
 window.ReactDOM = ReactDOM;
 
-
-
+interface State{
+  anchorEl: any,
+  epackage: EPackage|null;
+  open: boolean,
+  layout: GoldenLayout|null,
+  pouchdb: PouchDB.Database
+}
 
 class Main extends Component {
   
-  layout:GoldenLayout = new GoldenLayout({
+  
+  constructor(props:any) {
+    super(props);
+    
+    this.myRef = React.createRef();
+
+    
+  }
+
+  defaultLayout:GoldenLayout.Config = {
     content: [{
         type: 'row',
         content:[{
@@ -67,38 +82,75 @@ class Main extends Component {
             }]
         }]
     }]
-});
-  
-  constructor(props:any) {
-    super(props);
-    
-    this.myRef = React.createRef();
-    this.layout.eventHub.on(Messages.OPEN_FILE+"", (data:any)=>{
-      
-      this.openFile(data.filename, data.contents)
-    })
-  }
+}
 
-  state = {
+  state:State = {
     anchorEl: null,
     epackage: null,
     open: false,
-    layout: this.layout
+    layout: null,
+    pouchdb: new PouchDB("local", {revs_limit: 1})
   }
 
   myRef:any;
 
   componentDidMount() {
     const ref = this.myRef.current;
+    //this.state.layout.container = ref;
+    this.createLayout()
+    this.restore()
 
+  }
+
+  restore = async () =>{
+    
+    try{
+      const doc:any = await this.state.pouchdb.get("model")
+      this.returnDialog(doc.contents)
+      
+    }catch(e){
+      console.error(e)
+    }
+
+  }
+
+  createLayout = async () =>{
+    
+    let config = this.defaultLayout
+    try {
+      const doc = await this.state.pouchdb.get("goldenlayout") as any
+      config = doc.config
+    } catch (err) {
+      console.log(err);
+    }
+    this.state.layout = new GoldenLayout(config)
     this.state.layout.registerComponent('PropertiesView', PropertiesView);
     this.state.layout.registerComponent('SprottyDiagram', SprottyDiagram);
     this.state.layout.registerComponent('EContentsTreeView', EContentsTreeView);
     this.state.layout.registerComponent('ProjectExplorer', ProjectExplorer);
     this.state.layout.registerComponent('MonacoEditor', MonacoEditor);
-    //this.state.layout.container = ref;
+        
     this.state.layout.init();
+
+    this.state.layout.on('stateChanged', async ()=>{
+      
+      console.log(this.state.layout!.toConfig());
+      try{
+        const doc = await this.state.pouchdb.get("goldenlayout")
+        await this.state.pouchdb.put({_id: doc._id, _rev: doc._rev, config: this.state.layout!.toConfig()});
+      }catch(e){
+        console.log(e);
+      }
+    })
+
+    this.state.layout.eventHub.on(Messages.OPEN_FILE+"", (data:any)=>{
+      
+      this.openFile(data.filename, data.contents)
+    })
+
   }
+
+
 
   openFile = (filename:string, contents:string) => {
     const newItemConfig:ReactComponentConfig = {
@@ -107,7 +159,7 @@ class Main extends Component {
       component: 'MonacoEditor'
   };
 
-    this.state.layout.root.contentItems[0].contentItems[1].contentItems[0].addChild(newItemConfig)
+    this.state.layout!.root.contentItems[0].contentItems[1].contentItems[0].addChild(newItemConfig)
   }
    
   handleClick = (event: React.MouseEvent<HTMLButtonElement>)=>{
@@ -123,10 +175,10 @@ class Main extends Component {
 
   export = () => {
 
-    /*
-    const xmi = new XmiResource(this.state.epackage, EcoreFactoryImpl.eINSTANCE, new DOMParser())
+    
+    const xmi = new XmiResource(this.state.epackage!, EcoreFactoryImpl.eINSTANCE, new DOMParser())
 
-    const str = xmi.
+    const str = "";//xmi.save(this.state.epackage!)
 
     const element = document.createElement('a');
     const datalink = 'data:text/xml;base64,' + btoa(str);
@@ -137,7 +189,7 @@ class Main extends Component {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-    */
+    
 
   }
 
@@ -145,13 +197,31 @@ class Main extends Component {
     this.setState({open:true})
   }
 
-  returnDialog = (value:any)=>{
-    this.setState({open:false, anchorEl: null, epackage:value});
+  returnDialog = async (value:string)=>{
 
-    console.log("return dialog");
-    console.log(this.layout);
-    console.log(this.state.layout)
-    this.layout.eventHub.emit( Messages.SET_EPACKAGE+"", value);
+    const epackage = new XmiResource(EcorePackageImpl.eINSTANCE, EcoreFactoryImpl.eINSTANCE, new DOMParser()).load(value);
+    
+    this.setState({open:false, anchorEl: null, epackage:epackage});
+
+    let doc:any
+    try{
+      doc = await this.state.pouchdb.get("model")
+    }catch(e){
+      console.error(e)
+    }
+    try{
+      if(doc){
+        await this.state.pouchdb.put({_id: doc._id, _rev: doc._rev, contents: value}) 
+      }
+      else{
+        await this.state.pouchdb.put({_id: "model", contents: value}) 
+      }
+      
+    }catch(e){
+      
+    }
+
+    this.state.layout!.eventHub.emit( Messages.SET_EPACKAGE+"", epackage);
     
   }
 
@@ -170,9 +240,7 @@ class Main extends Component {
           onClose={this.handleClose}
         >
           <MenuItem onClick={this.openDialog}>Import</MenuItem>
-          {/*<MenuItem onClick={this.handleClose}>Import</MenuItem>
-          <MenuItem onClick={this.export}>Download</MenuItem>
-            */}
+          {/*<MenuItem onClick={this.export}>Export</MenuItem>*/}
         </Menu>
         <SelectFileDialog open={this.state.open} onClose={this.returnDialog} />
         <Button
