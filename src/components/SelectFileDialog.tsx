@@ -11,8 +11,8 @@ export function SelectFileDialog(props:any) {
         const element:any = document.getElementById("raised-button-file")
 
         if(element!==null){
-            let file:any = element.files[0];
-            console.log(file)
+            const file:any = element.files[0];
+        
             const reader  = new FileReader();
             
             reader.readAsText(file);
@@ -20,11 +20,11 @@ export function SelectFileDialog(props:any) {
             reader.addEventListener("load", () => {
                 console.log(reader.result);
                 
-                let eobject = new XmiResource(EcorePackageImpl.eINSTANCE, EcoreFactoryImpl.eINSTANCE, new DOMParser()).load(reader.result as string);
+                //const eobject = new XmiResource(EcorePackageImpl.eINSTANCE, EcoreFactoryImpl.eINSTANCE, new DOMParser()).load(reader.result as string);
           
-                console.log(eobject);
+                //console.log(eobject);
                 
-                onClose(eobject)
+                onClose(reader.result)
           
               }, false);
 

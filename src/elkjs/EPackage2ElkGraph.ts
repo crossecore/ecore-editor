@@ -1,35 +1,37 @@
-import { EPackage, EClassImpl, EObject, ENamedElement, EReferenceImpl, EClass, EClassifier, ETypedElement, ETypedElementImpl, ENamedElementImpl, EAttribute } from "crossecore";
+import { EPackage, EClassImpl, EObject, ENamedElement, EReferenceImpl, EClass, EClassifier, ETypedElement, ETypedElementImpl, ENamedElementImpl, EAttribute, BasicEObjectImpl, EPackageImpl, EAttributeImpl, EClassifierImpl, EOperationImpl, EEnumImpl, EEnum, EEnumLiteralImpl } from "crossecore";
 import { ElkNode, ElkPrimitiveEdge, ElkLabel } from "elkjs";
 import { LabelProvider } from "../utils/LabelProvider";
 import { URI } from "../utils/URI";
+import { BoundsCalculator } from "./BoundsCalculator";
 
 
 export class EPackage2ElkGraph{
     
-    private static calcWidth = (eClassifier:EClassifier) => {
-        let factor = 50;
-        let indent = 5;
-        let width = eClassifier.name.length*factor
+    static bounds = BoundsCalculator.INSTANCE;
 
-        if(eClassifier instanceof EClassImpl){
-            const eClass = eClassifier as EClass
-            for(const attr of eClass.eAttributes){
-                let current = indent + attr.name.length *factor
-                if(current>width){
-                    width=current
-                }
-            }
+    private static getNodeId = (eobject:EObject, context:EPackage) => {
+
+        if(eobject.eClass().ePackage.nsURI===context.nsURI){
+            return (eobject as BasicEObjectImpl)._uuid
         }
-        console.log(width)
-        return width
+        else{
+            return `${(context as EPackageImpl)._uuid}_${(eobject as BasicEObjectImpl)._uuid}`
+        }
+        
     }
 
-    
     static convert = (epackage:EPackage)=>{
         const factor = 8
         const classifiers = new Array<ElkNode>()
         const edges = new Array<ElkPrimitiveEdge>()
-        for(let eclassifier of epackage.eClassifiers){
+        const proxyNodes = new Set<String>()
+
+        for(const subpkg of epackage.eSubpackages){
+            const subroot = EPackage2ElkGraph.convert(subpkg)
+            classifiers.push(subroot)         
+        }
+
+        for(const eclassifier of epackage.eClassifiers){
             const labels:ElkLabel = {id: Math.random()+"", text: eclassifier.name}
 
 
@@ -37,33 +39,80 @@ export class EPackage2ElkGraph{
                 
                 const eclass = eclassifier as EClassImpl;
 
-                for(let parent of eclass.eSuperTypes){
-                    edges.push({id: URI.getFragment(eclass) +"_" + URI.getFragment(parent), source: URI.getFragment(eclass), target: URI.getFragment(parent)})
+                
+                for(const parent of eclass.eSuperTypes){
+                    
+                    if(parent.ePackage.nsURI===epackage.nsURI){
+                        edges.push({id: eclass._uuid +"_" + (parent as EClassImpl)._uuid, source: eclass._uuid, target: (parent as EClassImpl)._uuid})
+                    }
+                    
+                    else{
+                        const targetId = EPackage2ElkGraph.getNodeId(parent, epackage)
+                        if(!proxyNodes.has(targetId)){
+                            proxyNodes.add(targetId)
+                            
+                            const proxyLabel:ElkLabel = {id: Math.random()+"", text: `${parent.ePackage.name}::${parent.name}`}
+                            classifiers.push({id:targetId, width:proxyLabel.text.length*factor, height:30, labels:[proxyLabel]})
+                        }
+                        edges.push({id: eclass._uuid +"_" + targetId, source: eclass._uuid, target: targetId})   
+                    }
+                    
+                    
                 }
-
+                
                 const features = new Array<ElkNode>()
-                for(let attribute of eclass.eAttributes){
-
+                for(const attribute of eclass.eAttributes){
+                    
                     const label:ElkLabel = {id: Math.random()+"", text: attribute.name+" : " +new LabelProvider().caseEStructuralFeature(attribute)}
-                    
-                    
-                    features.push({id: URI.getFragment(attribute), labels:[label], width:label.text.length*factor})
+                    features.push({id: (attribute as EAttributeImpl)._uuid, labels:[label], width:label.text.length*factor})
                 }
 
-                for(let reference of eclass.eReferences){
-                    const labels2:Array<ElkLabel> = [{id: Math.random()+"", text: reference.name}]
+                
+                for(const operation of eclass.eOperations){
                     
-                    edges.push({id: URI.getFragment(reference),source: URI.getFragment(reference.eContainingClass), target: URI.getFragment(reference.eType), labels:labels2})
+                    const label:ElkLabel = {id: Math.random()+"", text: operation.name+" : " +new LabelProvider().caseEOperation(operation)}
+                    features.push({id: (operation as EOperationImpl)._uuid, labels:[label], width:label.text.length*factor})
+                }                
+
+                for(const reference of eclass.eReferences){
+                    
+                    const labels2:Array<ElkLabel> = [{id: Math.random()+"", text: reference.name, width: 40, height:20}]
+                    if(reference.eContainingClass.ePackage.nsURI===reference.eType.ePackage.nsURI){
+                        edges.push({id: (reference as EReferenceImpl)._uuid, source: (reference.eContainingClass as EClassImpl)._uuid, target: (reference.eType as EClassifierImpl)._uuid, labels:labels2})
+                    }
+                    else{
+                        const targetId = EPackage2ElkGraph.getNodeId(reference.eType, epackage)
+                        if(!proxyNodes.has(targetId)){
+                            proxyNodes.add(targetId)
+                            
+                            const proxyLabel:ElkLabel = {id: Math.random()+"", text: `${reference.eType.ePackage.name}::${reference.eType.name}`}
+                            classifiers.push({id:targetId, width:proxyLabel.text.length*factor, height:30, labels:[proxyLabel]})
+                        }
+                        edges.push({id: (reference as EReferenceImpl)._uuid, source: (reference.eContainingClass as EClassImpl)._uuid, target: targetId, labels:labels2})
+                    }
+                    
+                
                 }
-                classifiers.push({id: URI.getFragment(eclass), children: features, width:labels.text.length*factor, height:30, labels: [labels]})
+                classifiers.push({id: (eclass as EClassImpl)._uuid, children: features, width: EPackage2ElkGraph.bounds.caseEClass(eclass), height:30, labels: [labels]})
+            }
+            else if(eclassifier instanceof EEnumImpl){
+                const eenum = eclassifier as EEnumImpl;
+                const literals = new Array<ElkNode>()
+              
+                for(const literal of eenum.eLiterals){
+                    
+                    const label:ElkLabel = {id: Math.random()+"", text: literal.name}
+                    literals.push({id: (literal as EEnumLiteralImpl)._uuid, labels:[label], width:label.text.length*factor})
+                }
+                classifiers.push({id: eenum._uuid, children: literals, width: EPackage2ElkGraph.bounds.caseEEnum(eenum), height:30, labels: [labels]})
             }
             else{
                 
-                classifiers.push({id: URI.getFragment(eclassifier), width:labels.text.length*factor, height:30, labels: [labels]})
+                classifiers.push({id: (eclassifier as EClassifierImpl)._uuid, width:labels.text.length*factor, height:30, labels: [labels]})
             }
         }
 
-        const root:ElkNode = {id:URI.getFragment(epackage), layoutOptions: { 'algorithm': 'layered' }, children: classifiers, edges: edges}
+        const root:ElkNode = {id:(epackage as EPackageImpl)._uuid, layoutOptions: { 'algorithm': 'layered' }, children: classifiers, edges: edges}
         console.log(root)
         return root
 

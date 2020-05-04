@@ -21,7 +21,7 @@ interface File{
 export default class ProjectExplorer extends React.Component {
 
 
-  readonly project:File = {name: "src" , children: [{name:"myfile.js"}]};
+  readonly project:File = {name: "src" , children: [{name:"myfile.ts"}]};
   state = {project:this.project}
 
   
@@ -29,7 +29,7 @@ export default class ProjectExplorer extends React.Component {
     super(props);
     
 
-   (this.props as any).glContainer.setTitle("Project Explorer");
+   (this.props as any).glContainer.setTitle("Code Generator");
 
   }
 
