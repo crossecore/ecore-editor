@@ -178,7 +178,7 @@ class Main extends Component {
     
     const xmi = new XmiResource(this.state.epackage!, EcoreFactoryImpl.eINSTANCE, new DOMParser())
 
-    const str = xmi.save(this.state.epackage!)
+    const str = "";//xmi.save(this.state.epackage!)
 
     const element = document.createElement('a');
     const datalink = 'data:text/xml;base64,' + btoa(str);
@@ -240,7 +240,7 @@ class Main extends Component {
           onClose={this.handleClose}
         >
           <MenuItem onClick={this.openDialog}>Import</MenuItem>
-          <MenuItem onClick={this.export}>Export</MenuItem>
+          {/*<MenuItem onClick={this.export}>Export</MenuItem>*/}
         </Menu>
         <SelectFileDialog open={this.state.open} onClose={this.returnDialog} />
         <Button
