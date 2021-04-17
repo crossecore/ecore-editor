@@ -1,6 +1,6 @@
-import {CommonTokenStream, CharStream, Token, Recognizer, RecognitionException,  CharStreams, Lexer, ANTLRErrorListener} from 'antlr4ts'
-import {xcoreParser} from "xcore"
-import {xcoreLexer} from "xcore"
+import {CommonTokenStream, Token, Recognizer, RecognitionException,  Lexer, ANTLRErrorListener, ANTLRInputStream} from 'antlr4ts'
+import {xcoreParser} from "@crossecore/xcore"
+import {xcoreLexer} from "@crossecore/xcore"
 
 class ParserErrorListener implements ANTLRErrorListener<Token> {
     syntaxError(recognizer:Recognizer<Token, any>, offendingSymbol:Token|undefined, line:number, charPositionInLine:number, msg:string, e:RecognitionException | undefined) {
@@ -16,10 +16,16 @@ class LexerErrorListener implements ANTLRErrorListener<number> {
 }
 
 export function createLexer(input: string) {
-    const chars = CharStreams.fromString(input)
+    
+    const chars = new ANTLRInputStream(input)
+    console.log(chars, "chars")
+    console.log(xcoreLexer, "xcoreLexer")
     const lexer = new xcoreLexer(chars);
+    
 
     return lexer;
+
+    
 }
 
 export function getTokens(input: string) : Token[] {

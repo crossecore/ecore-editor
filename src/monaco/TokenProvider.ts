@@ -1,8 +1,8 @@
 
 import {createLexer} from './ParserFacade'
-import {CommonTokenStream, CharStream, ParserErrorListener, ANTLRErrorListener, RecognitionException, Recognizer} from 'antlr4ts'
+import {ANTLRErrorListener, RecognitionException, Recognizer} from 'antlr4ts'
 import * as monaco from 'monaco-editor'
-import { xcoreLexer } from 'xcore';
+import { xcoreLexer } from '@crossecore/xcore';
 
 
 export class CalcState implements monaco.languages.IState {

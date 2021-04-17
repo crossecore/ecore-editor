@@ -1,6 +1,7 @@
 import * as monaco from 'monaco-editor'
 import React from 'react';
 import { Container } from 'golden-layout';
+import { CalcTokensProvider } from '../monaco/TokenProvider';
 
 
 interface State{
@@ -22,6 +23,9 @@ export class MonacoEditor extends React.Component{
         this.myRef = React.createRef();
         this.state = {container: props.glContainer, editor:null}
 
+        monaco.languages.register({ id: 'xcore' });
+        monaco.languages.setTokensProvider('xcore', new CalcTokensProvider());
+
 
         props.glContainer.on('resize', () => {
             const editor = this.state.editor as monaco.editor.IStandaloneCodeEditor
@@ -38,12 +42,12 @@ export class MonacoEditor extends React.Component{
 
         //monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:this.state.width, height:this.state.height})});
         monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:300, height:300})});
-        const model = monaco.editor.createModel("function(){}", "javascript");
+        const model = monaco.editor.createModel("function(){}", "xcore");
         const editor = monaco.editor.create(ref, {
             model: model,
             theme: "vs"
         });
-        monaco.editor.setModelLanguage(model, "javascript");
+        monaco.editor.setModelLanguage(model, "xcore");
         console.log(editor)
         this.state = {container: this.state.container, editor: editor}
 

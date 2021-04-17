@@ -953,6 +953,13 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@crossecore/xcore@^0.7.0":
+  version "0.7.0"
+  resolved "http://localhost:4873/@crossecore%2fxcore/-/xcore-0.7.0.tgz#f527aa9b62e388c88d1f364d8dda314f57c49819"
+  integrity sha512-/XCpY4PZuGm14bpLGwL9tUB9FUgrB3QtTsFc6txBya9q5o5LMY00PVzZteDdnQ6nXR/YjVIzz6vgzfGiSLt+9A==
+  dependencies:
+    antlr4ts "^0.5.0-alpha.4"
+
 "@csstools/convert-colors@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@csstools/convert-colors/-/convert-colors-1.4.0.tgz#ad495dc41b12e75d588c6db8b9834f08fa131eb7"

@@ -176,7 +176,7 @@ class Main extends Component {
   export = () => {
 
     
-    const xmi = new XmiResource(this.state.epackage!, EcoreFactoryImpl.eINSTANCE, new DOMParser())
+    const xmi = new XmiResource(new DOMParser())
 
     const str = "";//xmi.save(this.state.epackage!)
 
@@ -199,7 +199,7 @@ class Main extends Component {
 
   returnDialog = async (value:string)=>{
 
-    const epackage = new XmiResource(EcorePackageImpl.eINSTANCE, EcoreFactoryImpl.eINSTANCE, new DOMParser()).load(value);
+    const epackage = new XmiResource(new DOMParser()).load(value);
     
     this.setState({open:false, anchorEl: null, epackage:epackage});
 
