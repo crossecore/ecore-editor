@@ -2131,6 +2131,11 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
     "@types/color-name" "^1.1.1"
     color-convert "^2.0.1"
 
+antlr4ts@^0.5.0-alpha.4:
+  version "0.5.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/antlr4ts/-/antlr4ts-0.5.0-alpha.4.tgz#71702865a87478ed0b40c0709f422cf14d51652a"
+  integrity sha512-WPQDt1B74OfPv/IMS2ekXAKkTZIHl88uMetg6q3OTqgFxZ/dxDXI0EWLyZid/1Pe6hTftyg5N7gel5wNAGxXyQ==
+
 anymatch@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-2.0.0.tgz#bcb24b4f37934d9aa7ac17b4adaf89e7c76ef2eb"
@@ -3426,10 +3431,10 @@ cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-crossecore@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/crossecore/-/crossecore-0.1.1.tgz#368dd5c7e29cf68d0a0ebe45aa9e91e65d2dce8f"
-  integrity sha512-sjCzO1LEHcAGXfhVQKGq6xSsvUUH8667vtVnHLx24oSCkz051J7G6spZlYGWJGDnDEMu+Yf4u1hcYngqr3gWRA==
+crossecore@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/crossecore/-/crossecore-0.2.0.tgz#6002e1071ceca2f58617e61d8bf8fae1806dc9ad"
+  integrity sha512-ggaxO46+9VsrMm2mTXbR90oXTtUxOpVaZfAKwd1Lrh3JTELQ1aiyx73lH9gW1G8HjRKInYhLCbrA333YvL2ThA==
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
