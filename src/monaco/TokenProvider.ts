@@ -2,7 +2,7 @@
 import {createLexer} from './ParserFacade'
 import {ANTLRErrorListener, RecognitionException, Recognizer} from 'antlr4ts'
 import * as monaco from 'monaco-editor'
-import { xcoreLexer } from '@crossecore/xcore';
+import { XcoreLexer } from './XcoreLexer';
 
 
 export class CalcState implements monaco.languages.IState {
@@ -35,7 +35,7 @@ class CalcToken implements monaco.languages.IToken {
     startIndex: number;
 
     constructor(ruleName: string, startIndex: number) {
-        this.scopes = ruleName.toLowerCase() + ".calc";
+        this.scopes = ruleName.toLowerCase() + ".xcore";
         this.startIndex = startIndex;
     }
 }
@@ -55,6 +55,7 @@ export function tokensForLine(input: string): monaco.languages.ILineTokens {
 
     class ErrorCollectorListener implements ANTLRErrorListener<number> {
         syntaxError(recognizer:Recognizer<number, any>, offendingSymbol:number|undefined, line:number, charPositionInLine:number, msg:string, e:RecognitionException | undefined) {
+            console.error(msg,"sytaxError")
             errorStartingPoints.push(charPositionInLine)
         }
     }
@@ -75,7 +76,7 @@ export function tokensForLine(input: string): monaco.languages.ILineTokens {
                 done = true;
             } else {
                 
-                let tokenTypeName = xcoreLexer.VOCABULARY.getSymbolicName(token.type)
+                let tokenTypeName = XcoreLexer.VOCABULARY.getSymbolicName(token.type)
 
                 if(tokenTypeName){
                     let myToken = new CalcToken(tokenTypeName!, token.startIndex);//TODO or endIndex? (was 'column' originally)
@@ -89,7 +90,7 @@ export function tokensForLine(input: string): monaco.languages.ILineTokens {
 
     // Add all errors
     for (let e of errorStartingPoints) {
-        myTokens.push(new CalcToken("error.calc", e));
+        myTokens.push(new CalcToken("error.xcore", e));
     }
     myTokens.sort((a, b) => (a.startIndex > b.startIndex) ? 1 : -1)
 
