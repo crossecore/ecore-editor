@@ -138,6 +138,18 @@ export class Xcore2Ecore implements XcoreParserVisitor<EObject>{
         eclass.abstract = ctx.Abstract() !== undefined        
         eclass.interface = ctx.Interface() !==undefined
 
+        if(ctx.Extends()){
+
+            for(let t of ctx.xgenerictype()){
+                let fully_qualified_name = t.qualifiedname().text
+
+                //eclass.eSuperTypes.add()
+            }
+            
+
+            
+        }
+
         for(let xmember of ctx.xmember()){
             const emember = this.visitXmember(xmember)
 

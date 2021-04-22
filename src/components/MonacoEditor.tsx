@@ -70,6 +70,8 @@ export class MonacoEditor extends React.Component{
             colors: {}
         });
         
+        
+        
 
         props.glContainer.on('resize', () => {
             const editor = this.state.editor as monaco.editor.IStandaloneCodeEditor
@@ -94,6 +96,12 @@ export class MonacoEditor extends React.Component{
         });
         monaco.editor.setModelLanguage(model, "xcore");
         
+        
+
+        editor.onDidChangeModelContent((event)=>{
+            console.log(event)
+            console.log("CHAAAAAAAAAAAANGED")
+        })
 
         /*
         const editor = monaco.editor.create(ref, {

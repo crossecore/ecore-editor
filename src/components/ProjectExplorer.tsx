@@ -11,6 +11,7 @@ import iconFile from '../assets/default_file.svg'
 import Typography from '@material-ui/core/Typography';
 
 import { Messages } from './Messages';
+import { Button, ButtonGroup, IconButton } from '@material-ui/core';
 
 interface File{
   name: string
@@ -65,6 +66,7 @@ export default class ProjectExplorer extends React.Component {
     }>
       {Array.isArray(file.children) ? file.children.map((child:File) => this.renderTree(child)) : null}
     </TreeItem>
+    
   );
 
 
@@ -76,6 +78,12 @@ export default class ProjectExplorer extends React.Component {
 
     if(this.state.project!==null){
       return (
+        <>
+        <ButtonGroup color="primary" aria-label="outlined primary button group">
+            <Button><img src={iconTypescript} width="20" height="20"></img></Button>
+            <Button><img src={iconJava} width="20" height="20"></img></Button>
+            <Button><img src={iconCSharp} width="20" height="20"></img></Button>
+        </ButtonGroup>
         <TreeView
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpanded={['root']}
@@ -84,6 +92,7 @@ export default class ProjectExplorer extends React.Component {
       >
         {this.renderTree(this.state.project as any as File)}
       </TreeView>
+      </>
       );
     }
     else{
