@@ -10,9 +10,28 @@ xpackage:
 qualifiedname: ID (Dot ID)*;
 
 xclassifier:
-	xclass 
+	xclass
+	| xenum
 ;
 
+xenum:
+	
+	Enum ID
+	CurlyBraceOpen
+	  (xenumliteral ((Comma)? xenumliteral)*)?
+	CurlyBraceClose
+;
+
+
+xenumliteral:
+    ID
+    (As STRING)?
+    (Equal signedint)?
+;
+
+signedint :
+	Minus? INT
+;
 
 xclass:
 	((Abstract? Class) | Interface) ID

@@ -6,6 +6,9 @@ import { ParseTreeVisitor } from "antlr4ts/tree/ParseTreeVisitor";
 import { XpackageContext } from "./XcoreParser";
 import { QualifiednameContext } from "./XcoreParser";
 import { XclassifierContext } from "./XcoreParser";
+import { XenumContext } from "./XcoreParser";
+import { XenumliteralContext } from "./XcoreParser";
+import { SignedintContext } from "./XcoreParser";
 import { XclassContext } from "./XcoreParser";
 import { XmemberContext } from "./XcoreParser";
 import { XattributeContext } from "./XcoreParser";
@@ -46,6 +49,27 @@ export interface XcoreParserVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitXclassifier?: (ctx: XclassifierContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `XcoreParser.xenum`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitXenum?: (ctx: XenumContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `XcoreParser.xenumliteral`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitXenumliteral?: (ctx: XenumliteralContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `XcoreParser.signedint`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitSignedint?: (ctx: SignedintContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `XcoreParser.xclass`.

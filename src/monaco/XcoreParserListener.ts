@@ -6,6 +6,9 @@ import { ParseTreeListener } from "antlr4ts/tree/ParseTreeListener";
 import { XpackageContext } from "./XcoreParser";
 import { QualifiednameContext } from "./XcoreParser";
 import { XclassifierContext } from "./XcoreParser";
+import { XenumContext } from "./XcoreParser";
+import { XenumliteralContext } from "./XcoreParser";
+import { SignedintContext } from "./XcoreParser";
 import { XclassContext } from "./XcoreParser";
 import { XmemberContext } from "./XcoreParser";
 import { XattributeContext } from "./XcoreParser";
@@ -55,6 +58,39 @@ export interface XcoreParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitXclassifier?: (ctx: XclassifierContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `XcoreParser.xenum`.
+	 * @param ctx the parse tree
+	 */
+	enterXenum?: (ctx: XenumContext) => void;
+	/**
+	 * Exit a parse tree produced by `XcoreParser.xenum`.
+	 * @param ctx the parse tree
+	 */
+	exitXenum?: (ctx: XenumContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `XcoreParser.xenumliteral`.
+	 * @param ctx the parse tree
+	 */
+	enterXenumliteral?: (ctx: XenumliteralContext) => void;
+	/**
+	 * Exit a parse tree produced by `XcoreParser.xenumliteral`.
+	 * @param ctx the parse tree
+	 */
+	exitXenumliteral?: (ctx: XenumliteralContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `XcoreParser.signedint`.
+	 * @param ctx the parse tree
+	 */
+	enterSignedint?: (ctx: SignedintContext) => void;
+	/**
+	 * Exit a parse tree produced by `XcoreParser.signedint`.
+	 * @param ctx the parse tree
+	 */
+	exitSignedint?: (ctx: SignedintContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `XcoreParser.xclass`.

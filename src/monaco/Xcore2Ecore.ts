@@ -4,7 +4,7 @@ import { ParseTree } from "antlr4ts/tree/ParseTree";
 import { RuleNode } from "antlr4ts/tree/RuleNode";
 import { TerminalNode } from "antlr4ts/tree/TerminalNode";
 import { EClassifier, EcoreFactoryImpl, EObject, EOperationImpl, EPackage, EStructuralFeatureImpl } from "crossecore";
-import { QualifiednameContext, XattributeContext, XclassContext, XclassifierContext, XgenerictypeContext, XmemberContext, XmultiplicityContext, XoperationContext, XpackageContext, XparameterContext, XreferenceContext, XtypeparameterContext } from "./XcoreParser";
+import { QualifiednameContext, XattributeContext, XclassContext, XclassifierContext, XenumContext, XgenerictypeContext, XmemberContext, XmultiplicityContext, XoperationContext, XpackageContext, XparameterContext, XreferenceContext, XtypeparameterContext } from "./XcoreParser";
 import { XcoreParserListener } from "./XcoreParserListener";
 import { XcoreParserVisitor } from "./XcoreParserVisitor";
 
@@ -132,6 +132,13 @@ export class Xcore2Ecore implements XcoreParserVisitor<EObject>{
         return reference
     }
 
+    visitXenum = (ctx:XenumContext)=>{
+
+        const enum_ = EcoreFactoryImpl.eINSTANCE.createEEnum()
+        enum_.name = ctx.ID().text
+        return enum_
+    }
+
     visitXclass = (ctx:XclassContext)=>{
         const eclass = EcoreFactoryImpl.eINSTANCE.createEClass()
         eclass.name = ctx.ID().text
@@ -169,6 +176,14 @@ export class Xcore2Ecore implements XcoreParserVisitor<EObject>{
     }
 
     visitXclassifier = (ctx:XclassifierContext)=>{
-        return this.visitXclass(ctx.xclass())        
+
+        if(ctx.xclass()){
+            return this.visitXclass(ctx.xclass()!)  
+        }
+        else if (ctx.xenum()){
+            return this.visitXenum(ctx.xenum()!) 
+        }
+
+        return null as unknown as EObject 
     }   
 }
