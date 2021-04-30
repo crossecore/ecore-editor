@@ -1,17 +1,16 @@
 import * as monaco from 'monaco-editor'
 import React from 'react';
-import { Container } from 'golden-layout';
 import { CalcTokensProvider } from '../monaco/TokenProvider';
-import { XcoreParser } from '../monaco/XcoreParser';
-import { ANTLRInputStream } from 'antlr4ts';
+
+
 import { createParser, parseTreeStr } from '../monaco/ParserFacade';
-import { ContactSupportOutlined } from '@material-ui/icons';
 import { Xcore2Ecore } from '../monaco/Xcore2Ecore';
-import { EPackage } from 'crossecore';
+import { EPackageContext } from './Context';
+import { Ecore2Xcore } from '../monaco/Ecore2Xcore';
 
 
 interface State{
-    container: Container | null
+
     editor: monaco.editor.IStandaloneCodeEditor | null
 
 }
@@ -19,7 +18,7 @@ interface State{
 export class MonacoEditor extends React.Component{
 
     state:State = {
-        container: null,
+
         editor: null
     }
     myRef: any
@@ -38,7 +37,7 @@ export class MonacoEditor extends React.Component{
         console.log(epackage, "epackage")
 
         this.myRef = React.createRef();
-        this.state = {container: props.glContainer, editor:null}
+        this.state = {editor:null}
 
         monaco.languages.register({ id: 'xcore' });
         monaco.languages.setTokensProvider('xcore', new CalcTokensProvider());
@@ -70,14 +69,7 @@ export class MonacoEditor extends React.Component{
             colors: {}
         });
         
-        
-        
 
-        props.glContainer.on('resize', () => {
-            const editor = this.state.editor as monaco.editor.IStandaloneCodeEditor
-            const container = this.state.container as Container
-            editor.layout({width: container.width, height: container.height})
-        })
 
     }
 
@@ -89,7 +81,9 @@ export class MonacoEditor extends React.Component{
         //monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:this.state.width, height:this.state.height})});
         
         monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:300, height:300})});
-        const model = monaco.editor.createModel("package s\nclass X{}", "xcore");
+
+        const contents = new Ecore2Xcore().doSwitch(this.context); 
+        const model = monaco.editor.createModel(contents, "xcore");
         const editor = monaco.editor.create(ref, {
             model: model,
             theme: "myCoolTheme"
@@ -114,7 +108,7 @@ export class MonacoEditor extends React.Component{
 
          */
         console.log(editor)
-        this.state = {container: this.state.container, editor: editor}
+
 
         /*
         const editor = monaco.editor.create(document.getElementById('monaco-editor')!, {
@@ -134,5 +128,7 @@ export class MonacoEditor extends React.Component{
         return <div ref={this.myRef}></div>
     }
 }
+
+MonacoEditor.contextType = EPackageContext
 
 

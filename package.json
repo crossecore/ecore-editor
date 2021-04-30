@@ -12,8 +12,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antlr4ts": "^0.5.0-alpha.4",
-    "crossecore": "^0.2.0",
+    "crossecore": "^0.3.0",
     "elkjs": "^0.6.2",
+    "flexlayout-react": "^0.5.6",
     "golden-layout": "^1.5.9",
     "inversify": "5.0.1",
     "monaco-editor": "^0.20.0",
@@ -53,6 +54,7 @@
   "devDependencies": {
     "@rescripts/cli": "^0.0.16",
     "@rescripts/rescript-env": "^0.0.14",
+    "@types/jest": "^26.0.23",
     "@types/pouchdb": "^6.4.0"
   },
   "babel": {

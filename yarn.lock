@@ -1769,6 +1769,14 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
+"@types/jest@^26.0.23":
+  version "26.0.23"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.23.tgz#a1b7eab3c503b80451d019efb588ec63522ee4e7"
+  integrity sha512-ZHLmWMJ9jJ9PTiT58juykZpL7KjwJywFN3Rr2pTSkyQfydf/rk22yS7W8p5DaVUMQ2BQC7oYiU3FjbTM/mYrOA==
+  dependencies:
+    jest-diff "^26.0.0"
+    pretty-format "^26.0.0"
+
 "@types/json-schema@^7.0.3", "@types/json-schema@^7.0.5":
   version "7.0.7"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
@@ -3814,10 +3822,10 @@ cross-spawn@7.0.1:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-crossecore@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/crossecore/-/crossecore-0.2.0.tgz#6002e1071ceca2f58617e61d8bf8fae1806dc9ad"
-  integrity sha512-ggaxO46+9VsrMm2mTXbR90oXTtUxOpVaZfAKwd1Lrh3JTELQ1aiyx73lH9gW1G8HjRKInYhLCbrA333YvL2ThA==
+crossecore@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/crossecore/-/crossecore-0.3.0.tgz#9caf1986b411e8f546c62af8fa46ec46d0acf705"
+  integrity sha512-dyzFxEdNMbXYuyuJkJxiqxVPnQwHiYZ1mIigEgNg8rhaTT9Lgf7/02GViKNGyEmABBT/yMV/pSsVUKXjn2Q+yw==
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
@@ -4245,6 +4253,11 @@ diff-sequences@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-24.9.0.tgz#5715d6244e2aa65f48bba0bc972db0b0b11e95b5"
   integrity sha512-Dj6Wk3tWyTE+Fo1rW8v0Xhwk80um6yFYKbuAxc9c3EZxIHFDYwbi34Uk42u1CdnIiVorvt4RmlSDjIPyzGC2ew==
+
+diff-sequences@^26.6.2:
+  version "26.6.2"
+  resolved "https://registry.yarnpkg.com/diff-sequences/-/diff-sequences-26.6.2.tgz#48ba99157de1923412eed41db6b6d4aa9ca7c0b1"
+  integrity sha512-Mv/TDa3nZ9sbc5soK+OoA74BsS3mL37yixCvUAQkiuA4Wz6YtwP/K47n2rv2ovzHZvoiQeA5FTQOschKkEwB0Q==
 
 diffie-hellman@^5.0.0:
   version "5.0.3"
@@ -5238,6 +5251,11 @@ flatten@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.3.tgz#c1283ac9f27b368abc1e36d1ff7b04501a30356b"
   integrity sha512-dVsPA/UwQ8+2uoFe5GHtiBMu48dWLTdsuEd7CKGlZlD78r1TTWBvDuFaFGKCo/ZfEr95Uk56vZoX86OsHkUeIg==
+
+flexlayout-react@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/flexlayout-react/-/flexlayout-react-0.5.6.tgz#b6492be4f338bcbfbabf91388117eed6fb82d830"
+  integrity sha512-irzKnjwKMiQxoHsDu44UBu/YA6ZKpBkOjc4W8PpUVDsrZGSkpKrlDc96FTMutI3Ws9ocDS8kk3eZGib90NIxeg==
 
 flush-write-stream@^1.0.0:
   version "1.1.1"
@@ -6603,6 +6621,16 @@ jest-diff@^24.0.0, jest-diff@^24.9.0:
     jest-get-type "^24.9.0"
     pretty-format "^24.9.0"
 
+jest-diff@^26.0.0:
+  version "26.6.2"
+  resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-26.6.2.tgz#1aa7468b52c3a68d7d5c5fdcdfcd5e49bd164394"
+  integrity sha512-6m+9Z3Gv9wN0WFVasqjCL/06+EFCMTqDEUl/b87HYK2rAPTyfz4ZIuSlPhY51PIQRWx5TaxeF1qmXKe9gfN3sA==
+  dependencies:
+    chalk "^4.0.0"
+    diff-sequences "^26.6.2"
+    jest-get-type "^26.3.0"
+    pretty-format "^26.6.2"
+
 jest-docblock@^24.3.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-24.9.0.tgz#7970201802ba560e1c4092cc25cbedf5af5a8ce2"
@@ -6660,6 +6688,11 @@ jest-get-type@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-get-type/-/jest-get-type-24.9.0.tgz#1684a0c8a50f2e4901b6644ae861f579eed2ef0e"
   integrity sha512-lUseMzAley4LhIcpSP9Jf+fTrQ4a1yHQwLNeeVa2cEmbCGeoZAtYPOIv8JaxLD/sUpKxetKGP+gsHl8f8TSj8Q==
+
+jest-get-type@^26.3.0:
+  version "26.3.0"
+  resolved "https://registry.yarnpkg.com/jest-get-type/-/jest-get-type-26.3.0.tgz#e97dc3c3f53c2b406ca7afaed4493b1d099199e0"
+  integrity sha512-TpfaviN1R2pQWkIihlfEanwOXK0zcxrKEE4MlU6Tn7keoXdN6/3gK/xl0yEh8DOunn5pOVGKf8hB4R9gVh04ig==
 
 jest-haste-map@^24.9.0:
   version "24.9.0"
@@ -9421,7 +9454,7 @@ pretty-format@^25.1.0:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-pretty-format@^26.6.2:
+pretty-format@^26.0.0, pretty-format@^26.6.2:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-26.6.2.tgz#e35c2705f14cb7fe2fe94fa078345b444120fc93"
   integrity sha512-7AeGuCYNGmycyQbCqd/3PWH4eOoX/OiCa0uphp57NVTeAGdJGaAliecxwBDHYQCIvrW7aDBZCYeNTP/WX69mkg==

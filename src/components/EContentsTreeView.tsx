@@ -14,10 +14,10 @@ import iconEReference from '../assets/EReference.gif'
 import iconEEnum from '../assets/EEnum.gif'
 import iconEPackage from '../assets/EPackage.gif'
 import Typography from '@material-ui/core/Typography';
-import './EContentsTreeView.css'
-import { Messages } from './Messages';
+import './EContentsTreeView.css';
 import { URI } from '../utils/URI';
 import { LabelProvider } from '../utils/LabelProvider';
+import { EPackageContext } from './Context';
 
 interface Node{
   id: string
@@ -30,7 +30,7 @@ interface Node{
 export default class EContentsTreeView extends React.Component {
   //classes = useStyles();
 
-  state = {epackage:null}
+  
 
   id2eobject = new Map<String,EObject>()
   //props:any;
@@ -38,11 +38,7 @@ export default class EContentsTreeView extends React.Component {
   constructor(props:any) {
     super(props);
     
-   (this.props as any).glContainer.setTitle("Model Browser");
-   (this.props as any).glEventHub.on( Messages.SET_EPACKAGE+"", (epackage:EPackage)=>{
-    console.log(epackage) 
-    this.setState({epackage:epackage})
-   });
+    
 
   }
 
@@ -138,8 +134,7 @@ export default class EContentsTreeView extends React.Component {
   }
 
   handleSelect = (event:any, nodeIds:any) => {
-    
-    (this.props as any).glEventHub.emit( Messages.SET_SELECTION, this.id2eobject.get(nodeIds));
+
     console.log("handleselect")
     console.log(nodeIds)
     console.log(this.id2eobject.get(nodeIds))
@@ -147,7 +142,7 @@ export default class EContentsTreeView extends React.Component {
 
   render() {
 
-    if(this.state.epackage!==null){
+    if(this.context!==null){
       return (
         <TreeView
         
@@ -157,7 +152,7 @@ export default class EContentsTreeView extends React.Component {
         onNodeSelect={this.handleSelect}
         
       >
-        {this.renderTree(this.getTree(this.state.epackage as unknown as EPackage))}
+        {this.renderTree(this.getTree(this.context as unknown as EPackage))}
       </TreeView>
       );
     }
@@ -169,4 +164,6 @@ export default class EContentsTreeView extends React.Component {
   
 
 }
+
+EContentsTreeView.contextType = EPackageContext
 

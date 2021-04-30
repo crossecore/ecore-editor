@@ -1,94 +1,145 @@
-import PropTypes from 'prop-types';
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-import GoldenLayout, { ItemConfig, ReactComponentConfig } from 'golden-layout';
-import 'golden-layout/src/css/goldenlayout-base.css'
-import 'golden-layout/src/css/goldenlayout-light-theme.css'
+
+
+import 'flexlayout-react/style/light.css'
 
 import PropertiesView from './PropertiesView';
 import SprottyDiagram from './SprottyDiagram';
 import EContentsTreeView from './EContentsTreeView';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { XmiResource, EcoreFactoryImpl, EcorePackageImpl, EPackage } from 'crossecore';
+import { XmiResource,EPackage, EcorePackageImpl, EcoreFactoryImpl } from 'crossecore';
 import { SelectFileDialog } from './SelectFileDialog';
-import { Messages } from './Messages';
+
 import { MonacoEditor } from './MonacoEditor';
 import ProjectExplorer from './ProjectExplorer';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import PouchDB from 'pouchdb'
+import {Layout, Model, TabNode} from "flexlayout-react";
+import {EPackageContext} from './Context'
 
 
-//give goldenlayout access to React
-window.React = React;
-window.ReactDOM = ReactDOM;
 
 interface State{
   anchorEl: any,
   epackage: EPackage|null;
   open: boolean,
-  layout: GoldenLayout|null,
+  model: Model,
   pouchdb: PouchDB.Database
 }
 
 class Main extends Component {
   
-  
+
   constructor(props:any) {
     super(props);
     
+    this.state.model = Model.fromJson(this.json)
     this.myRef = React.createRef();
 
-    
   }
 
-  defaultLayout:GoldenLayout.Config = {
-    content: [{
-        type: 'row',
-        content:[{
-            type: 'stack',
-            content: [{
-              type:'react-component',
-              component: 'EContentsTreeView',
-              props: { label: 'A' }
+  factory = (node:TabNode) => {
+    const component = node.getComponent();
+    if (component === "EContentsTreeView") {
+        return <EContentsTreeView></EContentsTreeView>
+    }
+    else if(component === "MonacoEditor"){
+      return <MonacoEditor></MonacoEditor>
+    }
+    else if(component === "SprottyDiagram"){
+      return <SprottyDiagram></SprottyDiagram>
+    }
+    else if(component === "ProjectExplorer"){
+      return <ProjectExplorer></ProjectExplorer>
+    }
+  }
+
+  json = {
+    global: {},
+    borders: [],
+    layout:{
+      "type": "row",
+      "weight": 100,
+      "children": [
+        {
+          "type": "tabset",
+          "weight": 100,
+          "selected": 0,
+          "children": [
+            {
+              "type": "tab",
+              "name": "Outline",
+              "component":"EContentsTreeView",
             },
             {
-              type:'react-component',
-              component: 'ProjectExplorer',
-              props: { label: 'A' }
-            }
+              "type": "tab",
+              "name": "Project Explorer",
+              "component":"ProjectExplorer",
+            },
+            {
+              "type": "tab",
+              "name": "Model Editor",
+              "component":"MonacoEditor",
+            },
+            {
+              "type": "tab",
+              "name": "Diagram",
+              "component":"SprottyDiagram",
+            },
           ]
+        }
+      ]
+    }
+  };
 
-            
-        },{
-            type: 'column',
-            content:[
-              {
-                type:'stack',
-                content: [{
-                  type:'react-component',
-                  component: 'SprottyDiagram',
-                  props: { label: 'B' }
-              }]
-              },{
-                type:'react-component',
-                component: 'PropertiesView',
-                props: { label: 'C' }
-            }]
-        }]
-    }]
-}
+
+  json2 = {
+    global: {},
+    borders: [],
+    layout:{
+      "type": "row",
+      "weight": 100,
+      "children": [
+        
+          {
+            "type": "tab",
+            "name": "Outline",
+            "component":"EContentsTreeView",
+          },
+          {
+            "type": "tab",
+            "name": "Project Explorer",
+            "component":"ProjectExplorer",
+          },
+          {
+            "type": "tab",
+            "name": "Model Editor",
+            "component":"MonacoEditor",
+          },
+          {
+            "type": "tab",
+            "name": "Diagram",
+            "component":"SprottyDiagram",
+          },
+        
+        
+      ]
+    }
+  };
+ 
+  
 
   state:State = {
     anchorEl: null,
-    epackage: null,
+    epackage: EcorePackageImpl.eINSTANCE,//TODO should be null
     open: false,
-    layout: null,
+    model: Model.fromJson(this.json),
     pouchdb: new PouchDB("local", {revs_limit: 1})
   }
 
@@ -96,8 +147,7 @@ class Main extends Component {
 
   componentDidMount() {
     const ref = this.myRef.current;
-    //this.state.layout.container = ref;
-    this.createLayout()
+    
     this.restore()
 
   }
@@ -114,54 +164,6 @@ class Main extends Component {
 
   }
 
-  createLayout = async () =>{
-    
-    let config = this.defaultLayout
-    try {
-      const doc = await this.state.pouchdb.get("goldenlayout") as any
-      config = doc.config
-    } catch (err) {
-      console.log(err);
-    }
-    this.state.layout = new GoldenLayout(config)
-    this.state.layout.registerComponent('PropertiesView', PropertiesView);
-    this.state.layout.registerComponent('SprottyDiagram', SprottyDiagram);
-    this.state.layout.registerComponent('EContentsTreeView', EContentsTreeView);
-    this.state.layout.registerComponent('ProjectExplorer', ProjectExplorer);
-    this.state.layout.registerComponent('MonacoEditor', MonacoEditor);
-        
-    this.state.layout.init();
-
-    this.state.layout.on('stateChanged', async ()=>{
-      
-      console.log(this.state.layout!.toConfig());
-      try{
-        const doc = await this.state.pouchdb.get("goldenlayout")
-        await this.state.pouchdb.put({_id: doc._id, _rev: doc._rev, config: this.state.layout!.toConfig()});
-      }catch(e){
-        console.log(e);
-      }
-    })
-
-    this.state.layout.eventHub.on(Messages.OPEN_FILE+"", (data:any)=>{
-      
-      this.openFile(data.filename, data.contents)
-    })
-
-  }
-
-
-
-  openFile = (filename:string, contents:string) => {
-    const newItemConfig:ReactComponentConfig = {
-      title: filename,
-      type: 'react-component',
-      component: 'MonacoEditor'
-  };
-
-    this.state.layout!.root.contentItems[0].contentItems[1].contentItems[0].addChild(newItemConfig)
-  }
-   
   handleClick = (event: React.MouseEvent<HTMLButtonElement>)=>{
     console.log(event)
     this.setState({anchorEl: event.currentTarget})
@@ -172,7 +174,7 @@ class Main extends Component {
     console.log("close")
     this.setState({anchorEl: null})    
   }
-
+  
   export = () => {
 
     
@@ -189,7 +191,6 @@ class Main extends Component {
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-    
 
   }
 
@@ -220,14 +221,11 @@ class Main extends Component {
     }catch(e){
       
     }
-
-    this.state.layout!.eventHub.emit( Messages.SET_EPACKAGE+"", epackage);
-    
   }
 
   render() {
     return (
-      <div>
+      <EPackageContext.Provider value={this.state.epackage}>
         <div id="toolbar">
         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
           File
@@ -252,8 +250,8 @@ class Main extends Component {
         Sign in
         </Button>
         </div>
-        <div ref={this.myRef} id="goldenlayout"></div>    
-      </div>
+        <Layout model={this.state.model} factory={this.factory}/>    
+      </EPackageContext.Provider>
       
     );
   }

@@ -10,7 +10,7 @@ import iconCSharp from '../assets/file_type_csharp.svg'
 import iconFile from '../assets/default_file.svg'
 import Typography from '@material-ui/core/Typography';
 
-import { Messages } from './Messages';
+
 import { Button, ButtonGroup, IconButton } from '@material-ui/core';
 
 interface File{
@@ -30,7 +30,6 @@ export default class ProjectExplorer extends React.Component {
     super(props);
     
 
-   (this.props as any).glContainer.setTitle("Code Generator");
 
   }
 
@@ -71,7 +70,7 @@ export default class ProjectExplorer extends React.Component {
 
 
   handleSelect = () => {    
-    (this.props as any).glEventHub.emit( Messages.OPEN_FILE, {filename:"myfile.js", contents: 'function x(){return "x"}'});
+    console.log("hi")
   };
 
   render() {
