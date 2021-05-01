@@ -19,24 +19,21 @@ import { EPackageContext } from './Context';
 
 
 
-interface State{
-  epackage: EPackage | null
 
-}
 export default class SprottyDiagram extends React.Component {
     
     sprottyContainer : Container = createContainer();
     modelSource:LocalModelSource= new LocalModelSource()
-    state:State;
     
+    myRef: any
 
     constructor(props:any) {
       super(props);
 
       this.sprottyContainer.bind(TYPES.ModelSource).to(LocalModelSource).inSingletonScope();
       this.modelSource = this.sprottyContainer.get<LocalModelSource>(TYPES.ModelSource);
-
-      this.state = {epackage:EcoreFactoryImpl.eINSTANCE.createEPackage()}
+      this.myRef = React.createRef();
+      
 
     }
     
@@ -55,6 +52,10 @@ export default class SprottyDiagram extends React.Component {
         console.log(g)
         let sGraph = new ElkGraphJsonToSprotty().transform(g)
         this.modelSource.updateModel(sGraph)
+        this.myRef.current.style.height="100%"
+
+        console.log(this.myRef.current)
+      
        })
        .catch(console.error)
         
@@ -69,7 +70,7 @@ export default class SprottyDiagram extends React.Component {
 
 
     render() {
-        return <div id="sprotty"></div>
+        return <div id="sprotty" ref={this.myRef}></div>
     }
 }
 

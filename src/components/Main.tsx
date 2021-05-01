@@ -68,72 +68,79 @@ class Main extends Component {
       "weight": 100,
       "children": [
         {
-          "type": "tabset",
-          "weight": 100,
-          "selected": 0,
-          "children": [
+          "type": "row",
+          "weight": 33,
+          "width": 300,
+          "children":[
             {
-              "type": "tab",
-              "name": "Outline",
-              "component":"EContentsTreeView",
+              "type":"tabset",
+              "weight": 100,
+              "selected": 0,
+              "height": 300,
+              "children":[
+                {
+                  "type": "tab",
+                  "name": "Project Explorer",
+                  "component":"ProjectExplorer",
+                }
+              ]
             },
             {
-              "type": "tab",
-              "name": "Project Explorer",
-              "component":"ProjectExplorer",
+              "type":"tabset",
+              "weight": 100,
+              "selected": 0,
+              "children":[
+                {
+                  "type": "tab",
+                  "name": "Outline",
+                  "component":"EContentsTreeView",
+                }
+              ]
             },
-            {
-              "type": "tab",
-              "name": "Model Editor",
-              "component":"MonacoEditor",
-            },
-            {
-              "type": "tab",
-              "name": "Diagram",
-              "component":"SprottyDiagram",
-            },
+            
           ]
-        }
+        },
+        {
+          "type": "row",
+          "weight": 33,
+          "children":[
+            {
+              "type":"tabset",
+              "weight": 100,
+              "selected": 0,
+              "children":[
+                {
+                  "type": "tab",
+                  "name": "Model Editor",
+                  "component":"MonacoEditor",
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "row",
+          "weight": 33,
+          "children":[
+            {
+              "type":"tabset",
+              "weight": 100,
+              "selected": 0,
+              "children":[
+                {
+                  "type": "tab",
+                  "name": "Diagram",
+                  "component":"SprottyDiagram",
+                }
+              ]
+            }
+          ]
+        },
+
       ]
     }
   };
 
-
-  json2 = {
-    global: {},
-    borders: [],
-    layout:{
-      "type": "row",
-      "weight": 100,
-      "children": [
-        
-          {
-            "type": "tab",
-            "name": "Outline",
-            "component":"EContentsTreeView",
-          },
-          {
-            "type": "tab",
-            "name": "Project Explorer",
-            "component":"ProjectExplorer",
-          },
-          {
-            "type": "tab",
-            "name": "Model Editor",
-            "component":"MonacoEditor",
-          },
-          {
-            "type": "tab",
-            "name": "Diagram",
-            "component":"SprottyDiagram",
-          },
-        
-        
-      ]
-    }
-  };
- 
-  
 
   state:State = {
     anchorEl: null,

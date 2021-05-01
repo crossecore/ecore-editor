@@ -78,9 +78,11 @@ export class MonacoEditor extends React.Component{
 
         const ref = this.myRef.current;
 
+        console.log(ref, "reeeeeeeeeef")
+
         //monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:this.state.width, height:this.state.height})});
         
-        monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:300, height:300})});
+        monaco.editor.onDidCreateEditor((editor)=>{editor.layout({width:ref.parentElement.clientWidth, height:ref.parentElement.clientHeight})});
 
         const contents = new Ecore2Xcore().doSwitch(this.context); 
         const model = monaco.editor.createModel(contents, "xcore");
