@@ -22,6 +22,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import PouchDB from 'pouchdb'
 import {Layout, Model, TabNode} from "flexlayout-react";
 import {EPackageContext} from './Context'
+import './Main.css'
 
 
 
@@ -184,10 +185,10 @@ class Main extends Component {
   
   export = () => {
 
-    
+    EcorePackageImpl.init()
     const xmi = new XmiResource(new DOMParser())
 
-    const str = "";//xmi.save(this.state.epackage!)
+    const str = xmi.save(this.context)
 
     const element = document.createElement('a');
     const datalink = 'data:text/xml;base64,' + btoa(str);
@@ -232,7 +233,9 @@ class Main extends Component {
 
   render() {
     return (
+      <div id="container">
       <EPackageContext.Provider value={this.state.epackage}>
+        <div id="app">
         <div id="toolbar">
         <Button aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
           File
@@ -245,21 +248,17 @@ class Main extends Component {
           onClose={this.handleClose}
         >
           <MenuItem onClick={this.openDialog}>Import</MenuItem>
-          {/*<MenuItem onClick={this.export}>Export</MenuItem>*/}
+          <MenuItem onClick={this.export}>Export</MenuItem>
         </Menu>
         <SelectFileDialog open={this.state.open} onClose={this.returnDialog} />
-        <Button
-        variant="contained"
-        color="primary"
-        style={{float:"right"}}
-        startIcon={<AccountCircle />}
-        >
-        Sign in
-        </Button>
+
         </div>
-        <Layout model={this.state.model} factory={this.factory}/>    
+        <div id="content">
+        <Layout model={this.state.model} factory={this.factory}/>
+        </div> 
+        </div>
       </EPackageContext.Provider>
-      
+      </div>
     );
   }
 }
