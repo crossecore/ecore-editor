@@ -1,7 +1,14 @@
 import { EditAttributes } from "@material-ui/icons";
-import { EAttribute, EClass, EcoreSwitch, EEnum, EEnumLiteral, EOperation, EPackage, EParameter, EReference, EStructuralFeature, ETypedElement } from "crossecore";
+import { EAttribute, EClass, EcoreSwitch, EDataType, EEnum, EEnumLiteral, EOperation, EPackage, EParameter, EReference, EStructuralFeature, ETypedElement } from "crossecore";
+
 
 export class Ecore2Xcore extends EcoreSwitch<string>{
+
+    static token:string[] = ["abstract", "interface"]//TODO get the tokens from the Lexer
+
+    escape(name:string){
+        return Ecore2Xcore.token.includes(name)?`^${name}`:name
+    }
 
     caseEPackage(epackage:EPackage){
         const result = new Array<string>()
@@ -53,6 +60,18 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
         return `${literal.name }`
     }
 
+    caseEDataType(edatatype:EDataType){
+
+        const result = new Array<string>()
+        result.push("type")
+        result.push(this.escape(edatatype.name))
+        result.push("wraps")
+        
+        console.log(edatatype)
+        result.push(edatatype.instanceClassName)
+        return result.join(" ")
+    }
+
     caseEClass(eclass:EClass){
 
         const result = new Array<string>()
@@ -68,7 +87,7 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
             result.push("class")
         }
 
-        result.push(eclass.name)
+        result.push(this.escape(eclass.name))
 
         if(eclass.eTypeParameters.notEmpty()){
 
@@ -124,7 +143,7 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
     private rangeHelper(eattribute:ETypedElement){
 
         if(eattribute.lowerBound===1 && eattribute.upperBound===1){
-            return ""
+            return "[1]"
         }
         else if(eattribute.lowerBound===0 && eattribute.upperBound===-1){
             return "[]"
@@ -136,7 +155,8 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
             return "[+]"
         }
         else if(eattribute.lowerBound===0 && eattribute.upperBound===1){
-            return "[?]"
+            //return "[?]"
+            return ""
         }
         else if(eattribute.upperBound===-2){
             return `[${eattribute.lowerBound} .. ?]`
@@ -154,7 +174,7 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
             result.push("unordered")
         }
 
-        if(!eoperation.unique){
+        if(eoperation.unique){
             result.push("unique")
         }
 
@@ -170,19 +190,39 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
             result.push(range)
         }
 
-        result.push(eoperation.name)
+        result.push(this.escape(eoperation.name))
+        result.push("(")
+        const params = new Array<string>()
+        console.log(eoperation)
+        for(let i=0; i < eoperation.eParameters.size();i++){
+            const p = eoperation.eParameters.at(i)
+
+            console.log(p, "param")
+            if(i+1<eoperation.eParameters.size()){
+                params.push(this.doSwitch(p)+", ")
+            }
+            else{
+                params.push(this.doSwitch(p))
+            }
+            
+        }
+        result.push(params.join(""));
+        result.push(")")
 
         return result.join(" ")
         
     }
 
+    
+
     caseEParameter(eparameter:EParameter){
+        
         const result = new Array<string>()
         if(!eparameter.ordered){
             result.push("unordered")
         }
 
-        if(!eparameter.unique){
+        if(eparameter.unique){
             result.push("unique")
         }
 
@@ -205,8 +245,8 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
         if(!eattribute.ordered){
             result.push("unordered")
         }
-        if(eattribute.unique){
-            result.push("unordered")
+        if(eattribute.unique && eattribute.many){
+            result.push("unique")
         }
         if(!eattribute.changeable){
             result.push("readonly")
@@ -231,7 +271,8 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
             result.push(range)
         }
 
-        result.push(eattribute.name)
+        
+        result.push(this.escape(eattribute.name))
 
 
         return result.join(" ")
@@ -241,13 +282,19 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
 
         const result = new Array<string>()
 
-        if(!eattribute.containment){
+        if(eattribute.container){
+            result.push("container")
+        }
+        else if(eattribute.containment){
             result.push("contains")
+        }
+        else{
+            result.push("refers")
         }
         if(!eattribute.ordered){
             result.push("unordered")
         }
-        if(eattribute.unique){
+        if(eattribute.unique && eattribute.many){
             result.push("unique")
         }
         if(!eattribute.changeable){
@@ -274,7 +321,7 @@ export class Ecore2Xcore extends EcoreSwitch<string>{
             result.push(range)
         }
 
-        result.push(eattribute.name)
+        result.push(this.escape(eattribute.name))
 
         if(eattribute.eOpposite!==null){
             result.push("opposite "+eattribute.eOpposite.name)

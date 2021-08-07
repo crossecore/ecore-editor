@@ -50,26 +50,27 @@ export class XcoreParser extends Parser {
 	public static readonly Derived = 20;
 	public static readonly Idattr = 21;
 	public static readonly Contains = 22;
-	public static readonly Opposite = 23;
-	public static readonly Operation = 24;
-	public static readonly Void = 25;
-	public static readonly BraceOpen = 26;
-	public static readonly BraceClose = 27;
-	public static readonly Throws = 28;
-	public static readonly SquareBraceOpen = 29;
-	public static readonly SquareBraceClose = 30;
-	public static readonly Questionmark = 31;
-	public static readonly Star = 32;
-	public static readonly Plus = 33;
-	public static readonly Minus = 34;
-	public static readonly Dotdot = 35;
-	public static readonly Ampersand = 36;
-	public static readonly Enum = 37;
-	public static readonly As = 38;
-	public static readonly Equal = 39;
-	public static readonly ID = 40;
-	public static readonly INT = 41;
-	public static readonly STRING = 42;
+	public static readonly Refers = 23;
+	public static readonly Opposite = 24;
+	public static readonly Operation = 25;
+	public static readonly Void = 26;
+	public static readonly BraceOpen = 27;
+	public static readonly BraceClose = 28;
+	public static readonly Throws = 29;
+	public static readonly SquareBraceOpen = 30;
+	public static readonly SquareBraceClose = 31;
+	public static readonly Questionmark = 32;
+	public static readonly Star = 33;
+	public static readonly Plus = 34;
+	public static readonly Minus = 35;
+	public static readonly Dotdot = 36;
+	public static readonly Ampersand = 37;
+	public static readonly Enum = 38;
+	public static readonly As = 39;
+	public static readonly Equal = 40;
+	public static readonly ID = 41;
+	public static readonly INT = 42;
+	public static readonly STRING = 43;
 	public static readonly RULE_xpackage = 0;
 	public static readonly RULE_qualifiedname = 1;
 	public static readonly RULE_xclassifier = 2;
@@ -97,15 +98,15 @@ export class XcoreParser extends Parser {
 		undefined, undefined, undefined, "'package'", "'abstract'", "'class'", 
 		"'interface'", "'extends'", "','", "'.'", "'{'", "'}'", "'<'", "'>'", 
 		"'unordered'", "'unique'", "'readonly'", "'transient'", "'unsettable'", 
-		"'volatile'", "'derived'", "'id'", "'contains'", "'opposite'", "'op'", 
-		"'void'", "'('", "')'", "'throws'", "'['", "']'", "'?'", "'*'", "'+'", 
-		"'-'", "'..'", "'&'", "'enum'", "'as'", "'='",
+		"'volatile'", "'derived'", "'id'", "'contains'", "'refers'", "'opposite'", 
+		"'op'", "'void'", "'('", "')'", "'throws'", "'['", "']'", "'?'", "'*'", 
+		"'+'", "'-'", "'..'", "'&'", "'enum'", "'as'", "'='",
 	];
 	private static readonly _SYMBOLIC_NAMES: Array<string | undefined> = [
 		undefined, "WS", "NL", "Package", "Abstract", "Class", "Interface", "Extends", 
 		"Comma", "Dot", "CurlyBraceOpen", "CurlyBraceClose", "AngleBraceOpen", 
 		"AngleBraceClose", "Unordered", "Unique", "Readonly", "Transient", "Unsettable", 
-		"Volatile", "Derived", "Idattr", "Contains", "Opposite", "Operation", 
+		"Volatile", "Derived", "Idattr", "Contains", "Refers", "Opposite", "Operation", 
 		"Void", "BraceOpen", "BraceClose", "Throws", "SquareBraceOpen", "SquareBraceClose", 
 		"Questionmark", "Star", "Plus", "Minus", "Dotdot", "Ampersand", "Enum", 
 		"As", "Equal", "ID", "INT", "STRING",
@@ -514,7 +515,7 @@ export class XcoreParser extends Parser {
 			this.state = 119;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (((((_la - 14)) & ~0x1F) === 0 && ((1 << (_la - 14)) & ((1 << (XcoreParser.Unordered - 14)) | (1 << (XcoreParser.Unique - 14)) | (1 << (XcoreParser.Readonly - 14)) | (1 << (XcoreParser.Transient - 14)) | (1 << (XcoreParser.Unsettable - 14)) | (1 << (XcoreParser.Volatile - 14)) | (1 << (XcoreParser.Derived - 14)) | (1 << (XcoreParser.Idattr - 14)) | (1 << (XcoreParser.Contains - 14)) | (1 << (XcoreParser.Operation - 14)) | (1 << (XcoreParser.ID - 14)))) !== 0)) {
+			while (((((_la - 14)) & ~0x1F) === 0 && ((1 << (_la - 14)) & ((1 << (XcoreParser.Unordered - 14)) | (1 << (XcoreParser.Unique - 14)) | (1 << (XcoreParser.Readonly - 14)) | (1 << (XcoreParser.Transient - 14)) | (1 << (XcoreParser.Unsettable - 14)) | (1 << (XcoreParser.Volatile - 14)) | (1 << (XcoreParser.Derived - 14)) | (1 << (XcoreParser.Idattr - 14)) | (1 << (XcoreParser.Contains - 14)) | (1 << (XcoreParser.Refers - 14)) | (1 << (XcoreParser.Operation - 14)) | (1 << (XcoreParser.ID - 14)))) !== 0)) {
 				{
 				{
 				this.state = 116;
@@ -550,30 +551,39 @@ export class XcoreParser extends Parser {
 		try {
 			this.state = 127;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input, 16, this._ctx) ) {
-			case 1:
+			switch (this._input.LA(1)) {
+			case XcoreParser.Operation:
 				this.enterOuterAlt(_localctx, 1);
 				{
 				this.state = 124;
 				this.xoperation();
 				}
 				break;
-
-			case 2:
+			case XcoreParser.Unordered:
+			case XcoreParser.Unique:
+			case XcoreParser.Readonly:
+			case XcoreParser.Transient:
+			case XcoreParser.Unsettable:
+			case XcoreParser.Volatile:
+			case XcoreParser.Derived:
+			case XcoreParser.Idattr:
+			case XcoreParser.ID:
 				this.enterOuterAlt(_localctx, 2);
 				{
 				this.state = 125;
 				this.xattribute();
 				}
 				break;
-
-			case 3:
+			case XcoreParser.Contains:
+			case XcoreParser.Refers:
 				this.enterOuterAlt(_localctx, 3);
 				{
 				this.state = 126;
 				this.xreference();
 				}
 				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (re) {
@@ -718,110 +728,110 @@ export class XcoreParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			{
-			this.state = 160;
-			this._errHandler.sync(this);
+			this.state = 159;
 			_la = this._input.LA(1);
-			if (_la === XcoreParser.Contains) {
-				{
-				this.state = 159;
-				this.match(XcoreParser.Contains);
+			if (!(_la === XcoreParser.Contains || _la === XcoreParser.Refers)) {
+			this._errHandler.recoverInline(this);
+			} else {
+				if (this._input.LA(1) === Token.EOF) {
+					this.matchedEOF = true;
 				}
-			}
 
-			this.state = 163;
+				this._errHandler.reportMatch(this);
+				this.consume();
+			}
+			this.state = 161;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Unordered) {
 				{
-				this.state = 162;
+				this.state = 160;
 				this.match(XcoreParser.Unordered);
 				}
 			}
 
-			this.state = 166;
+			this.state = 164;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Unique) {
 				{
-				this.state = 165;
+				this.state = 163;
 				this.match(XcoreParser.Unique);
 				}
 			}
 
-			this.state = 169;
+			this.state = 167;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Readonly) {
 				{
-				this.state = 168;
+				this.state = 166;
 				this.match(XcoreParser.Readonly);
 				}
 			}
 
-			this.state = 172;
+			this.state = 170;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Transient) {
 				{
-				this.state = 171;
+				this.state = 169;
 				this.match(XcoreParser.Transient);
 				}
 			}
 
-			this.state = 175;
+			this.state = 173;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Volatile) {
 				{
-				this.state = 174;
+				this.state = 172;
 				this.match(XcoreParser.Volatile);
 				}
 			}
 
-			this.state = 178;
+			this.state = 176;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Unsettable) {
 				{
-				this.state = 177;
+				this.state = 175;
 				this.match(XcoreParser.Unsettable);
 				}
 			}
 
-			this.state = 181;
+			this.state = 179;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Derived) {
 				{
-				this.state = 180;
+				this.state = 178;
 				this.match(XcoreParser.Derived);
 				}
 			}
 
-			}
-			this.state = 183;
+			this.state = 181;
 			this.xgenerictype();
-			this.state = 185;
+			this.state = 183;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.SquareBraceOpen) {
 				{
-				this.state = 184;
+				this.state = 182;
 				this.xmultiplicity();
 				}
 			}
 
-			this.state = 187;
+			this.state = 185;
 			this.match(XcoreParser.ID);
-			this.state = 190;
+			this.state = 188;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Opposite) {
 				{
-				this.state = 188;
+				this.state = 186;
 				this.match(XcoreParser.Opposite);
-				this.state = 189;
+				this.state = 187;
 				this.match(XcoreParser.ID);
 				}
 			}
@@ -850,21 +860,21 @@ export class XcoreParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 192;
+			this.state = 190;
 			this.match(XcoreParser.Operation);
-			this.state = 201;
+			this.state = 199;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case XcoreParser.Unordered:
 				{
-				this.state = 193;
+				this.state = 191;
 				this.match(XcoreParser.Unordered);
-				this.state = 195;
+				this.state = 193;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				if (_la === XcoreParser.Unique) {
 					{
-					this.state = 194;
+					this.state = 192;
 					this.match(XcoreParser.Unique);
 					}
 				}
@@ -873,14 +883,14 @@ export class XcoreParser extends Parser {
 				break;
 			case XcoreParser.Unique:
 				{
-				this.state = 197;
+				this.state = 195;
 				this.match(XcoreParser.Unique);
-				this.state = 199;
+				this.state = 197;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				if (_la === XcoreParser.Unordered) {
 					{
-					this.state = 198;
+					this.state = 196;
 					this.match(XcoreParser.Unordered);
 					}
 				}
@@ -894,118 +904,118 @@ export class XcoreParser extends Parser {
 			default:
 				break;
 			}
-			this.state = 214;
+			this.state = 212;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.AngleBraceOpen) {
 				{
-				this.state = 203;
+				this.state = 201;
 				this.match(XcoreParser.AngleBraceOpen);
-				this.state = 204;
+				this.state = 202;
 				this.xtypeparameter();
-				this.state = 209;
+				this.state = 207;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				while (_la === XcoreParser.Comma) {
 					{
 					{
-					this.state = 205;
+					this.state = 203;
 					this.match(XcoreParser.Comma);
-					this.state = 206;
+					this.state = 204;
 					this.xtypeparameter();
 					}
 					}
-					this.state = 211;
+					this.state = 209;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
-				this.state = 212;
+				this.state = 210;
 				this.match(XcoreParser.AngleBraceClose);
 				}
 			}
 
-			this.state = 218;
+			this.state = 216;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case XcoreParser.ID:
 				{
-				this.state = 216;
+				this.state = 214;
 				this.xgenerictype();
 				}
 				break;
 			case XcoreParser.Void:
 				{
-				this.state = 217;
+				this.state = 215;
 				this.match(XcoreParser.Void);
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			this.state = 221;
+			this.state = 219;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.SquareBraceOpen) {
 				{
-				this.state = 220;
+				this.state = 218;
 				this.xmultiplicity();
 				}
 			}
 
-			this.state = 223;
+			this.state = 221;
 			this.match(XcoreParser.ID);
-			this.state = 224;
+			this.state = 222;
 			this.match(XcoreParser.BraceOpen);
-			this.state = 233;
+			this.state = 231;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (((((_la - 14)) & ~0x1F) === 0 && ((1 << (_la - 14)) & ((1 << (XcoreParser.Unordered - 14)) | (1 << (XcoreParser.Unique - 14)) | (1 << (XcoreParser.ID - 14)))) !== 0)) {
 				{
-				this.state = 225;
+				this.state = 223;
 				this.xparameter();
-				this.state = 230;
+				this.state = 228;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				while (_la === XcoreParser.Comma) {
 					{
 					{
-					this.state = 226;
+					this.state = 224;
 					this.match(XcoreParser.Comma);
-					this.state = 227;
+					this.state = 225;
 					this.xparameter();
 					}
 					}
-					this.state = 232;
+					this.state = 230;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
 				}
 			}
 
-			this.state = 235;
+			this.state = 233;
 			this.match(XcoreParser.BraceClose);
-			this.state = 245;
+			this.state = 243;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Throws) {
 				{
-				this.state = 236;
+				this.state = 234;
 				this.match(XcoreParser.Throws);
-				this.state = 237;
+				this.state = 235;
 				this.xgenerictype();
-				this.state = 242;
+				this.state = 240;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				while (_la === XcoreParser.Comma) {
 					{
 					{
-					this.state = 238;
+					this.state = 236;
 					this.match(XcoreParser.Comma);
-					this.state = 239;
+					this.state = 237;
 					this.xgenerictype();
 					}
 					}
-					this.state = 244;
+					this.state = 242;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
@@ -1036,19 +1046,19 @@ export class XcoreParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 255;
+			this.state = 253;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case XcoreParser.Unordered:
 				{
-				this.state = 247;
+				this.state = 245;
 				this.match(XcoreParser.Unordered);
-				this.state = 249;
+				this.state = 247;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				if (_la === XcoreParser.Unique) {
 					{
-					this.state = 248;
+					this.state = 246;
 					this.match(XcoreParser.Unique);
 					}
 				}
@@ -1057,14 +1067,14 @@ export class XcoreParser extends Parser {
 				break;
 			case XcoreParser.Unique:
 				{
-				this.state = 251;
+				this.state = 249;
 				this.match(XcoreParser.Unique);
-				this.state = 253;
+				this.state = 251;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				if (_la === XcoreParser.Unordered) {
 					{
-					this.state = 252;
+					this.state = 250;
 					this.match(XcoreParser.Unordered);
 					}
 				}
@@ -1076,19 +1086,19 @@ export class XcoreParser extends Parser {
 			default:
 				break;
 			}
-			this.state = 257;
+			this.state = 255;
 			this.xgenerictype();
-			this.state = 259;
+			this.state = 257;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.SquareBraceOpen) {
 				{
-				this.state = 258;
+				this.state = 256;
 				this.xmultiplicity();
 				}
 			}
 
-			this.state = 261;
+			this.state = 259;
 			this.match(XcoreParser.ID);
 			}
 		}
@@ -1114,30 +1124,30 @@ export class XcoreParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 263;
+			this.state = 261;
 			this.match(XcoreParser.ID);
-			this.state = 273;
+			this.state = 271;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Extends) {
 				{
-				this.state = 264;
+				this.state = 262;
 				this.match(XcoreParser.Extends);
-				this.state = 265;
+				this.state = 263;
 				this.xgenerictype();
-				this.state = 270;
+				this.state = 268;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 				while (_la === XcoreParser.Ampersand) {
 					{
 					{
-					this.state = 266;
+					this.state = 264;
 					this.match(XcoreParser.Ampersand);
-					this.state = 267;
+					this.state = 265;
 					this.xgenerictype();
 					}
 					}
-					this.state = 272;
+					this.state = 270;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
@@ -1167,32 +1177,32 @@ export class XcoreParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 275;
+			this.state = 273;
 			this.match(XcoreParser.SquareBraceOpen);
-			this.state = 280;
+			this.state = 278;
 			this._errHandler.sync(this);
 			switch (this._input.LA(1)) {
 			case XcoreParser.Questionmark:
 				{
-				this.state = 276;
+				this.state = 274;
 				this.match(XcoreParser.Questionmark);
 				}
 				break;
 			case XcoreParser.Star:
 				{
-				this.state = 277;
+				this.state = 275;
 				this.match(XcoreParser.Star);
 				}
 				break;
 			case XcoreParser.Plus:
 				{
-				this.state = 278;
+				this.state = 276;
 				this.match(XcoreParser.Plus);
 				}
 				break;
 			case XcoreParser.INT:
 				{
-				this.state = 279;
+				this.state = 277;
 				this.xrange();
 				}
 				break;
@@ -1201,7 +1211,7 @@ export class XcoreParser extends Parser {
 			default:
 				break;
 			}
-			this.state = 282;
+			this.state = 280;
 			this.match(XcoreParser.SquareBraceClose);
 			}
 		}
@@ -1228,18 +1238,18 @@ export class XcoreParser extends Parser {
 			this.enterOuterAlt(_localctx, 1);
 			{
 			{
-			this.state = 284;
+			this.state = 282;
 			this.match(XcoreParser.INT);
-			this.state = 287;
+			this.state = 285;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
 			if (_la === XcoreParser.Dotdot) {
 				{
-				this.state = 285;
+				this.state = 283;
 				this.match(XcoreParser.Dotdot);
-				this.state = 286;
+				this.state = 284;
 				_la = this._input.LA(1);
-				if (!(((((_la - 31)) & ~0x1F) === 0 && ((1 << (_la - 31)) & ((1 << (XcoreParser.Questionmark - 31)) | (1 << (XcoreParser.Star - 31)) | (1 << (XcoreParser.INT - 31)))) !== 0))) {
+				if (!(((((_la - 32)) & ~0x1F) === 0 && ((1 << (_la - 32)) & ((1 << (XcoreParser.Questionmark - 32)) | (1 << (XcoreParser.Star - 32)) | (1 << (XcoreParser.INT - 32)))) !== 0))) {
 				this._errHandler.recoverInline(this);
 				} else {
 					if (this._input.LA(1) === Token.EOF) {
@@ -1276,7 +1286,7 @@ export class XcoreParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 289;
+			this.state = 287;
 			this.qualifiedname();
 			}
 		}
@@ -1296,7 +1306,7 @@ export class XcoreParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03,\u0126\x04\x02" +
+		"\x03\uC91D\uCABA\u058D\uAFBA\u4F53\u0607\uEA8B\uC241\x03-\u0124\x04\x02" +
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07" +
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04" +
 		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x03\x02\x03\x02\x03" +
@@ -1311,130 +1321,129 @@ export class XcoreParser extends Parser {
 		"\bx\n\b\f\b\x0E\b{\v\b\x03\b\x03\b\x03\t\x03\t\x03\t\x05\t\x82\n\t\x03" +
 		"\n\x05\n\x85\n\n\x03\n\x05\n\x88\n\n\x03\n\x05\n\x8B\n\n\x03\n\x05\n\x8E" +
 		"\n\n\x03\n\x05\n\x91\n\n\x03\n\x05\n\x94\n\n\x03\n\x05\n\x97\n\n\x03\n" +
-		"\x05\n\x9A\n\n\x03\n\x03\n\x05\n\x9E\n\n\x03\n\x03\n\x03\v\x05\v\xA3\n" +
-		"\v\x03\v\x05\v\xA6\n\v\x03\v\x05\v\xA9\n\v\x03\v\x05\v\xAC\n\v\x03\v\x05" +
-		"\v\xAF\n\v\x03\v\x05\v\xB2\n\v\x03\v\x05\v\xB5\n\v\x03\v\x05\v\xB8\n\v" +
-		"\x03\v\x03\v\x05\v\xBC\n\v\x03\v\x03\v\x03\v\x05\v\xC1\n\v\x03\f\x03\f" +
-		"\x03\f\x05\f\xC6\n\f\x03\f\x03\f\x05\f\xCA\n\f\x05\f\xCC\n\f\x03\f\x03" +
-		"\f\x03\f\x03\f\x07\f\xD2\n\f\f\f\x0E\f\xD5\v\f\x03\f\x03\f\x05\f\xD9\n" +
-		"\f\x03\f\x03\f\x05\f\xDD\n\f\x03\f\x05\f\xE0\n\f\x03\f\x03\f\x03\f\x03" +
-		"\f\x03\f\x07\f\xE7\n\f\f\f\x0E\f\xEA\v\f\x05\f\xEC\n\f\x03\f\x03\f\x03" +
-		"\f\x03\f\x03\f\x07\f\xF3\n\f\f\f\x0E\f\xF6\v\f\x05\f\xF8\n\f\x03\r\x03" +
-		"\r\x05\r\xFC\n\r\x03\r\x03\r\x05\r\u0100\n\r\x05\r\u0102\n\r\x03\r\x03" +
-		"\r\x05\r\u0106\n\r\x03\r\x03\r\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x03\x0E" +
-		"\x07\x0E\u010F\n\x0E\f\x0E\x0E\x0E\u0112\v\x0E\x05\x0E\u0114\n\x0E\x03" +
-		"\x0F\x03\x0F\x03\x0F\x03\x0F\x03\x0F\x05\x0F\u011B\n\x0F\x03\x0F\x03\x0F" +
-		"\x03\x10\x03\x10\x03\x10\x05\x10\u0122\n\x10\x03\x11\x03\x11\x03\x11\x02" +
-		"\x02\x02\x12\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02" +
-		"\x12\x02\x14\x02\x16\x02\x18\x02\x1A\x02\x1C\x02\x1E\x02 \x02\x02\x03" +
-		"\x04\x02!\"++\x02\u0152\x02\"\x03\x02\x02\x02\x04*\x03\x02\x02\x02\x06" +
-		"4\x03\x02\x02\x02\b6\x03\x02\x02\x02\nG\x03\x02\x02\x02\fQ\x03\x02\x02" +
-		"\x02\x0EZ\x03\x02\x02\x02\x10\x81\x03\x02\x02\x02\x12\x84\x03\x02\x02" +
-		"\x02\x14\xA2\x03\x02\x02\x02\x16\xC2\x03\x02\x02\x02\x18\u0101\x03\x02" +
-		"\x02\x02\x1A\u0109\x03\x02\x02\x02\x1C\u0115\x03\x02\x02\x02\x1E\u011E" +
-		"\x03\x02\x02\x02 \u0123\x03\x02\x02\x02\"#\x07\x05\x02\x02#\'\x05\x04" +
-		"\x03\x02$&\x05\x06\x04\x02%$\x03\x02\x02\x02&)\x03\x02\x02\x02\'%\x03" +
-		"\x02\x02\x02\'(\x03\x02\x02\x02(\x03\x03\x02\x02\x02)\'\x03\x02\x02\x02" +
-		"*/\x07*\x02\x02+,\x07\v\x02\x02,.\x07*\x02\x02-+\x03\x02\x02\x02.1\x03" +
-		"\x02\x02\x02/-\x03\x02\x02\x02/0\x03\x02\x02\x020\x05\x03\x02\x02\x02" +
-		"1/\x03\x02\x02\x0225\x05\x0E\b\x0235\x05\b\x05\x0242\x03\x02\x02\x024" +
-		"3\x03\x02\x02\x025\x07\x03\x02\x02\x0267\x07\'\x02\x0278\x07*\x02\x02" +
-		"8C\x07\f\x02\x029@\x05\n\x06\x02:<\x07\n\x02\x02;:\x03\x02\x02\x02;<\x03" +
-		"\x02\x02\x02<=\x03\x02\x02\x02=?\x05\n\x06\x02>;\x03\x02\x02\x02?B\x03" +
-		"\x02\x02\x02@>\x03\x02\x02\x02@A\x03\x02\x02\x02AD\x03\x02\x02\x02B@\x03" +
-		"\x02\x02\x02C9\x03\x02\x02\x02CD\x03\x02\x02\x02DE\x03\x02\x02\x02EF\x07" +
-		"\r\x02\x02F\t\x03\x02\x02\x02GJ\x07*\x02\x02HI\x07(\x02\x02IK\x07,\x02" +
-		"\x02JH\x03\x02\x02\x02JK\x03\x02\x02\x02KN\x03\x02\x02\x02LM\x07)\x02" +
-		"\x02MO\x05\f\x07\x02NL\x03\x02\x02\x02NO\x03\x02\x02\x02O\v\x03\x02\x02" +
-		"\x02PR\x07$\x02\x02QP\x03\x02\x02\x02QR\x03\x02\x02\x02RS\x03\x02\x02" +
-		"\x02ST\x07+\x02\x02T\r\x03\x02\x02\x02UW\x07\x06\x02\x02VU\x03\x02\x02" +
-		"\x02VW\x03\x02\x02\x02WX\x03\x02\x02\x02X[\x07\x07\x02\x02Y[\x07\b\x02" +
-		"\x02ZV\x03\x02\x02\x02ZY\x03\x02\x02\x02[\\\x03\x02\x02\x02\\h\x07*\x02" +
-		"\x02]^\x07\x0E\x02\x02^c\x05\x1A\x0E\x02_`\x07\n\x02\x02`b\x05\x1A\x0E" +
-		"\x02a_\x03\x02\x02\x02be\x03\x02\x02\x02ca\x03\x02\x02\x02cd\x03\x02\x02" +
-		"\x02df\x03\x02\x02\x02ec\x03\x02\x02\x02fg\x07\x0E\x02\x02gi\x03\x02\x02" +
-		"\x02h]\x03\x02\x02\x02hi\x03\x02\x02\x02is\x03\x02\x02\x02jk\x07\t\x02" +
-		"\x02kp\x05 \x11\x02lm\x07\n\x02\x02mo\x05 \x11\x02nl\x03\x02\x02\x02o" +
-		"r\x03\x02\x02\x02pn\x03\x02\x02\x02pq\x03\x02\x02\x02qt\x03\x02\x02\x02" +
-		"rp\x03\x02\x02\x02sj\x03\x02\x02\x02st\x03\x02\x02\x02tu\x03\x02\x02\x02" +
-		"uy\x07\f\x02\x02vx\x05\x10\t\x02wv\x03\x02\x02\x02x{\x03\x02\x02\x02y" +
-		"w\x03\x02\x02\x02yz\x03\x02\x02\x02z|\x03\x02\x02\x02{y\x03\x02\x02\x02" +
-		"|}\x07\r\x02\x02}\x0F\x03\x02\x02\x02~\x82\x05\x16\f\x02\x7F\x82\x05\x12" +
-		"\n\x02\x80\x82\x05\x14\v\x02\x81~\x03\x02\x02\x02\x81\x7F\x03\x02\x02" +
-		"\x02\x81\x80\x03\x02\x02\x02\x82\x11\x03\x02\x02\x02\x83\x85\x07\x10\x02" +
-		"\x02\x84\x83\x03\x02\x02\x02\x84\x85\x03\x02\x02\x02\x85\x87\x03\x02\x02" +
-		"\x02\x86\x88\x07\x11\x02\x02\x87\x86\x03\x02\x02\x02\x87\x88\x03\x02\x02" +
-		"\x02\x88\x8A\x03\x02\x02\x02\x89\x8B\x07\x12\x02\x02\x8A\x89\x03\x02\x02" +
-		"\x02\x8A\x8B\x03\x02\x02\x02\x8B\x8D\x03\x02\x02\x02\x8C\x8E\x07\x13\x02" +
-		"\x02\x8D\x8C\x03\x02\x02\x02\x8D\x8E\x03\x02\x02\x02\x8E\x90\x03\x02\x02" +
-		"\x02\x8F\x91\x07\x15\x02\x02\x90\x8F\x03\x02\x02\x02\x90\x91\x03\x02\x02" +
-		"\x02\x91\x93\x03\x02\x02\x02\x92\x94\x07\x14\x02\x02\x93\x92\x03\x02\x02" +
-		"\x02\x93\x94\x03\x02\x02\x02\x94\x96\x03\x02\x02\x02\x95\x97\x07\x16\x02" +
-		"\x02\x96\x95\x03\x02\x02\x02\x96\x97\x03\x02\x02\x02\x97\x99\x03\x02\x02" +
-		"\x02\x98\x9A\x07\x17\x02\x02\x99\x98\x03\x02\x02\x02\x99\x9A\x03\x02\x02" +
-		"\x02\x9A\x9B\x03\x02\x02\x02\x9B\x9D\x05 \x11\x02\x9C\x9E\x05\x1C\x0F" +
-		"\x02\x9D\x9C\x03\x02\x02\x02\x9D\x9E\x03\x02\x02\x02\x9E\x9F\x03\x02\x02" +
-		"\x02\x9F\xA0\x07*\x02\x02\xA0\x13\x03\x02\x02\x02\xA1\xA3\x07\x18\x02" +
-		"\x02\xA2\xA1\x03\x02\x02\x02\xA2\xA3\x03\x02\x02\x02\xA3\xA5\x03\x02\x02" +
-		"\x02\xA4\xA6\x07\x10\x02\x02\xA5\xA4\x03\x02\x02\x02\xA5\xA6\x03\x02\x02" +
-		"\x02\xA6\xA8\x03\x02\x02\x02\xA7\xA9\x07\x11\x02\x02\xA8\xA7\x03\x02\x02" +
-		"\x02\xA8\xA9\x03\x02\x02\x02\xA9\xAB\x03\x02\x02\x02\xAA\xAC\x07\x12\x02" +
-		"\x02\xAB\xAA\x03\x02\x02\x02\xAB\xAC\x03\x02\x02\x02\xAC\xAE\x03\x02\x02" +
-		"\x02\xAD\xAF\x07\x13\x02\x02\xAE\xAD\x03\x02\x02\x02\xAE\xAF\x03\x02\x02" +
-		"\x02\xAF\xB1\x03\x02\x02\x02\xB0\xB2\x07\x15\x02\x02\xB1\xB0\x03\x02\x02" +
-		"\x02\xB1\xB2\x03\x02\x02\x02\xB2\xB4\x03\x02\x02\x02\xB3\xB5\x07\x14\x02" +
-		"\x02\xB4\xB3\x03\x02\x02\x02\xB4\xB5\x03\x02\x02\x02\xB5\xB7\x03\x02\x02" +
-		"\x02\xB6\xB8\x07\x16\x02\x02\xB7\xB6\x03\x02\x02\x02\xB7\xB8\x03\x02\x02" +
-		"\x02\xB8\xB9\x03\x02\x02\x02\xB9\xBB\x05 \x11\x02\xBA\xBC\x05\x1C\x0F" +
-		"\x02\xBB\xBA\x03\x02\x02\x02\xBB\xBC\x03\x02\x02\x02\xBC\xBD\x03\x02\x02" +
-		"\x02\xBD\xC0\x07*\x02\x02\xBE\xBF\x07\x19\x02\x02\xBF\xC1\x07*\x02\x02" +
-		"\xC0\xBE\x03\x02\x02\x02\xC0\xC1\x03\x02\x02\x02\xC1\x15\x03\x02\x02\x02" +
-		"\xC2\xCB\x07\x1A\x02\x02\xC3\xC5\x07\x10\x02\x02\xC4\xC6\x07\x11\x02\x02" +
-		"\xC5\xC4\x03\x02\x02\x02\xC5\xC6\x03\x02\x02\x02\xC6\xCC\x03\x02\x02\x02" +
-		"\xC7\xC9\x07\x11\x02\x02\xC8\xCA\x07\x10\x02\x02\xC9\xC8\x03\x02\x02\x02" +
-		"\xC9\xCA\x03\x02\x02\x02\xCA\xCC\x03\x02\x02\x02\xCB\xC3\x03\x02\x02\x02" +
-		"\xCB\xC7\x03\x02\x02\x02\xCB\xCC\x03\x02\x02\x02\xCC\xD8\x03\x02\x02\x02" +
-		"\xCD\xCE\x07\x0E\x02\x02\xCE\xD3\x05\x1A\x0E\x02\xCF\xD0\x07\n\x02\x02" +
-		"\xD0\xD2\x05\x1A\x0E\x02\xD1\xCF\x03\x02\x02\x02\xD2\xD5\x03\x02\x02\x02" +
-		"\xD3\xD1\x03\x02\x02\x02\xD3\xD4\x03\x02\x02\x02\xD4\xD6\x03\x02\x02\x02" +
-		"\xD5\xD3\x03\x02\x02\x02\xD6\xD7\x07\x0F\x02\x02\xD7\xD9\x03\x02\x02\x02" +
-		"\xD8\xCD\x03\x02\x02\x02\xD8\xD9\x03\x02\x02\x02\xD9\xDC\x03\x02\x02\x02" +
-		"\xDA\xDD\x05 \x11\x02\xDB\xDD\x07\x1B\x02\x02\xDC\xDA\x03\x02\x02\x02" +
-		"\xDC\xDB\x03\x02\x02\x02\xDD\xDF\x03\x02\x02\x02\xDE\xE0\x05\x1C\x0F\x02" +
-		"\xDF\xDE\x03\x02\x02\x02\xDF\xE0\x03\x02\x02\x02\xE0\xE1\x03\x02\x02\x02" +
-		"\xE1\xE2\x07*\x02\x02\xE2\xEB\x07\x1C\x02\x02\xE3\xE8\x05\x18\r\x02\xE4" +
-		"\xE5\x07\n\x02\x02\xE5\xE7\x05\x18\r\x02\xE6\xE4\x03\x02\x02\x02\xE7\xEA" +
-		"\x03\x02\x02\x02\xE8\xE6\x03\x02\x02\x02\xE8\xE9\x03\x02\x02\x02\xE9\xEC" +
-		"\x03\x02\x02\x02\xEA\xE8\x03\x02\x02\x02\xEB\xE3\x03\x02\x02\x02\xEB\xEC" +
-		"\x03\x02\x02\x02\xEC\xED\x03\x02\x02\x02\xED\xF7\x07\x1D\x02\x02\xEE\xEF" +
-		"\x07\x1E\x02\x02\xEF\xF4\x05 \x11\x02\xF0\xF1\x07\n\x02\x02\xF1\xF3\x05" +
-		" \x11\x02\xF2\xF0\x03\x02\x02\x02\xF3\xF6\x03\x02\x02\x02\xF4\xF2\x03" +
-		"\x02\x02\x02\xF4\xF5\x03\x02\x02\x02\xF5\xF8\x03\x02\x02\x02\xF6\xF4\x03" +
-		"\x02\x02\x02\xF7\xEE\x03\x02\x02\x02\xF7\xF8\x03\x02\x02\x02\xF8\x17\x03" +
-		"\x02\x02\x02\xF9\xFB\x07\x10\x02\x02\xFA\xFC\x07\x11\x02\x02\xFB\xFA\x03" +
-		"\x02\x02\x02\xFB\xFC\x03\x02\x02\x02\xFC\u0102\x03\x02\x02\x02\xFD\xFF" +
-		"\x07\x11\x02\x02\xFE\u0100\x07\x10\x02\x02\xFF\xFE\x03\x02\x02\x02\xFF" +
-		"\u0100\x03\x02\x02\x02\u0100\u0102\x03\x02\x02\x02\u0101\xF9\x03\x02\x02" +
-		"\x02\u0101\xFD\x03\x02\x02\x02\u0101\u0102\x03\x02\x02\x02\u0102\u0103" +
-		"\x03\x02\x02\x02\u0103\u0105\x05 \x11\x02\u0104\u0106\x05\x1C\x0F\x02" +
-		"\u0105\u0104\x03\x02\x02\x02\u0105\u0106\x03\x02\x02\x02\u0106\u0107\x03" +
-		"\x02\x02\x02\u0107\u0108\x07*\x02\x02\u0108\x19\x03\x02\x02\x02\u0109" +
-		"\u0113\x07*\x02\x02\u010A\u010B\x07\t\x02\x02\u010B\u0110\x05 \x11\x02" +
-		"\u010C\u010D\x07&\x02\x02\u010D\u010F\x05 \x11\x02\u010E\u010C\x03\x02" +
-		"\x02\x02\u010F\u0112\x03\x02\x02\x02\u0110\u010E\x03\x02\x02\x02\u0110" +
-		"\u0111\x03\x02\x02\x02\u0111\u0114\x03\x02\x02\x02\u0112\u0110\x03\x02" +
-		"\x02\x02\u0113\u010A\x03\x02\x02\x02\u0113\u0114\x03\x02\x02\x02\u0114" +
-		"\x1B\x03\x02\x02\x02\u0115\u011A\x07\x1F\x02\x02\u0116\u011B\x07!\x02" +
-		"\x02\u0117\u011B\x07\"\x02\x02\u0118\u011B\x07#\x02\x02\u0119\u011B\x05" +
-		"\x1E\x10\x02\u011A\u0116\x03\x02\x02\x02\u011A\u0117\x03\x02\x02\x02\u011A" +
-		"\u0118\x03\x02\x02\x02\u011A\u0119\x03\x02\x02\x02\u011A\u011B\x03\x02" +
-		"\x02\x02\u011B\u011C\x03\x02\x02\x02\u011C\u011D\x07 \x02\x02\u011D\x1D" +
-		"\x03\x02\x02\x02\u011E\u0121\x07+\x02\x02\u011F\u0120\x07%\x02\x02\u0120" +
-		"\u0122\t\x02\x02\x02\u0121\u011F\x03\x02\x02\x02\u0121\u0122\x03\x02\x02" +
-		"\x02\u0122\x1F\x03\x02\x02\x02\u0123\u0124\x05\x04\x03\x02\u0124!\x03" +
-		"\x02\x02\x029\'/4;@CJNQVZchpsy\x81\x84\x87\x8A\x8D\x90\x93\x96\x99\x9D" +
-		"\xA2\xA5\xA8\xAB\xAE\xB1\xB4\xB7\xBB\xC0\xC5\xC9\xCB\xD3\xD8\xDC\xDF\xE8" +
-		"\xEB\xF4\xF7\xFB\xFF\u0101\u0105\u0110\u0113\u011A\u0121";
+		"\x05\n\x9A\n\n\x03\n\x03\n\x05\n\x9E\n\n\x03\n\x03\n\x03\v\x03\v\x05\v" +
+		"\xA4\n\v\x03\v\x05\v\xA7\n\v\x03\v\x05\v\xAA\n\v\x03\v\x05\v\xAD\n\v\x03" +
+		"\v\x05\v\xB0\n\v\x03\v\x05\v\xB3\n\v\x03\v\x05\v\xB6\n\v\x03\v\x03\v\x05" +
+		"\v\xBA\n\v\x03\v\x03\v\x03\v\x05\v\xBF\n\v\x03\f\x03\f\x03\f\x05\f\xC4" +
+		"\n\f\x03\f\x03\f\x05\f\xC8\n\f\x05\f\xCA\n\f\x03\f\x03\f\x03\f\x03\f\x07" +
+		"\f\xD0\n\f\f\f\x0E\f\xD3\v\f\x03\f\x03\f\x05\f\xD7\n\f\x03\f\x03\f\x05" +
+		"\f\xDB\n\f\x03\f\x05\f\xDE\n\f\x03\f\x03\f\x03\f\x03\f\x03\f\x07\f\xE5" +
+		"\n\f\f\f\x0E\f\xE8\v\f\x05\f\xEA\n\f\x03\f\x03\f\x03\f\x03\f\x03\f\x07" +
+		"\f\xF1\n\f\f\f\x0E\f\xF4\v\f\x05\f\xF6\n\f\x03\r\x03\r\x05\r\xFA\n\r\x03" +
+		"\r\x03\r\x05\r\xFE\n\r\x05\r\u0100\n\r\x03\r\x03\r\x05\r\u0104\n\r\x03" +
+		"\r\x03\r\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x07\x0E\u010D\n\x0E\f" +
+		"\x0E\x0E\x0E\u0110\v\x0E\x05\x0E\u0112\n\x0E\x03\x0F\x03\x0F\x03\x0F\x03" +
+		"\x0F\x03\x0F\x05\x0F\u0119\n\x0F\x03\x0F\x03\x0F\x03\x10\x03\x10\x03\x10" +
+		"\x05\x10\u0120\n\x10\x03\x11\x03\x11\x03\x11\x02\x02\x02\x12\x02\x02\x04" +
+		"\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02" +
+		"\x18\x02\x1A\x02\x1C\x02\x1E\x02 \x02\x02\x04\x03\x02\x18\x19\x04\x02" +
+		"\"#,,\x02\u014F\x02\"\x03\x02\x02\x02\x04*\x03\x02\x02\x02\x064\x03\x02" +
+		"\x02\x02\b6\x03\x02\x02\x02\nG\x03\x02\x02\x02\fQ\x03\x02\x02\x02\x0E" +
+		"Z\x03\x02\x02\x02\x10\x81\x03\x02\x02\x02\x12\x84\x03\x02\x02\x02\x14" +
+		"\xA1\x03\x02\x02\x02\x16\xC0\x03\x02\x02\x02\x18\xFF\x03\x02\x02\x02\x1A" +
+		"\u0107\x03\x02\x02\x02\x1C\u0113\x03\x02\x02\x02\x1E\u011C\x03\x02\x02" +
+		"\x02 \u0121\x03\x02\x02\x02\"#\x07\x05\x02\x02#\'\x05\x04\x03\x02$&\x05" +
+		"\x06\x04\x02%$\x03\x02\x02\x02&)\x03\x02\x02\x02\'%\x03\x02\x02\x02\'" +
+		"(\x03\x02\x02\x02(\x03\x03\x02\x02\x02)\'\x03\x02\x02\x02*/\x07+\x02\x02" +
+		"+,\x07\v\x02\x02,.\x07+\x02\x02-+\x03\x02\x02\x02.1\x03\x02\x02\x02/-" +
+		"\x03\x02\x02\x02/0\x03\x02\x02\x020\x05\x03\x02\x02\x021/\x03\x02\x02" +
+		"\x0225\x05\x0E\b\x0235\x05\b\x05\x0242\x03\x02\x02\x0243\x03\x02\x02\x02" +
+		"5\x07\x03\x02\x02\x0267\x07(\x02\x0278\x07+\x02\x028C\x07\f\x02\x029@" +
+		"\x05\n\x06\x02:<\x07\n\x02\x02;:\x03\x02\x02\x02;<\x03\x02\x02\x02<=\x03" +
+		"\x02\x02\x02=?\x05\n\x06\x02>;\x03\x02\x02\x02?B\x03\x02\x02\x02@>\x03" +
+		"\x02\x02\x02@A\x03\x02\x02\x02AD\x03\x02\x02\x02B@\x03\x02\x02\x02C9\x03" +
+		"\x02\x02\x02CD\x03\x02\x02\x02DE\x03\x02\x02\x02EF\x07\r\x02\x02F\t\x03" +
+		"\x02\x02\x02GJ\x07+\x02\x02HI\x07)\x02\x02IK\x07-\x02\x02JH\x03\x02\x02" +
+		"\x02JK\x03\x02\x02\x02KN\x03\x02\x02\x02LM\x07*\x02\x02MO\x05\f\x07\x02" +
+		"NL\x03\x02\x02\x02NO\x03\x02\x02\x02O\v\x03\x02\x02\x02PR\x07%\x02\x02" +
+		"QP\x03\x02\x02\x02QR\x03\x02\x02\x02RS\x03\x02\x02\x02ST\x07,\x02\x02" +
+		"T\r\x03\x02\x02\x02UW\x07\x06\x02\x02VU\x03\x02\x02\x02VW\x03\x02\x02" +
+		"\x02WX\x03\x02\x02\x02X[\x07\x07\x02\x02Y[\x07\b\x02\x02ZV\x03\x02\x02" +
+		"\x02ZY\x03\x02\x02\x02[\\\x03\x02\x02\x02\\h\x07+\x02\x02]^\x07\x0E\x02" +
+		"\x02^c\x05\x1A\x0E\x02_`\x07\n\x02\x02`b\x05\x1A\x0E\x02a_\x03\x02\x02" +
+		"\x02be\x03\x02\x02\x02ca\x03\x02\x02\x02cd\x03\x02\x02\x02df\x03\x02\x02" +
+		"\x02ec\x03\x02\x02\x02fg\x07\x0E\x02\x02gi\x03\x02\x02\x02h]\x03\x02\x02" +
+		"\x02hi\x03\x02\x02\x02is\x03\x02\x02\x02jk\x07\t\x02\x02kp\x05 \x11\x02" +
+		"lm\x07\n\x02\x02mo\x05 \x11\x02nl\x03\x02\x02\x02or\x03\x02\x02\x02pn" +
+		"\x03\x02\x02\x02pq\x03\x02\x02\x02qt\x03\x02\x02\x02rp\x03\x02\x02\x02" +
+		"sj\x03\x02\x02\x02st\x03\x02\x02\x02tu\x03\x02\x02\x02uy\x07\f\x02\x02" +
+		"vx\x05\x10\t\x02wv\x03\x02\x02\x02x{\x03\x02\x02\x02yw\x03\x02\x02\x02" +
+		"yz\x03\x02\x02\x02z|\x03\x02\x02\x02{y\x03\x02\x02\x02|}\x07\r\x02\x02" +
+		"}\x0F\x03\x02\x02\x02~\x82\x05\x16\f\x02\x7F\x82\x05\x12\n\x02\x80\x82" +
+		"\x05\x14\v\x02\x81~\x03\x02\x02\x02\x81\x7F\x03\x02\x02\x02\x81\x80\x03" +
+		"\x02\x02\x02\x82\x11\x03\x02\x02\x02\x83\x85\x07\x10\x02\x02\x84\x83\x03" +
+		"\x02\x02\x02\x84\x85\x03\x02\x02\x02\x85\x87\x03\x02\x02\x02\x86\x88\x07" +
+		"\x11\x02\x02\x87\x86\x03\x02\x02\x02\x87\x88\x03\x02\x02\x02\x88\x8A\x03" +
+		"\x02\x02\x02\x89\x8B\x07\x12\x02\x02\x8A\x89\x03\x02\x02\x02\x8A\x8B\x03" +
+		"\x02\x02\x02\x8B\x8D\x03\x02\x02\x02\x8C\x8E\x07\x13\x02\x02\x8D\x8C\x03" +
+		"\x02\x02\x02\x8D\x8E\x03\x02\x02\x02\x8E\x90\x03\x02\x02\x02\x8F\x91\x07" +
+		"\x15\x02\x02\x90\x8F\x03\x02\x02\x02\x90\x91\x03\x02\x02\x02\x91\x93\x03" +
+		"\x02\x02\x02\x92\x94\x07\x14\x02\x02\x93\x92\x03\x02\x02\x02\x93\x94\x03" +
+		"\x02\x02\x02\x94\x96\x03\x02\x02\x02\x95\x97\x07\x16\x02\x02\x96\x95\x03" +
+		"\x02\x02\x02\x96\x97\x03\x02\x02\x02\x97\x99\x03\x02\x02\x02\x98\x9A\x07" +
+		"\x17\x02\x02\x99\x98\x03\x02\x02\x02\x99\x9A\x03\x02\x02\x02\x9A\x9B\x03" +
+		"\x02\x02\x02\x9B\x9D\x05 \x11\x02\x9C\x9E\x05\x1C\x0F\x02\x9D\x9C\x03" +
+		"\x02\x02\x02\x9D\x9E\x03\x02\x02\x02\x9E\x9F\x03\x02\x02\x02\x9F\xA0\x07" +
+		"+\x02\x02\xA0\x13\x03\x02\x02\x02\xA1\xA3\t\x02\x02\x02\xA2\xA4\x07\x10" +
+		"\x02\x02\xA3\xA2\x03\x02\x02\x02\xA3\xA4\x03\x02\x02\x02\xA4\xA6\x03\x02" +
+		"\x02\x02\xA5\xA7\x07\x11\x02\x02\xA6\xA5\x03\x02\x02\x02\xA6\xA7\x03\x02" +
+		"\x02\x02\xA7\xA9\x03\x02\x02\x02\xA8\xAA\x07\x12\x02\x02\xA9\xA8\x03\x02" +
+		"\x02\x02\xA9\xAA\x03\x02\x02\x02\xAA\xAC\x03\x02\x02\x02\xAB\xAD\x07\x13" +
+		"\x02\x02\xAC\xAB\x03\x02\x02\x02\xAC\xAD\x03\x02\x02\x02\xAD\xAF\x03\x02" +
+		"\x02\x02\xAE\xB0\x07\x15\x02\x02\xAF\xAE\x03\x02\x02\x02\xAF\xB0\x03\x02" +
+		"\x02\x02\xB0\xB2\x03\x02\x02\x02\xB1\xB3\x07\x14\x02\x02\xB2\xB1\x03\x02" +
+		"\x02\x02\xB2\xB3\x03\x02\x02\x02\xB3\xB5\x03\x02\x02\x02\xB4\xB6\x07\x16" +
+		"\x02\x02\xB5\xB4\x03\x02\x02\x02\xB5\xB6\x03\x02\x02\x02\xB6\xB7\x03\x02" +
+		"\x02\x02\xB7\xB9\x05 \x11\x02\xB8\xBA\x05\x1C\x0F\x02\xB9\xB8\x03\x02" +
+		"\x02\x02\xB9\xBA\x03\x02\x02\x02\xBA\xBB\x03\x02\x02\x02\xBB\xBE\x07+" +
+		"\x02\x02\xBC\xBD\x07\x1A\x02\x02\xBD\xBF\x07+\x02\x02\xBE\xBC\x03\x02" +
+		"\x02\x02\xBE\xBF\x03\x02\x02\x02\xBF\x15\x03\x02\x02\x02\xC0\xC9\x07\x1B" +
+		"\x02\x02\xC1\xC3\x07\x10\x02\x02\xC2\xC4\x07\x11\x02\x02\xC3\xC2\x03\x02" +
+		"\x02\x02\xC3\xC4\x03\x02\x02\x02\xC4\xCA\x03\x02\x02\x02\xC5\xC7\x07\x11" +
+		"\x02\x02\xC6\xC8\x07\x10\x02\x02\xC7\xC6\x03\x02\x02\x02\xC7\xC8\x03\x02" +
+		"\x02\x02\xC8\xCA\x03\x02\x02\x02\xC9\xC1\x03\x02\x02\x02\xC9\xC5\x03\x02" +
+		"\x02\x02\xC9\xCA\x03\x02\x02\x02\xCA\xD6\x03\x02\x02\x02\xCB\xCC\x07\x0E" +
+		"\x02\x02\xCC\xD1\x05\x1A\x0E\x02\xCD\xCE\x07\n\x02\x02\xCE\xD0\x05\x1A" +
+		"\x0E\x02\xCF\xCD\x03\x02\x02\x02\xD0\xD3\x03\x02\x02\x02\xD1\xCF\x03\x02" +
+		"\x02\x02\xD1\xD2\x03\x02\x02\x02\xD2\xD4\x03\x02\x02\x02\xD3\xD1\x03\x02" +
+		"\x02\x02\xD4\xD5\x07\x0F\x02\x02\xD5\xD7\x03\x02\x02\x02\xD6\xCB\x03\x02" +
+		"\x02\x02\xD6\xD7\x03\x02\x02\x02\xD7\xDA\x03\x02\x02\x02\xD8\xDB\x05 " +
+		"\x11\x02\xD9\xDB\x07\x1C\x02\x02\xDA\xD8\x03\x02\x02\x02\xDA\xD9\x03\x02" +
+		"\x02\x02\xDB\xDD\x03\x02\x02\x02\xDC\xDE\x05\x1C\x0F\x02\xDD\xDC\x03\x02" +
+		"\x02\x02\xDD\xDE\x03\x02\x02\x02\xDE\xDF\x03\x02\x02\x02\xDF\xE0\x07+" +
+		"\x02\x02\xE0\xE9\x07\x1D\x02\x02\xE1\xE6\x05\x18\r\x02\xE2\xE3\x07\n\x02" +
+		"\x02\xE3\xE5\x05\x18\r\x02\xE4\xE2\x03\x02\x02\x02\xE5\xE8\x03\x02\x02" +
+		"\x02\xE6\xE4\x03\x02\x02\x02\xE6\xE7\x03\x02\x02\x02\xE7\xEA\x03\x02\x02" +
+		"\x02\xE8\xE6\x03\x02\x02\x02\xE9\xE1\x03\x02\x02\x02\xE9\xEA\x03\x02\x02" +
+		"\x02\xEA\xEB\x03\x02\x02\x02\xEB\xF5\x07\x1E\x02\x02\xEC\xED\x07\x1F\x02" +
+		"\x02\xED\xF2\x05 \x11\x02\xEE\xEF\x07\n\x02\x02\xEF\xF1\x05 \x11\x02\xF0" +
+		"\xEE\x03\x02\x02\x02\xF1\xF4\x03\x02\x02\x02\xF2\xF0\x03\x02\x02\x02\xF2" +
+		"\xF3\x03\x02\x02\x02\xF3\xF6\x03\x02\x02\x02\xF4\xF2\x03\x02\x02\x02\xF5" +
+		"\xEC\x03\x02\x02\x02\xF5\xF6\x03\x02\x02\x02\xF6\x17\x03\x02\x02\x02\xF7" +
+		"\xF9\x07\x10\x02\x02\xF8\xFA\x07\x11\x02\x02\xF9\xF8\x03\x02\x02\x02\xF9" +
+		"\xFA\x03\x02\x02\x02\xFA\u0100\x03\x02\x02\x02\xFB\xFD\x07\x11\x02\x02" +
+		"\xFC\xFE\x07\x10\x02\x02\xFD\xFC\x03\x02\x02\x02\xFD\xFE\x03\x02\x02\x02" +
+		"\xFE\u0100\x03\x02\x02\x02\xFF\xF7\x03\x02\x02\x02\xFF\xFB\x03\x02\x02" +
+		"\x02\xFF\u0100\x03\x02\x02\x02\u0100\u0101\x03\x02\x02\x02\u0101\u0103" +
+		"\x05 \x11\x02\u0102\u0104\x05\x1C\x0F\x02\u0103\u0102\x03\x02\x02\x02" +
+		"\u0103\u0104\x03\x02\x02\x02\u0104\u0105\x03\x02\x02\x02\u0105\u0106\x07" +
+		"+\x02\x02\u0106\x19\x03\x02\x02\x02\u0107\u0111\x07+\x02\x02\u0108\u0109" +
+		"\x07\t\x02\x02\u0109\u010E\x05 \x11\x02\u010A\u010B\x07\'\x02\x02\u010B" +
+		"\u010D\x05 \x11\x02\u010C\u010A\x03\x02\x02\x02\u010D\u0110\x03\x02\x02" +
+		"\x02\u010E\u010C\x03\x02\x02\x02\u010E\u010F\x03\x02\x02\x02\u010F\u0112" +
+		"\x03\x02\x02\x02\u0110\u010E\x03\x02\x02\x02\u0111\u0108\x03\x02\x02\x02" +
+		"\u0111\u0112\x03\x02\x02\x02\u0112\x1B\x03\x02\x02\x02\u0113\u0118\x07" +
+		" \x02\x02\u0114\u0119\x07\"\x02\x02\u0115\u0119\x07#\x02\x02\u0116\u0119" +
+		"\x07$\x02\x02\u0117\u0119\x05\x1E\x10\x02\u0118\u0114\x03\x02\x02\x02" +
+		"\u0118\u0115\x03\x02\x02\x02\u0118\u0116\x03\x02\x02\x02\u0118\u0117\x03" +
+		"\x02\x02\x02\u0118\u0119\x03\x02\x02\x02\u0119\u011A\x03\x02\x02\x02\u011A" +
+		"\u011B\x07!\x02\x02\u011B\x1D\x03\x02\x02\x02\u011C\u011F\x07,\x02\x02" +
+		"\u011D\u011E\x07&\x02\x02\u011E\u0120\t\x03\x02\x02\u011F\u011D\x03\x02" +
+		"\x02\x02\u011F\u0120\x03\x02\x02\x02\u0120\x1F\x03\x02\x02\x02\u0121\u0122" +
+		"\x05\x04\x03\x02\u0122!\x03\x02\x02\x028\'/4;@CJNQVZchpsy\x81\x84\x87" +
+		"\x8A\x8D\x90\x93\x96\x99\x9D\xA3\xA6\xA9\xAC\xAF\xB2\xB5\xB9\xBE\xC3\xC7" +
+		"\xC9\xD1\xD6\xDA\xDD\xE6\xE9\xF2\xF5\xF9\xFD\xFF\u0103\u010E\u0111\u0118" +
+		"\u011F";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!XcoreParser.__ATN) {
@@ -1864,11 +1873,8 @@ export class XreferenceContext extends ParserRuleContext {
 			return this.getToken(XcoreParser.ID, i);
 		}
 	}
-	public xmultiplicity(): XmultiplicityContext | undefined {
-		return this.tryGetRuleContext(0, XmultiplicityContext);
-	}
-	public Opposite(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Opposite, 0); }
 	public Contains(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Contains, 0); }
+	public Refers(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Refers, 0); }
 	public Unordered(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Unordered, 0); }
 	public Unique(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Unique, 0); }
 	public Readonly(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Readonly, 0); }
@@ -1876,6 +1882,10 @@ export class XreferenceContext extends ParserRuleContext {
 	public Volatile(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Volatile, 0); }
 	public Unsettable(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Unsettable, 0); }
 	public Derived(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Derived, 0); }
+	public xmultiplicity(): XmultiplicityContext | undefined {
+		return this.tryGetRuleContext(0, XmultiplicityContext);
+	}
+	public Opposite(): TerminalNode | undefined { return this.tryGetToken(XcoreParser.Opposite, 0); }
 	constructor(parent: ParserRuleContext | undefined, invokingState: number) {
 		super(parent, invokingState);
 	}

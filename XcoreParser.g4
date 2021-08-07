@@ -60,20 +60,19 @@ xattribute:
 	  Derived?
 	  Idattr?
 	)
-    xgenerictype xmultiplicity?
+    xgenerictype 
+	xmultiplicity?
     ID
 ;
 xreference:
-	(
-	  Contains?
-	  Unordered?
-	  Unique? 
-	  Readonly? 
-	  Transient?
-	  Volatile?
-	  Unsettable?
-	  Derived?
-	)
+	(Contains|Refers)
+	Unordered?
+	Unique? 
+	Readonly? 
+	Transient?
+	Volatile?
+	Unsettable?
+	Derived?
 	xgenerictype
 	xmultiplicity?
     ID
@@ -94,7 +93,6 @@ xoperation:
 	ID
 	BraceOpen (xparameter (Comma xparameter)*)? BraceClose
 	(Throws xgenerictype (Comma xgenerictype)*)?
-	
 ;
 
 xparameter:

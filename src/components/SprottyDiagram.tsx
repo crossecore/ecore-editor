@@ -38,6 +38,7 @@ export default class SprottyDiagram extends React.Component {
     }
     
     updateModel() {
+        console.log("updateModel")
         const elk = new ELK({defaultLayoutOptions: {
           'elk.algorithm': 'layered',
           'elk.direction': 'RIGHT',
@@ -45,6 +46,7 @@ export default class SprottyDiagram extends React.Component {
           'elk.edgeLabels.inline': "true"
         }})
         //console.log(elk.knownLayoutOptions())
+        console.log(this.context)
         const graph = EPackage2ElkGraph.convert(this.context)
     
         elk.layout(graph)
@@ -68,8 +70,12 @@ export default class SprottyDiagram extends React.Component {
         
     }
 
+    componentDidUpdate(){
+      this.updateModel()
+    }
 
     render() {
+        
         return <div id="sprotty" ref={this.myRef}></div>
     }
 }

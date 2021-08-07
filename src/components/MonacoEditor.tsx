@@ -61,8 +61,9 @@ export class MonacoEditor extends React.Component{
                 { token: 'derived.xcore', foreground: keywordColor, fontStyle: 'bold' },
                 { token: 'idattr.xcore', foreground: keywordColor, fontStyle: 'bold' },
                 { token: 'contains.xcore', foreground: keywordColor, fontStyle: 'bold' },
+                { token: 'refers.xcore', foreground: keywordColor, fontStyle: 'bold' },
                 { token: 'opposite.xcore', foreground: keywordColor, fontStyle: 'bold' },
-                { token: 'op.xcore', foreground: keywordColor, fontStyle: 'bold' },
+                { token: 'operation.xcore', foreground: keywordColor, fontStyle: 'bold' },
                 { token: 'void.xcore', foreground: keywordColor, fontStyle: 'bold' },
                 { token: 'throws.xcore', foreground: keywordColor, fontStyle: 'bold' },
             ],
@@ -95,6 +96,12 @@ export class MonacoEditor extends React.Component{
         
 
         editor.onDidChangeModelContent((event)=>{
+
+            const raw = editor.getValue()
+            const parser = createParser(raw)
+            const xpackage = parser.xpackage()
+            const ne = new Xcore2Ecore().visitXpackage(xpackage)
+            console.log(ne)
             console.log(event)
             console.log("CHAAAAAAAAAAAANGED")
         })
