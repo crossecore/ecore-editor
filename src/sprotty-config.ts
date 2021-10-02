@@ -5,41 +5,49 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-import { Container, ContainerModule } from "inversify";
-import {
-    TYPES, defaultModule, boundsModule, fadeModule, viewportModule, selectModule, moveModule, hoverModule,
-    exportModule, ConsoleLogger, LogLevel, configureViewerOptions, SvgExporter, configureModelElement,
-    SGraph, SGraphFactory, SLabel, edgeEditModule, undoRedoModule, updateModule, routingModule, modelSourceModule, labelEditModule
-} from "sprotty";
-import { ElkNodeView, ElkPortView, ElkEdgeView, ElkLabelView, JunctionView, SGraphView } from "./views";
-import { ElkNode, ElkPort, ElkEdge, ElkJunction, ViewBoxGraph } from "./sprotty-model";
-
-class FilteringSvgExporter extends SvgExporter {
-    protected isExported(styleSheet: CSSStyleSheet): boolean {
-        return styleSheet.href !== null && (styleSheet.href.endsWith('diagram.css') || styleSheet.href.endsWith('sprotty.css'));
-    }
-}
-
-export default () => {
-    const elkGraphModule = new ContainerModule((bind, unbind, isBound, rebind) => {
-        rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
-        rebind(TYPES.LogLevel).toConstantValue(LogLevel.warn);
-        rebind(TYPES.IModelFactory).to(SGraphFactory).inSingletonScope();
-        rebind(TYPES.SvgExporter).to(FilteringSvgExporter).inSingletonScope();
-        const context = { bind, unbind, isBound, rebind };
-        configureModelElement(context, 'graph', ViewBoxGraph, SGraphView);
-        configureModelElement(context, 'node', ElkNode, ElkNodeView);
-        configureModelElement(context, 'port', ElkPort, ElkPortView);
-        configureModelElement(context, 'edge', ElkEdge, ElkEdgeView);
-        configureModelElement(context, 'label', SLabel, ElkLabelView);
-        configureModelElement(context, 'junction', ElkJunction, JunctionView);
-        configureViewerOptions(context, {
-            needsClientLayout: false
-        });
-    })
-    const container = new Container();
-    container.load(defaultModule, selectModule, boundsModule, moveModule, fadeModule, hoverModule,
-        updateModule, undoRedoModule, viewportModule, routingModule, exportModule, modelSourceModule,
-        edgeEditModule, labelEditModule, elkGraphModule);
-    return container;
-}
+ import { Container, ContainerModule } from "inversify";
+ import {
+     TYPES, defaultModule, boundsModule, fadeModule, viewportModule, selectModule, moveModule, hoverModule,
+     exportModule, SGraphView, ConsoleLogger, LogLevel, configureViewerOptions, SvgExporter, configureModelElement,
+     SGraph, SGraphFactory, SLabel, edgeEditModule, undoRedoModule, updateModule, routingModule, modelSourceModule, labelEditModule
+ } from "sprotty";
+ import { ElkNodeView, ElkPortView, ElkEdgeView, ElkLabelView, JunctionView } from "./views";
+ import { ElkNode, ElkPort, ElkEdge, ElkJunction } from "./sprotty-model";
+ 
+ class FilteringSvgExporter extends SvgExporter {
+     protected isExported(styleSheet: CSSStyleSheet): boolean {
+         return styleSheet.href !== null && (styleSheet.href.endsWith('diagram.css') || styleSheet.href.endsWith('sprotty.css'));
+     }
+ }
+ 
+ export default () => {
+     const elkGraphModule = new ContainerModule((bind, unbind, isBound, rebind) => {
+         rebind(TYPES.ILogger).to(ConsoleLogger).inSingletonScope();
+         rebind(TYPES.LogLevel).toConstantValue(LogLevel.warn);
+         rebind(TYPES.IModelFactory).to(SGraphFactory).inSingletonScope();
+         rebind(TYPES.SvgExporter).to(FilteringSvgExporter).inSingletonScope();
+         const context = { bind, unbind, isBound, rebind };
+         configureModelElement(context, 'graph', SGraph, SGraphView);
+         configureModelElement(context, 'node', ElkNode, ElkNodeView);
+         configureModelElement(context, 'port', ElkPort, ElkPortView);
+         configureModelElement(context, 'edge', ElkEdge, ElkEdgeView);
+         configureModelElement(context, 'label', SLabel, ElkLabelView);
+         configureModelElement(context, 'junction', ElkJunction, JunctionView);
+         // Note that with our configuration (sprotty model update is initiated by the server after 
+         // a 'textDocument/didChange' event of the monaco editor), the following values are never 
+         // actually sent with any request to the server. Hence it is required to override the 
+         // corresponding methods in the ElkDiagramServer manually.
+         configureViewerOptions(context, {
+             needsClientLayout: false,
+             // The server-side layout is performed explicitly by the diagram generator, hence 
+             // the "regular" layout mechanism must not be used
+             needsServerLayout: false
+         });
+     })
+     const container = new Container();
+     container.load(defaultModule, selectModule, boundsModule, moveModule, fadeModule, hoverModule,
+         updateModule, undoRedoModule, viewportModule, routingModule, exportModule, modelSourceModule,
+         edgeEditModule, labelEditModule, elkGraphModule);
+     return container;
+ }
+ 

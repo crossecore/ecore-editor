@@ -1,0 +1,300 @@
+package ecore
+class EAttribute extends EStructuralFeature { 
+ 	EBoolean iD
+	contains readonly transient volatile derived EDataType eAttributeType
+  }
+
+
+class EAnnotation extends EModelElement { 
+ 	EString source
+	refers unique EStringToStringMapEntry [] details
+	contains transient EModelElement eModelElement opposite eAnnotations
+	refers unique EObject [] contents
+	contains unique EObject [] references
+  }
+
+
+class EClass extends EClassifier { 
+ 	EBoolean abstract
+	EBoolean interface
+	contains unique unsettable EClass [] eSuperTypes
+	refers unique EOperation [] eOperations opposite eContainingClass
+	contains unique readonly transient volatile derived EAttribute [] eAllAttributes
+	contains unique readonly transient volatile derived EReference [] eAllReferences
+	contains unique readonly transient volatile derived EReference [] eReferences
+	contains unique readonly transient volatile derived EAttribute [] eAttributes
+	contains unique readonly transient volatile derived EReference [] eAllContainments
+	contains unique readonly transient volatile derived EOperation [] eAllOperations
+	contains unique readonly transient volatile derived EStructuralFeature [] eAllStructuralFeatures
+	contains unique readonly transient volatile derived EClass [] eAllSuperTypes
+	contains readonly transient volatile derived EAttribute eIDAttribute
+	refers unique EStructuralFeature [] eStructuralFeatures opposite eContainingClass
+	refers unique unsettable EGenericType [] eGenericSuperTypes
+	contains unique readonly transient volatile derived EGenericType [] eAllGenericSuperTypes
+ 	op EBoolean isSuperTypeOf (  )
+	op EInt getFeatureCount (  )
+	op EStructuralFeature getEStructuralFeature (  )
+	op EInt getFeatureID (  )
+	op EStructuralFeature getEStructuralFeature (  )
+	op EInt getOperationCount (  )
+	op EOperation getEOperation (  )
+	op EInt getOperationID (  )
+	op EOperation getOverride (  )
+	op EGenericType getFeatureType (  )
+ }
+
+
+abstract class EClassifier extends ENamedElement { 
+ 	volatile EString instanceClassName
+	readonly transient volatile derived EJavaClass instanceClass
+	readonly transient volatile derived EJavaObject defaultValue
+	volatile EString instanceTypeName
+	contains readonly transient EPackage ePackage opposite eClassifiers
+	refers unique ETypeParameter [] eTypeParameters
+ 	op EBoolean isInstance (  )
+	op EInt getClassifierID (  )
+ }
+
+
+class EDataType extends EClassifier { 
+ 	EBoolean serializable
+  }
+
+
+class EEnum extends EDataType { 
+ 	refers unique EEnumLiteral [] eLiterals opposite eEnum
+ 	op EEnumLiteral getEEnumLiteral (  )
+	op EEnumLiteral getEEnumLiteral (  )
+	op EEnumLiteral getEEnumLiteralByLiteral (  )
+ }
+
+
+class EEnumLiteral extends ENamedElement { 
+ 	EInt value
+	transient EEnumerator instance
+	EString literal
+	contains readonly transient EEnum eEnum opposite eLiterals
+  }
+
+
+class EFactory extends EModelElement { 
+ 	contains transient EPackage ePackage opposite eFactoryInstance
+ 	op EObject create (  )
+	op EJavaObject createFromString (  )
+	op EString convertToString (  )
+ }
+
+
+abstract class EModelElement { 
+ 	refers unique EAnnotation [] eAnnotations opposite eModelElement
+ 	op EAnnotation getEAnnotation (  )
+ }
+
+
+abstract class ENamedElement extends EModelElement { 
+ 	EString name
+  }
+
+
+class EObject { 
+  	op EClass eClass (  )
+	op EBoolean eIsProxy (  )
+	op EResource eResource (  )
+	op EObject eContainer (  )
+	op EStructuralFeature eContainingFeature (  )
+	op EReference eContainmentFeature (  )
+	op EEList eContents (  )
+	op ETreeIterator eAllContents (  )
+	op EEList eCrossReferences (  )
+	op EJavaObject eGet (  )
+	op EJavaObject eGet (  )
+	op void eSet (  )
+	op EBoolean eIsSet (  )
+	op void eUnset (  )
+	op EJavaObject eInvoke (  )
+ }
+
+
+class EOperation extends ETypedElement { 
+ 	contains readonly transient EClass eContainingClass opposite eOperations
+	refers unique ETypeParameter [] eTypeParameters
+	refers unique EParameter [] eParameters opposite eOperation
+	contains unique unsettable EClassifier [] eExceptions
+	refers unique unsettable EGenericType [] eGenericExceptions
+ 	op EInt getOperationID (  )
+	op EBoolean isOverrideOf (  )
+ }
+
+
+class EPackage extends ENamedElement { 
+ 	EString nsURI
+	EString nsPrefix
+	contains transient EFactory eFactoryInstance opposite ePackage
+	refers unique EClassifier [] eClassifiers opposite ePackage
+	refers unique EPackage [] eSubpackages opposite eSuperPackage
+	contains readonly transient EPackage eSuperPackage opposite eSubpackages
+ 	op EClassifier getEClassifier (  )
+ }
+
+
+class EParameter extends ETypedElement { 
+ 	contains readonly transient EOperation eOperation opposite eParameters
+  }
+
+
+class EReference extends EStructuralFeature { 
+ 	EBoolean containment
+	readonly transient volatile derived EBoolean container
+	EBoolean resolveProxies
+	contains EReference eOpposite
+	contains readonly transient volatile derived EClass eReferenceType
+	contains unique EAttribute [] eKeys
+  }
+
+
+abstract class EStructuralFeature extends ETypedElement { 
+ 	EBoolean changeable
+	EBoolean volatile
+	EBoolean transient
+	EString defaultValueLiteral
+	readonly transient volatile derived EJavaObject defaultValue
+	EBoolean unsettable
+	EBoolean derived
+	contains readonly transient EClass eContainingClass opposite eStructuralFeatures
+ 	op EInt getFeatureID (  )
+	op EJavaClass getContainerClass (  )
+ }
+
+
+abstract class ETypedElement extends ENamedElement { 
+ 	EBoolean ordered
+	EBoolean unique
+	EInt lowerBound
+	EInt upperBound
+	readonly transient volatile derived EBoolean many
+	readonly transient volatile derived EBoolean required
+	contains volatile unsettable EClassifier eType
+	refers volatile unsettable EGenericType eGenericType
+  }
+
+
+class EStringToStringMapEntry { 
+ 	EString key
+	EString value
+  }
+
+
+class EGenericType { 
+ 	refers EGenericType eUpperBound
+	refers unique EGenericType [] eTypeArguments
+	contains readonly transient derived EClassifier eRawType
+	refers EGenericType eLowerBound
+	contains ETypeParameter eTypeParameter
+	contains EClassifier eClassifier
+ 	op EBoolean isInstance (  )
+ }
+
+
+class ETypeParameter extends ENamedElement { 
+ 	refers unique EGenericType [] eBounds
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

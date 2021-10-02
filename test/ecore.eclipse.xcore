@@ -1,0 +1,289 @@
+@xcore.lang.Ecore(nsURI="http://www.eclipse.org/emf/2002/Ecore")
+@xcore.lang.GenModel(modelDirectory="/crossecore-generator/src", importerID="org.eclipse.emf.importer.ecore")
+package ecore
+
+@xcore.lang.Ecore(constraints="ConsistentTransient")
+class EAttribute extends EStructuralFeature {
+	EBoolean iD
+	refers readonly transient volatile derived EDataType[1] eAttributeType
+}
+
+@xcore.lang.Ecore(constraints="WellFormedSourceURI")
+class EAnnotation extends EModelElement {
+	EString source
+	contains EStringToStringMapEntry[] details
+	container transient EModelElement eModelElement opposite eAnnotations
+	contains EObject[] contents
+	refers EObject[] references
+}
+
+@xcore.lang.Ecore(constraints="InterfaceIsAbstract AtMostOneID UniqueFeatureNames UniqueOperationSignatures NoCircularSuperTypes WellFormedMapEntryClass ConsistentSuperTypes DisjointFeatureAndOperationSignatures")
+class EClass extends EClassifier {
+	EBoolean ^abstract
+	EBoolean ^interface
+	@xcore.lang.GenModel(suppressedIsSetVisibility="true", suppressedUnsetVisibility="true")
+	refers unsettable EClass[] eSuperTypes
+	contains EOperation[] eOperations opposite eContainingClass
+	refers readonly transient volatile derived EAttribute[] eAllAttributes
+	refers readonly transient volatile derived EReference[] eAllReferences
+	refers readonly transient volatile derived EReference[] eReferences
+	refers readonly transient volatile derived EAttribute[] eAttributes
+	refers readonly transient volatile derived EReference[] eAllContainments
+	refers readonly transient volatile derived EOperation[] eAllOperations
+	refers readonly transient volatile derived EStructuralFeature[] eAllStructuralFeatures
+	refers readonly transient volatile derived EClass[] eAllSuperTypes
+	refers local readonly transient volatile derived EAttribute eIDAttribute
+	contains EStructuralFeature[] eStructuralFeatures opposite eContainingClass
+	@xcore.lang.GenModel(suppressedIsSetVisibility="true", suppressedUnsetVisibility="true")
+	contains unsettable EGenericType[] eGenericSuperTypes
+	refers readonly transient volatile derived EGenericType[] eAllGenericSuperTypes
+	op EBoolean isSuperTypeOf(EClass someClass)
+	op EInt getFeatureCount()
+	op EStructuralFeature getEStructuralFeature(EInt featureID)
+	op EInt getFeatureID(EStructuralFeature feature)
+	op EStructuralFeature getEStructuralFeature(EString featureName)
+	op EInt getOperationCount()
+	op EOperation getEOperation(EInt operationID)
+	op EInt getOperationID(EOperation operation)
+	op EOperation getOverride(EOperation operation)
+	op EGenericType getFeatureType(EStructuralFeature feature)
+}
+
+@xcore.lang.Ecore(constraints="WellFormedInstanceTypeName UniqueTypeParameterNames")
+abstract class EClassifier extends ENamedElement {
+	@xcore.lang.GenModel(suppressedIsSetVisibility="true", suppressedUnsetVisibility="true")
+	volatile unsettable EString instanceClassName
+	readonly transient volatile derived EJavaClass<?>instanceClass
+	readonly transient volatile derived EJavaObject defaultValue
+	@xcore.lang.GenModel(suppressedIsSetVisibility="true", suppressedUnsetVisibility="true")
+	volatile unsettable EString instanceTypeName
+	container readonly transient EPackage ePackage opposite eClassifiers
+	contains ETypeParameter[] eTypeParameters
+	op EBoolean isInstance(EJavaObject object)
+	op EInt getClassifierID()
+}
+
+class EDataType extends EClassifier {
+	EBoolean serializable = "true"
+}
+
+@xcore.lang.Ecore(constraints="UniqueEnumeratorNames UniqueEnumeratorLiterals")
+class EEnum extends EDataType {
+	contains EEnumLiteral[] eLiterals opposite eEnum
+	op EEnumLiteral getEEnumLiteral(EString name)
+	op EEnumLiteral getEEnumLiteral(EInt value)
+	op EEnumLiteral getEEnumLiteralByLiteral(EString literal)
+}
+
+class EEnumLiteral extends ENamedElement {
+	EInt value
+	transient EEnumerator instance
+	EString literal
+	container readonly transient EEnum eEnum opposite eLiterals
+}
+
+class EFactory extends EModelElement {
+	refers local transient EPackage[1] ePackage opposite eFactoryInstance
+	op EObject ^create(EClass eClass)
+	op EJavaObject createFromString(EDataType eDataType , EString literalValue)
+	op EString convertToString(EDataType eDataType , EJavaObject instanceValue)
+}
+
+abstract class EModelElement {
+	contains EAnnotation[] eAnnotations opposite eModelElement
+	op EAnnotation getEAnnotation(EString source)
+}
+
+@xcore.lang.Ecore(constraints="WellFormedName")
+abstract class ENamedElement extends EModelElement {
+	EString name
+}
+
+class EObject {
+	op EClass eClass()
+	op EBoolean eIsProxy()
+	op EResource eResource()
+	op EObject eContainer()
+	op EStructuralFeature eContainingFeature()
+	op EReference eContainmentFeature()
+	op EEList<EObject>eContents()
+	op ETreeIterator<EObject>eAllContents()
+	op EEList<EObject>eCrossReferences()
+	op EJavaObject eGet(EStructuralFeature feature)
+	op EJavaObject eGet(EStructuralFeature feature , EBoolean resolve)
+	op void eSet(EStructuralFeature feature , EJavaObject newValue)
+	op EBoolean eIsSet(EStructuralFeature feature)
+	op void eUnset(EStructuralFeature feature)
+	op EJavaObject eInvoke(EOperation operation , EEList<?>arguments) throws EInvocationTargetException
+}
+
+@xcore.lang.Ecore(constraints="UniqueParameterNames UniqueTypeParameterNames NoRepeatingVoid")
+class EOperation extends ETypedElement {
+	container readonly transient EClass eContainingClass opposite eOperations
+	contains ETypeParameter[] eTypeParameters
+	contains EParameter[] eParameters opposite eOperation
+	@xcore.lang.GenModel(suppressedIsSetVisibility="true", suppressedUnsetVisibility="true")
+	refers unsettable EClassifier[] eExceptions
+	@xcore.lang.GenModel(suppressedIsSetVisibility="true", suppressedUnsetVisibility="true")
+	contains unsettable EGenericType[] eGenericExceptions
+	op EInt getOperationID()
+	op EBoolean isOverrideOf(EOperation someOperation)
+}
+
+@xcore.lang.Ecore(constraints="WellFormedNsURI WellFormedNsPrefix UniqueSubpackageNames UniqueClassifierNames UniqueNsURIs")
+class EPackage extends ENamedElement {
+	EString nsURI
+	EString nsPrefix
+	refers local transient EFactory[1] eFactoryInstance opposite ePackage
+	contains EClassifier[] eClassifiers opposite ePackage
+	contains EPackage[] eSubpackages opposite eSuperPackage
+	container readonly transient EPackage eSuperPackage opposite eSubpackages
+	op EClassifier getEClassifier(EString name)
+}
+
+class EParameter extends ETypedElement {
+	container readonly transient EOperation eOperation opposite eParameters
+}
+
+@xcore.lang.Ecore(constraints="ConsistentOpposite SingleContainer ConsistentKeys ConsistentUnique ConsistentContainer")
+class EReference extends EStructuralFeature {
+	EBoolean containment
+	readonly transient volatile derived EBoolean ^container
+	EBoolean resolveProxies = "true"
+	refers EReference eOpposite
+	refers readonly transient volatile derived EClass[1] eReferenceType
+	refers EAttribute[] eKeys
+}
+
+@xcore.lang.Ecore(constraints="ValidDefaultValueLiteral")
+abstract class EStructuralFeature extends ETypedElement {
+	EBoolean changeable = "true"
+	EBoolean ^volatile
+	EBoolean ^transient
+	EString defaultValueLiteral
+	readonly transient volatile derived EJavaObject defaultValue
+	EBoolean ^unsettable
+	EBoolean ^derived
+	container readonly transient EClass eContainingClass opposite eStructuralFeatures
+	op EInt getFeatureID()
+	op EJavaClass<?>getContainerClass()
+}
+
+@xcore.lang.Ecore(constraints="ValidLowerBound ValidUpperBound ConsistentBounds ValidType")
+abstract class ETypedElement extends ENamedElement {
+	EBoolean ordered = "true"
+	EBoolean ^unique = "true"
+	EInt lowerBound
+	EInt upperBound = "1"
+	readonly transient volatile derived EBoolean many
+	readonly transient volatile derived EBoolean required
+	@xcore.lang.GenModel(suppressedIsSetVisibility="true", suppressedUnsetVisibility="true")
+	refers volatile unsettable EClassifier eType
+	@xcore.lang.GenModel(suppressedIsSetVisibility="true", suppressedUnsetVisibility="true")
+	contains volatile unsettable EGenericType eGenericType
+}
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#decimal")
+type EBigDecimal wraps java.math.BigDecimal
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#integer")
+type EBigInteger wraps java.math.BigInteger
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#boolean")
+type EBoolean wraps boolean
+
+@xcore.lang.ExtendedMetaData(baseType="EBoolean", name="EBoolean:Object")
+type EBooleanObject wraps Boolean
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#byte")
+type EByte wraps byte
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#hexBinary")
+type EByteArray wraps byte [ ]
+
+@xcore.lang.ExtendedMetaData(baseType="EByte", name="EByte:Object")
+type EByteObject wraps Byte
+
+type EChar wraps char
+
+@xcore.lang.ExtendedMetaData(baseType="EChar", name="EChar:Object")
+type ECharacterObject wraps Character
+
+type EDate wraps java.util.Date
+
+type EDiagnosticChain wraps org.eclipse.emf.common.util.DiagnosticChain
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#double")
+type EDouble wraps double
+
+@xcore.lang.ExtendedMetaData(baseType="EDouble", name="EDouble:Object")
+type EDoubleObject wraps Double
+
+type EEList<E> wraps org.eclipse.emf.common.util.EList
+
+type EEnumerator wraps org.eclipse.emf.common.util.Enumerator
+
+type EFeatureMap wraps org.eclipse.emf.ecore.util.FeatureMap
+
+type EFeatureMapEntry wraps org.eclipse.emf.ecore.util.FeatureMap.Entry
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#float")
+type EFloat wraps float
+
+@xcore.lang.ExtendedMetaData(baseType="EFloat", name="EFloat:Object")
+type EFloatObject wraps Float
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#int")
+type EInt wraps int
+
+@xcore.lang.ExtendedMetaData(baseType="EInt", name="EInt:Object")
+type EIntegerObject wraps Integer
+
+type EJavaClass<T> wraps Class
+
+type EJavaObject wraps Object
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#long")
+type ELong wraps long
+
+@xcore.lang.ExtendedMetaData(baseType="ELong", name="ELong:Object")
+type ELongObject wraps Long
+
+type EMap<K , V> wraps java.util.Map
+
+type EResource wraps org.eclipse.emf.ecore.resource.Resource
+
+type EResourceSet wraps org.eclipse.emf.ecore.resource.ResourceSet
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#short")
+type EShort wraps short
+
+@xcore.lang.ExtendedMetaData(baseType="EShort", name="EShort:Object")
+type EShortObject wraps Short
+
+@xcore.lang.ExtendedMetaData(baseType="http://www.w3.org/2001/XMLSchema#string")
+type EString wraps String
+
+class EStringToStringMapEntry wraps java.util.Map.Entry {
+	EString key
+	EString value
+}
+
+type ETreeIterator<E> wraps org.eclipse.emf.common.util.TreeIterator
+
+@xcore.lang.Ecore(constraints="ConsistentType ConsistentBounds ConsistentArguments")
+class EGenericType {
+	contains EGenericType eUpperBound
+	contains EGenericType[] eTypeArguments
+	refers readonly transient derived EClassifier[1] eRawType
+	contains EGenericType eLowerBound
+	refers local ETypeParameter eTypeParameter
+	refers EClassifier eClassifier
+	op EBoolean isInstance(EJavaObject object)
+}
+
+class ETypeParameter extends ENamedElement {
+	contains EGenericType[] eBounds
+}
+
+type EInvocationTargetException wraps java.lang.reflect.InvocationTargetException

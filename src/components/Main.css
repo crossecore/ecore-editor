@@ -1,0 +1,28 @@
+
+#container{
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    overflow: hidden;
+}
+
+#app{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+#toolbar{
+    display:flex;
+
+}
+
+#content{
+    position: relative;
+    flex-grow: 1;
+
+}
+

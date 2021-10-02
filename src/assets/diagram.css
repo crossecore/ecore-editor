@@ -54,3 +54,7 @@ svg{
 .mouseover {
     stroke: #88f;
 }
+
+#sprotty{
+    height:100%
+}

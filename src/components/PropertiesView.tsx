@@ -4,7 +4,6 @@ import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import { Messages } from './Messages';
 
 export default class PropertiesView extends React.Component {
   
@@ -14,17 +13,7 @@ export default class PropertiesView extends React.Component {
   
   constructor(props:any) {
     super(props);
-    props.glContainer.setTitle("Properties")
 
-    props.glEventHub.on(Messages.SET_EPACKAGE, (epackage:any)=>{
-      
-      this.setState({eobject: null})
-    })
-
-    props.glEventHub.on(Messages.SET_SELECTION, (data:any)=>{
-      console.log(data)
-      this.setState({eobject: data})
-    })
   }
   render() {
 
